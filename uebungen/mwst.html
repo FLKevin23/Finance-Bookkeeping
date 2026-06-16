@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – MWST</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+select.ex-sel{padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;background:white;cursor:pointer}
+input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.tbl-ex{border-collapse:collapse;font-size:13px;margin:8px 0;width:100%}
+.tbl-ex th{background:var(--blue-pale);padding:7px 12px;border:1px solid var(--border);font-weight:700}
+.tbl-ex td{padding:7px 12px;border:1px solid var(--border)}
+.rate-reminder{background:#fff8e0;border:1.5px solid #e8c040;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px}
+.rate-reminder strong{color:#7a5800}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html">Zinsrechnung</a>
+    <a href="../learn/mwst.html" class="active">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>🧾 Übungen – Mehrwertsteuer (MWST)</h1>
+  <p>Kapitel 8 · Sätze zuordnen, berechnen und Abrechnung verstehen</p>
+</div>
+
+<div class="container">
+
+  <div class="rate-reminder">
+    <strong>📌 Quick-Ref:</strong> &nbsp;
+    <strong style="color:#b01c1c">8.1%</strong> Normalsatz (Kleider, Restaurant, Elektronik, Dienstleistungen) &nbsp;|&nbsp;
+    <strong style="color:#7a5800">2.6%</strong> Sondersatz (Lebensmittel, Bücher, Zeitungen, Blumen, Take-Away, Medikamente) &nbsp;|&nbsp;
+    <strong>0%</strong> Ausgenommen (Arzt, Schule, Versicherung, Miete)
+  </div>
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Die eindeutigsten Fälle zuordnen. Kein Trick, nur Grundwissen.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – Brot im Supermarkt</div>
+      <div class="ex-body">
+        <div class="ex-q">Du kaufst ein Brot bei der Migros. Welcher MWST-Satz gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_1" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_1" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_1" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_1','2.6','Brot ist ein Lebensmittel → 2.6% Sondersatz. Dieser gilt für alle Grundnahrungsmittel.')">Prüfen</button>
+        <div class="fb" id="e0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – Kleider</div>
+      <div class="ex-body">
+        <div class="ex-q">Du kaufst ein neues T-Shirt bei Zara. Welcher MWST-Satz gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_2" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_2" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_2" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_2','8.1','Kleider sind keine Grundbedürfnisse im Sondersatz-Sinne → 8.1% Normalsatz.')">Prüfen</button>
+        <div class="fb" id="e0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Arzt</div>
+      <div class="ex-body">
+        <div class="ex-q">Du gehst zum Hausarzt. Welcher MWST-Satz gilt auf die Arztrechnung?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_3" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_3" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_3" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_3','0','Arzt- und Gesundheitsleistungen sind von der MWST ausgenommen → 0%. Der Staat will medizinische Versorgung nicht verteuern.')">Prüfen</button>
+        <div class="fb" id="e0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – Zeitung</div>
+      <div class="ex-body">
+        <div class="ex-q">Du kaufst am Kiosk eine Tageszeitung. Welcher MWST-Satz gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_4" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_4" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_4" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_4','2.6','Zeitungen, Zeitschriften und Bücher (Printmedien) → 2.6% Sondersatz.')">Prüfen</button>
+        <div class="fb" id="e0_4-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – 6 gemischte Positionen zuordnen und Brutto/Netto-Berechnungen.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – 6 Positionen zuordnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Welcher MWST-Satz gilt jeweils?</div>
+        <table class="tbl-ex">
+          <tr><th>Position</th><th>Satz</th></tr>
+          <tr><td>Coiffeur (Haarschnitt)</td><td><select class="ex-sel" id="s1_1a"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Blumen beim Blumenhändler</td><td><select class="ex-sel" id="s1_1b"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Schulkurs (Weiterbildung)</td><td><select class="ex-sel" id="s1_1c"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Benzin an der Tankstelle</td><td><select class="ex-sel" id="s1_1d"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Tierfutter (Katzennahrung)</td><td><select class="ex-sel" id="s1_1e"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Hotelübernachtung</td><td><select class="ex-sel" id="s1_1f"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e1_1',['s1_1a','s1_1b','s1_1c','s1_1d','s1_1e','s1_1f'],['8.1','2.6','0','8.1','2.6','8.1'],'Coiffeur=8.1%(Dienstl.). Blumen=2.6%(Pflanzen). Kurs=0%(Bildung). Benzin=8.1%. Tierfutter=2.6%. Hotel=8.1%.')">Prüfen</button>
+        <div class="fb" id="e1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – Netto → Brutto</div>
+      <div class="ex-body">
+        <div class="ex-q">Berechne den Bruttobetrag (inkl. MWST):</div>
+        <p><strong>a)</strong> Netto CHF 100.00, Satz 8.1% → Brutto CHF <input class="ex-num" type="number" id="n1_2a" placeholder="0" step="0.01"></p>
+        <p><strong>b)</strong> Netto CHF 200.00, Satz 2.6% → Brutto CHF <input class="ex-num" type="number" id="n1_2b" placeholder="0" step="0.01"></p>
+        <p><strong>c)</strong> Netto CHF 500.00, Satz 8.1% → Brutto CHF <input class="ex-num" type="number" id="n1_2c" placeholder="0" step="0.01"></p>
+        <button class="chk-btn" onclick="chkDrei('n1_2a','n1_2b','n1_2c',108.10,205.20,540.50,0.02,'a)100×1.081=108.10. b)200×1.026=205.20. c)500×1.081=540.50.')">Prüfen</button>
+        <div class="fb" id="e1_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_3">
+      <div class="ex-head">Aufgabe 3 – Was ist Vorsteuer?</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Unternehmen kauft Waren für CHF 1'080 inkl. 8.1% MWST ein. Was ist die «Vorsteuer»?</div>
+        <div class="rg">
+          <label><input type="radio" name="e1_3" value="A"> Die MWST, die das Unternehmen dem Kunden berechnet</label>
+          <label><input type="radio" name="e1_3" value="B"> Die MWST, die das Unternehmen selbst bezahlt hat (CHF 80.00) – und später vom Staat zurückbekommt</label>
+          <label><input type="radio" name="e1_3" value="C"> Der Nettogewinn des Unternehmens</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e1_3','B','Vorsteuer = MWST auf Einkäufe = Guthaben gegenüber dem Staat. Beim Einkauf für 1080 (inkl. 8.1%): Netto=999.07, MWST=80.93. Das Unternehmen kann diese MWST mit seiner eigenen MWST-Schuld verrechnen.')">Prüfen</button>
+        <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Schwierigere Grenzfälle, Brutto→Netto rückwärts und MWST-Abrechnung.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – 6 Grenzfälle</div>
+      <div class="ex-body">
+        <div class="ex-q">Achtung – hier sind die schwierigeren Fälle!</div>
+        <table class="tbl-ex">
+          <tr><th>Position</th><th>Satz</th></tr>
+          <tr><td>Pizza im Restaurant (am Tisch gegessen)</td><td><select class="ex-sel" id="s2_1a"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Pizza Take-Away (zum Mitnehmen, kalt)</td><td><select class="ex-sel" id="s2_1b"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Versicherungsprämie (Krankenkasse)</td><td><select class="ex-sel" id="s2_1c"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Medikamente (rezeptpflichtig)</td><td><select class="ex-sel" id="s2_1d"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Miete einer Wohnung</td><td><select class="ex-sel" id="s2_1e"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+          <tr><td>Kino-Eintrittskarte</td><td><select class="ex-sel" id="s2_1f"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e2_1',['s2_1a','s2_1b','s2_1c','s2_1d','s2_1e','s2_1f'],['8.1','2.6','0','2.6','0','8.1'],'Restaurant=8.1%(Konsumation). Take-Away=2.6%(Lebensmittel). Versicherung=0%. Medikamente=2.6%. Wohnungsmiete=0%. Kino=8.1%(Unterhaltung).')">Prüfen</button>
+        <div class="fb" id="e2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Brutto → Netto rückwärts</div>
+      <div class="ex-body">
+        <div class="ex-q">Berechne den Nettobetrag (exkl. MWST) und den MWST-Betrag:</div>
+        <p><strong>a)</strong> Brutto CHF 216.20 (Satz 8.1%) → Netto CHF <input class="ex-num" type="number" id="n2_2a" placeholder="0" step="0.01"> &nbsp; MWST CHF <input class="ex-num" type="number" id="n2_2b" placeholder="0" step="0.01"></p>
+        <p><strong>b)</strong> Brutto CHF 205.20 (Satz 2.6%) → Netto CHF <input class="ex-num" type="number" id="n2_2c" placeholder="0" step="0.01"> &nbsp; MWST CHF <input class="ex-num" type="number" id="n2_2d" placeholder="0" step="0.01"></p>
+        <button class="chk-btn" onclick="chkVier('n2_2a','n2_2b','n2_2c','n2_2d',200,16.20,200,5.20,0.05,'a)216.20÷1.081=200, MWST=16.20. b)205.20÷1.026=200, MWST=5.20.')">Prüfen</button>
+        <div class="fb" id="e2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – MWST-Abrechnung</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Unternehmen hat im Quartal:<br>
+        · Verkäufe (Netto) CHF 40'000 → MWST 8.1% = CHF 3'240<br>
+        · Einkäufe (Netto) CHF 15'000 → Vorsteuer 8.1% = CHF 1'215<br><br>
+        Wie hoch ist die <strong>Zahllast</strong> (Betrag, den das Unternehmen an die ESTV überweist)?</div>
+        CHF <input class="ex-num" type="number" id="n2_3" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_3',2025,0.05,'CHF','Zahllast = MWST auf Verkäufe − Vorsteuer = 3240 − 1215 = 2025.')">Prüfen</button>
+        <div class="fb" id="n2_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Kombinierte Aufgaben mit Berechnung und Entscheidung.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – Korrekte MWST-Sätze bei gemischter Rechnung</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Catering-Unternehmen stellt folgende Rechnung:<br>
+        1) Essen (take-away, kalt) CHF 180.00 netto<br>
+        2) Heissgetränke (vor Ort konsumiert) CHF 60.00 netto<br>
+        3) Tischdekoration / Blumen CHF 40.00 netto<br><br>
+        Berechne den <strong>MWST-Betrag pro Position</strong> und den <strong>Gesamtrechnungsbetrag</strong>:</div>
+        MWST Pos. 1 (2.6%): CHF <input class="ex-num" type="number" id="n3_1a" placeholder="0" step="0.01"><br><br>
+        MWST Pos. 2 (8.1%): CHF <input class="ex-num" type="number" id="n3_1b" placeholder="0" step="0.01"><br><br>
+        MWST Pos. 3 (2.6%): CHF <input class="ex-num" type="number" id="n3_1c" placeholder="0" step="0.01"><br><br>
+        Gesamtbetrag inkl. MWST: CHF <input class="ex-num" type="number" id="n3_1d" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkVierB('n3_1a','n3_1b','n3_1c','n3_1d',4.68,4.86,1.04,290.58,0.05,'Pos1=180×2.6%=4.68. Pos2=60×8.1%=4.86. Pos3=40×2.6%=1.04. Total=180+4.68+60+4.86+40+1.04=290.58.')">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Vollständige MWST-Abrechnung mit Zahllast</div>
+      <div class="ex-body">
+        <div class="ex-q">Quartalsabrechnung eines Elektrikers (Normalsatz 8.1%):<br>
+        Einnahmen (Rechnungen an Kunden, netto): CHF 85'000<br>
+        Materialeinkauf (netto): CHF 32'000<br>
+        Werkzeuge &amp; Maschinen (netto): CHF 8'000<br><br>
+        Berechne:<br>
+        <strong>a)</strong> Geschuldete MWST (auf Einnahmen): CHF <input class="ex-num" type="number" id="n3_2a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Vorsteuer total (Einkäufe + Werkzeug): CHF <input class="ex-num" type="number" id="n3_2b" placeholder="0" step="0.01"><br><br>
+        <strong>c)</strong> Zahllast an ESTV: CHF <input class="ex-num" type="number" id="n3_2c" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkDreiB('n3_2a','n3_2b','n3_2c',6885,3240,3645,0.5,'a)85000×8.1%=6885. b)(32000+8000)×8.1%=40000×8.1%=3240. c)6885-3240=3645.')">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_3">
+      <div class="ex-head">Aufgabe 3 – Kniffliger Grenzfall + Begründung</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Food-Truck verkauft:<br>
+        a) Burritos zum Mitnehmen (kalt) → welcher Satz?<br>
+        b) Burritos mit Bestuhlung vor Ort essen → welcher Satz?<br>
+        c) Mineralwasser (Flasche) take-away → welcher Satz?</div>
+        <p>a) <select class="ex-sel" id="s3_3a"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</p>
+        <p>b) <select class="ex-sel" id="s3_3b"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</p>
+        <p>c) <select class="ex-sel" id="s3_3c"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</p>
+        <button class="chk-btn" onclick="chkTbl('e3_3',['s3_3a','s3_3b','s3_3c'],['2.6','8.1','2.6'],'a)Take-Away kalt=Lebensmittel→2.6%. b)Vor Ort mit Service=Restaurant→8.1%. c)Getränk take-away=Lebensmittel→2.6%. Der Ort und die Art des Konsums entscheiden!')">Prüfen</button>
+        <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/mwst.html">← Theorie MWST</a>
+    <a href="kalkulation.html">Übungen Kalkulation →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans+'%</strong>. '+tip;fb.className='fb no';}
+}
+function chkN(id,ans,tol,unit,tip){
+  const el=document.getElementById(id),fb=document.getElementById(id+'-fb');
+  const val=parseFloat(el.value);
+  if(isNaN(val)){fb.textContent='⚠️ Bitte gib eine Zahl ein.';fb.className='fb tip';return;}
+  if(Math.abs(val-ans)<=tol){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ Richtig: <strong>'+ans.toLocaleString('de-CH')+(unit?' '+unit:'')+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkTbl(exId,ids,answers,tip){
+  let ok=0;
+  ids.forEach((id,i)=>{const el=document.getElementById(id);el.style.borderColor=el.value===answers[i]?'#2a7a3c':el.value?'#b01c1c':'';if(el.value===answers[i])ok++;});
+  const fb=document.getElementById(exId+'-fb');
+  fb.innerHTML=ok+' von '+answers.length+' richtig.'+(ok===answers.length?' ✅ Perfekt!':'<br>'+tip);
+  fb.className='fb '+(ok===answers.length?'ok':ok>0?'tip':'no');
+}
+function chkDrei(id1,id2,id3,a1,a2,a3,tol,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value),v3=parseFloat(document.getElementById(id3).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=Math.abs(v1-a1)<=tol&&Math.abs(v2-a2)<=tol&&Math.abs(v3-a3)<=tol;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)'+a1+' b)'+a2+' c)'+a3+'. '+tip;fbEl.className='fb no';}
+}
+function chkVier(id1,id2,id3,id4,a1,a2,a3,a4,tol,tip){
+  const vals=[id1,id2,id3,id4].map(id=>parseFloat(document.getElementById(id).value));
+  const ans=[a1,a2,a3,a4];
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=tol);
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)Netto='+a1+' MWST='+a2+' b)Netto='+a3+' MWST='+a4+'. '+tip;fbEl.className='fb no';}
+}
+function chkVierB(id1,id2,id3,id4,a1,a2,a3,a4,tol,tip){chkVier(id1,id2,id3,id4,a1,a2,a3,a4,tol,tip);}
+function chkDreiB(id1,id2,id3,a1,a2,a3,tol,tip){
+  const vals=[id1,id2,id3].map(id=>parseFloat(document.getElementById(id).value));
+  const ans=[a1,a2,a3];
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=tol);
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)'+a1+' b)'+a2+' c)'+a3+'. '+tip;fbEl.className='fb no';}
+}
+</script>
+</body>
+</html>

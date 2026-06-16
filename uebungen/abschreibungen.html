@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – Abschreibungen</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+select.ex-sel{padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;background:white;cursor:pointer}
+input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.abs-tbl{border-collapse:collapse;font-size:13px;margin:10px 0}
+.abs-tbl th{background:var(--blue-pale);padding:7px 12px;border:1px solid var(--border);font-weight:700;text-align:center}
+.abs-tbl td{padding:7px 12px;border:1px solid var(--border);text-align:right}
+.abs-tbl td:first-child{text-align:left;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html">Zinsrechnung</a>
+    <a href="../learn/mwst.html">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/abschreibungen.html" class="active">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>📉 Übungen – Abschreibungen</h1>
+  <p>Kapitel 11 · Linear, degressiv, buchen – bis du's sicher beherrschst</p>
+</div>
+
+<div class="container">
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Die Grundidee verstehen, erste einfache Berechnung.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – Einfache Abschreibung</div>
+      <div class="ex-body">
+        <div class="ex-q">Du kaufst eine Maschine für CHF <strong>10'000</strong>.<br>
+        Abschreibungssatz: <strong>20% p.a.</strong> (linear, also % vom Kaufpreis)<br><br>
+        Wie hoch ist die Abschreibung im <strong>ersten Jahr</strong>?</div>
+        CHF <input class="ex-num" type="number" id="n0_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_1',2000,0.5,'CHF','10000 × 20% = 2000. Jedes Jahr verliert die Maschine CHF 2000 an Buchwert.')">Prüfen</button>
+        <div class="fb" id="n0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – Linear: Basis ist…</div>
+      <div class="ex-body">
+        <div class="ex-q">Bei der <strong>linearen</strong> Abschreibung wird der Prozentsatz berechnet auf den…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_2" value="AW"> Anschaffungswert (Kaufpreis) – bleibt immer gleich</label>
+          <label><input type="radio" name="e0_2" value="BW"> Buchwert des Vorjahres – sinkt jedes Jahr</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_2','AW','Linear = immer % vom KAUFPREIS. Deshalb ist der Abschreibungsbetrag jedes Jahr gleich. Das ist der Unterschied zur degressiven Methode.')">Prüfen</button>
+        <div class="fb" id="e0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Degressiv: Basis ist…</div>
+      <div class="ex-body">
+        <div class="ex-q">Bei der <strong>degressiven</strong> Abschreibung wird der Prozentsatz jedes Jahr berechnet auf den…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_3" value="AW"> Anschaffungswert (Kaufpreis) – fest</label>
+          <label><input type="radio" name="e0_3" value="BW"> aktuellen Buchwert (Restwert) – sinkt jedes Jahr</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_3','BW','Degressiv = % immer vom aktuellen BUCHWERT. Da der Buchwert jedes Jahr kleiner wird, wird auch die Abschreibung kleiner. Der Betrag ist nie gleich.')">Prüfen</button>
+        <div class="fb" id="e0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – Buchungssatz-Seite</div>
+      <div class="ex-body">
+        <div class="ex-q">Abschreibungen sind ein <strong>Aufwand</strong>. Auf welcher Seite des Kontos werden Aufwände eingetragen, wenn sie zunehmen?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_4" value="Soll"> Im Soll (linke Seite)</label>
+          <label><input type="radio" name="e0_4" value="Haben"> Im Haben (rechte Seite)</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_4','Soll','Aufwandskonten steigen im Soll. Buchungssatz: Abschreibungen (Soll) / Anlagekonto (Haben). Das Anlagekonto ist ein Aktivkonto und sinkt im Haben.')">Prüfen</button>
+        <div class="fb" id="e0_4-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – 4-Jahres-Tabellen ausfüllen und Buchungssätze.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – Lineare Abschreibungstabelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Büroeinrichtung: AW = CHF <strong>20'000</strong> · Linear <strong>25%</strong> p.a.<br>
+        Fülle die Tabelle aus:</div>
+        <table class="abs-tbl">
+          <tr><th>Jahr</th><th>BW Anfang</th><th>Abschreibung</th><th>BW Ende</th></tr>
+          <tr><td>1</td><td>20'000</td><td><input class="ex-num" type="number" id="t1_1a" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1b" placeholder="0"></td></tr>
+          <tr><td>2</td><td><input class="ex-num" type="number" id="t1_1c" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1d" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1e" placeholder="0"></td></tr>
+          <tr><td>3</td><td><input class="ex-num" type="number" id="t1_1f" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1g" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1h" placeholder="0"></td></tr>
+          <tr><td>4</td><td><input class="ex-num" type="number" id="t1_1i" placeholder="0"></td><td><input class="ex-num" type="number" id="t1_1j" placeholder="0"></td><td>0</td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkAbs1()">Prüfen</button>
+        <div class="fb" id="e1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – Degressive Abschreibung (2 Jahre)</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug: AW = CHF <strong>15'000</strong> · Degressiv <strong>30%</strong> p.a.<br><br>
+        Jahr 1: Abschreibungsbetrag = CHF <input class="ex-num" type="number" id="n1_2a" placeholder="0" step="0.01"> &nbsp; Buchwert Ende = CHF <input class="ex-num" type="number" id="n1_2b" placeholder="0" step="0.01"><br><br>
+        Jahr 2: Abschreibungsbetrag = CHF <input class="ex-num" type="number" id="n1_2c" placeholder="0" step="0.01"> &nbsp; Buchwert Ende = CHF <input class="ex-num" type="number" id="n1_2d" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkVier('n1_2a','n1_2b','n1_2c','n1_2d',4500,10500,3150,7350,0.5,'J1:15000×30%=4500,BW=10500. J2:10500×30%=3150,BW=7350. Achtung: Basis bei degressiv ist immer der Buchwert des Vorjahres!')">Prüfen</button>
+        <div class="fb" id="e1_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_3">
+      <div class="ex-head">Aufgabe 3 – Buchungssatz schreiben</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug (AW CHF 60'000) wird linear mit 20% p.a. abgeschrieben.<br>
+        Wie lautet der Buchungssatz für das <strong>erste Jahr</strong>?<br><br>
+        Abschreibungsbetrag = CHF <input class="ex-num" type="number" id="n1_3a" placeholder="0"><br><br>
+        Konto im Soll: <select class="ex-sel" id="s1_3b"><option value="">– wählen –</option><option value="Abs_Fzg">Abschreibungen auf Fahrzeuge</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Aufwand">Allgemeiner Aufwand</option></select><br><br>
+        Konto im Haben: <select class="ex-sel" id="s1_3c"><option value="">– wählen –</option><option value="Abs_Fzg">Abschreibungen auf Fahrzeuge</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Bank">Bank</option></select>
+        <button class="chk-btn" onclick="chkBuchung()">Prüfen</button>
+        <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Beide Methoden vergleichen, Buchwert-Formel, mehrere Buchungen.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – Linear vs. Degressiv vergleichen</div>
+      <div class="ex-body">
+        <div class="ex-q">Maschine AW = CHF <strong>40'000</strong>. Berechne für <strong>3 Jahre</strong>:<br>
+        <strong>Linear 20%</strong> (Basis: immer AW) und <strong>Degressiv 25%</strong> (Basis: jeweiliger BW).<br>
+        Gib die <strong>Abschreibungsbeträge</strong> ein:</div>
+        <table class="abs-tbl" style="width:100%">
+          <tr><th>Jahr</th><th>Linear Abschr.</th><th>Linear BW Ende</th><th>Degressiv Abschr.</th><th>Degressiv BW Ende</th></tr>
+          <tr><td>1</td>
+            <td><input class="ex-num" type="number" id="c1a" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c1b" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c1c" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c1d" placeholder="0"></td></tr>
+          <tr><td>2</td>
+            <td><input class="ex-num" type="number" id="c2a" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c2b" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c2c" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c2d" placeholder="0"></td></tr>
+          <tr><td>3</td>
+            <td><input class="ex-num" type="number" id="c3a" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c3b" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c3c" placeholder="0"></td>
+            <td><input class="ex-num" type="number" id="c3d" placeholder="0"></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkVergleich()">Prüfen</button>
+        <div class="fb" id="e2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Buchwert nach n Jahren (Formel)</div>
+      <div class="ex-body">
+        <div class="ex-q">Anlage AW = CHF <strong>50'000</strong>, degressiv <strong>20%</strong> p.a.<br>
+        Buchwert-Formel: <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px">BW = AW × (1 − Satz)ⁿ</code><br><br>
+        Berechne den Buchwert nach <strong>3 Jahren</strong> direkt (ohne Tabelle):<br>
+        BW = 50'000 × (1 − 0.20)³ = 50'000 × 0.8³ = CHF <input class="ex-num" type="number" id="n2_2" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n2_2',25600,0.5,'CHF','0.8³ = 0.8×0.8×0.8 = 0.512. 50000×0.512 = 25600.')">Prüfen</button>
+        <div class="fb" id="n2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – Welche Methode? Entscheiden nach Angabe</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Fahrzeug (AW CHF 30'000) wird wie folgt abgeschrieben:<br>
+        Jahr 1: Abschreibung = CHF 7'500, BW Ende = CHF 22'500<br>
+        Jahr 2: Abschreibung = CHF 5'625, BW Ende = CHF 16'875<br><br>
+        Welche Abschreibungsmethode wird verwendet? Wie hoch ist der Satz?</div>
+        <div class="rg">
+          <label><input type="radio" name="e2_3m" value="linear"> Linear – Abschreibung bleibt gleich</label>
+          <label><input type="radio" name="e2_3m" value="degressiv"> Degressiv – Abschreibung sinkt jedes Jahr</label>
+        </div>
+        Satz: <input class="ex-num" type="number" id="n2_3s" placeholder="0" style="width:80px"> %
+        <button class="chk-btn" onclick="chkMethode()">Prüfen</button>
+        <div class="fb" id="e2_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Kombinierte Szenarien, vorzeitiger Abgang, strategischer Vergleich.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – Vollständiges Szenario: Kauf → Abschreibung → Buchwert</div>
+      <div class="ex-body">
+        <div class="ex-q">Kauf einer Maschine am 1.1. für CHF <strong>80'000</strong>, degressiv <strong>25%</strong> p.a.<br><br>
+        <strong>a)</strong> Abschreibung Jahr 1: CHF <input class="ex-num" type="number" id="n3_1a" placeholder="0"><br><br>
+        <strong>b)</strong> Buchwert Ende Jahr 1: CHF <input class="ex-num" type="number" id="n3_1b" placeholder="0"><br><br>
+        <strong>c)</strong> Abschreibung Jahr 2: CHF <input class="ex-num" type="number" id="n3_1c" placeholder="0"><br><br>
+        <strong>d)</strong> Buchwert Ende Jahr 2: CHF <input class="ex-num" type="number" id="n3_1d" placeholder="0"><br><br>
+        <strong>e)</strong> Buchungssatz Jahr 2 – Soll-Konto: <select class="ex-sel" id="s3_1e"><option value="">–</option><option value="AbsMasch">Abschreibungen auf Maschinen</option><option value="Masch">Maschinen</option></select>
+        / Haben-Konto: <select class="ex-sel" id="s3_1f"><option value="">–</option><option value="AbsMasch">Abschreibungen auf Maschinen</option><option value="Masch">Maschinen</option></select></div>
+        <button class="chk-btn" onclick="chkSzenario()">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Wann ist die Hälfte abgeschrieben? (Linear)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Fahrzeug AW = CHF <strong>30'000</strong>, linear <strong>10%</strong> p.a.<br><br>
+        <strong>a)</strong> Wie hoch ist die jährliche Abschreibung? CHF <input class="ex-num" type="number" id="n3_2a" placeholder="0"><br><br>
+        <strong>b)</strong> Nach wie vielen Jahren ist der Buchwert auf die Hälfte gesunken (BW = CHF 15'000)?
+        <input class="ex-num" type="number" id="n3_2b" placeholder="0" style="width:70px"> Jahre</div>
+        <button class="chk-btn" onclick="chkHalbe()">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_3">
+      <div class="ex-head">Aufgabe 3 – Strategievergleich: Linear vs. Degressiv</div>
+      <div class="ex-body">
+        <div class="ex-q">EDV-Anlage, AW = CHF 20'000. Vergleich: Linear 25% vs. Degressiv 25%.<br><br>
+        Nach 3 Jahren – welche Methode zeigt den <strong>tieferen Buchwert</strong>?<br>
+        (BW Linear nach 3J = AW − 3 × Abs. | BW Degressiv nach 3J = AW × 0.75³)</div>
+        BW Linear nach 3 Jahren: CHF <input class="ex-num" type="number" id="n3_3a" placeholder="0" step="0.01"><br><br>
+        BW Degressiv nach 3 Jahren: CHF <input class="ex-num" type="number" id="n3_3b" placeholder="0" step="0.01"><br><br>
+        Welche Methode hat nach 3 Jahren den tieferen Buchwert?
+        <div class="rg">
+          <label><input type="radio" name="e3_3w" value="linear"> Linear</label>
+          <label><input type="radio" name="e3_3w" value="degressiv"> Degressiv</label>
+          <label><input type="radio" name="e3_3w" value="gleich"> Gleich</label>
+        </div>
+        <button class="chk-btn" onclick="chkStrategie()">Prüfen</button>
+        <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/abschreibungen.html">← Theorie Abschreibungen</a>
+    <a href="../exam.html">Zur Prüfungsübung →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> '+tip;fb.className='fb no';}
+}
+function chkN(id,ans,tol,unit,tip){
+  const el=document.getElementById(id),fb=document.getElementById(id+'-fb');
+  const val=parseFloat(el.value);
+  if(isNaN(val)){fb.textContent='⚠️ Bitte gib eine Zahl ein.';fb.className='fb tip';return;}
+  if(Math.abs(val-ans)<=tol){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ Richtig: <strong>'+ans.toLocaleString('de-CH')+(unit?' '+unit:'')+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkVier(id1,id2,id3,id4,a1,a2,a3,a4,tol,tip){
+  const vals=[id1,id2,id3,id4].map(id=>parseFloat(document.getElementById(id).value));
+  const ans=[a1,a2,a3,a4];
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=tol);
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ J1:Abs='+a1+'/BW='+a2+'. J2:Abs='+a3+'/BW='+a4+'. '+tip;fbEl.className='fb no';}
+}
+function chkAbs1(){
+  const ans=[5000,15000,15000,5000,10000,10000,5000,5000,5000,5000];
+  const ids=['t1_1a','t1_1b','t1_1c','t1_1d','t1_1e','t1_1f','t1_1g','t1_1h','t1_1i','t1_1j'];
+  let ok=0;
+  ids.forEach((id,i)=>{const v=parseFloat(document.getElementById(id).value);if(!isNaN(v)&&Math.abs(v-ans[i])<=0.5)ok++;});
+  const fb=document.getElementById('e1_1-fb');
+  if(ok===10){fb.innerHTML='✅ <strong>Perfekt!</strong> 20000×25%=5000/Jahr. J1:5000/15000. J2:15000/5000/10000. J3:10000/5000/5000. J4:5000/5000.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ '+ok+'/10 richtig. Linear 25%: Abschreibung immer 5000 (=20000×25%). BW sinkt: 15000→10000→5000→0.';fb.className='fb no';}
+}
+function chkBuchung(){
+  const amount=parseFloat(document.getElementById('n1_3a').value);
+  const soll=document.getElementById('s1_3b').value;
+  const haben=document.getElementById('s1_3c').value;
+  const fb=document.getElementById('e1_3-fb');
+  const okAmt=!isNaN(amount)&&Math.abs(amount-12000)<=0.5;
+  const okS=soll==='Abs_Fzg',okH=haben==='Fahrzeuge';
+  if(okAmt&&okS&&okH){fb.innerHTML='✅ <strong>Richtig!</strong> 60000×20%=12000. Buchungssatz: Abschreibungen auf Fahrzeuge 12000 / Fahrzeuge 12000.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ Betrag=12000, Soll=Abschreibungen auf Fahrzeuge, Haben=Fahrzeuge. Aufwand steigt im Soll, Anlage sinkt im Haben.';fb.className='fb no';}
+}
+function chkVergleich(){
+  const lin=[[8000,32000],[8000,24000],[8000,16000]];
+  const deg=[[10000,30000],[7500,22500],[5625,16875]];
+  const ids=[['c1a','c1b','c1c','c1d'],['c2a','c2b','c2c','c2d'],['c3a','c3b','c3c','c3d']];
+  let ok=0,total=12;
+  ids.forEach((row,i)=>{
+    [0,1].forEach(j=>{const v=parseFloat(document.getElementById(row[j]).value);if(!isNaN(v)&&Math.abs(v-lin[i][j])<=0.5)ok++;});
+    [2,3].forEach(j=>{const v=parseFloat(document.getElementById(row[j-2+2]).value);if(!isNaN(v)&&Math.abs(v-deg[i][j-2])<=0.5)ok++;});
+  });
+  const fb=document.getElementById('e2_1-fb');
+  if(ok===total){fb.innerHTML='✅ <strong>Perfekt!</strong> Linear:8000/8000/8000. Degressiv:10000(BW30000)/7500(BW22500)/5625(BW16875). Degressiv hat im Jahr 1 höhere Abschreibung, danach sinkt sie.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ '+ok+'/'+total+' richtig. Linear 20%: immer 8000 (40000×20%). Degressiv 25%: J1=10000/30000, J2=7500/22500, J3=5625/16875.';fb.className='fb no';}
+}
+function chkMethode(){
+  const sel=document.querySelector('input[name="e2_3m"]:checked');
+  const satz=parseFloat(document.getElementById('n2_3s').value);
+  const fb=document.getElementById('e2_3-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Methode.';fb.className='fb tip';return;}
+  const okM=sel.value==='degressiv',okS=!isNaN(satz)&&Math.abs(satz-25)<=0.05;
+  if(okM&&okS){fb.innerHTML='✅ <strong>Richtig!</strong> Degressiv, 25%. J1:30000×25%=7500(BW22500). J2:22500×25%=5625(BW16875). Der Betrag sinkt jedes Jahr → Degressiv!';fb.className='fb ok';}
+  else{fb.innerHTML='❌ Methode=Degressiv (Betrag sinkt), Satz=25% (7500/30000×100=25%).';fb.className='fb no';}
+}
+function chkSzenario(){
+  const ids=['n3_1a','n3_1b','n3_1c','n3_1d'];
+  const ans=[20000,60000,15000,45000];
+  const vals=ids.map(id=>parseFloat(document.getElementById(id).value));
+  const soll=document.getElementById('s3_1e').value;
+  const haben=document.getElementById('s3_1f').value;
+  const fb=document.getElementById('e3_1-fb');
+  const okNums=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=0.5);
+  const okBook=soll==='AbsMasch'&&haben==='Masch';
+  if(okNums&&okBook){fb.innerHTML='✅ <strong>Perfekt!</strong> J1:80000×25%=20000,BW=60000. J2:60000×25%=15000,BW=45000. Buchung: AbsMaschinen/Maschinen.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ a)20000 b)60000 c)15000 d)45000. Soll=Abschreibungen auf Maschinen, Haben=Maschinen.';fb.className='fb no';}
+}
+function chkHalbe(){
+  const va=parseFloat(document.getElementById('n3_2a').value);
+  const vb=parseFloat(document.getElementById('n3_2b').value);
+  const fb=document.getElementById('e3_2-fb');
+  const okA=!isNaN(va)&&Math.abs(va-3000)<=0.5,okB=!isNaN(vb)&&vb===5;
+  if(okA&&okB){fb.innerHTML='✅ <strong>Richtig!</strong> Abschr.=30000×10%=3000/Jahr. BW=15000 nach 5 Jahren (15000/3000=5).';fb.className='fb ok';}
+  else{fb.innerHTML='❌ a)3000 (30000×10%). b)5 Jahre (15000÷3000 pro Jahr).';fb.className='fb no';}
+}
+function chkStrategie(){
+  const va=parseFloat(document.getElementById('n3_3a').value);
+  const vb=parseFloat(document.getElementById('n3_3b').value);
+  const sel=document.querySelector('input[name="e3_3w"]:checked');
+  const fb=document.getElementById('e3_3-fb');
+  // Linear: 20000 - 3×5000 = 5000. Degressiv: 20000×0.75³=20000×0.421875=8437.50
+  const okA=!isNaN(va)&&Math.abs(va-5000)<=0.5,okB=!isNaN(vb)&&Math.abs(vb-8437.5)<=1;
+  const okC=sel&&sel.value==='linear';
+  if(okA&&okB&&okC){fb.innerHTML='✅ <strong>Richtig!</strong> Linear BW=5000 (20000−3×5000). Degressiv BW=8437.50 (20000×0.75³). Linear ist nach 3 Jahren tiefer! Bei gleichem Satz: Linear ist schneller bei kleinen n.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ Linear BW=5000, Degressiv BW=8437.50 → Linear hat tieferen Buchwert. 0.75³=0.421875. Bei gleichem Prozentsatz ist die lineare Methode anfangs (bis ca. 50% des AW) aggressiver.';fb.className='fb no';}
+}
+</script>
+</body>
+</html>

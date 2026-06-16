@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – Zinsrechnung</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.formel-reminder{background:#f0f4ff;border:1.5px solid #a0b8f0;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px}
+.formel-reminder .fr-title{font-weight:700;color:var(--blue);margin-bottom:6px}
+.formel-reminder code{background:white;padding:4px 8px;border-radius:4px;font-size:13px;font-weight:700;border:1px solid #a0b8f0}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html" class="active">Zinsrechnung</a>
+    <a href="../learn/mwst.html">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>💰 Übungen – Zinsrechnung</h1>
+  <p>Kapitel 6 · Von der Grundformel bis zu komplexen Zinsberechnungen</p>
+</div>
+
+<div class="container">
+
+  <div class="formel-reminder">
+    <div class="fr-title">📌 Formel-Reminder (immer verfügbar)</div>
+    <code>Z = K × p × t / (100 × 360)</code> &nbsp;|&nbsp;
+    <code>K = Z × 100 × 360 / (p × t)</code> &nbsp;|&nbsp;
+    <code>p = Z × 100 × 360 / (K × t)</code> &nbsp;|&nbsp;
+    <code>t = Z × 100 × 360 / (K × p)</code><br>
+    <small style="color:var(--muted)">Deutsche Usanz: 30 Tage/Monat, 360 Tage/Jahr. Tageformel: (Endmonat−Startmonat)×30 + (Endtag−Starttag)</small>
+  </div>
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Grundformel anwenden mit einfachen Zahlen. Alle Variablen bekannt bis auf Z.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – Zinsbetrag berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>1'000</strong> · p = <strong>4%</strong> · t = <strong>360 Tage</strong><br><br>
+        Wie hoch sind die Zinsen Z?<br>
+        <small style="color:var(--muted)">Tipp: Z = 1000 × 4 × 360 / (100 × 360)</small></div>
+        Z = CHF <input class="ex-num" type="number" id="n0_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_1',40,0.05,'CHF','Z=1000×4×360/(100×360)=1000×4/100=40.')">Prüfen</button>
+        <div class="fb" id="n0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – Halbes Jahr</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>2'000</strong> · p = <strong>5%</strong> · t = <strong>180 Tage</strong> (6 Monate)<br><br>
+        Wie hoch sind die Zinsen Z?</div>
+        Z = CHF <input class="ex-num" type="number" id="n0_2" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_2',50,0.05,'CHF','Z=2000×5×180/(100×360)=2000×5×0.5/100=50.')">Prüfen</button>
+        <div class="fb" id="n0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Tageberechnung (Deutsche Usanz)</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie viele Tage liegen zwischen dem <strong>1. März</strong> und dem <strong>1. Mai</strong>?<br>
+        <small style="color:var(--muted)">Deutsche Usanz: Formel = (Endmonat − Startmonat) × 30 + (Endtag − Starttag)</small></div>
+        <input class="ex-num" type="number" id="n0_3" placeholder="0"> Tage
+        <button class="chk-btn" onclick="chkN('n0_3',60,0,'Tage','(5−3)×30 + (1−1) = 2×30 = 60 Tage.')">Prüfen</button>
+        <div class="fb" id="n0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – Begriffe</div>
+      <div class="ex-body">
+        <div class="ex-q">In der Zinsformel Z = K × p × t / (100 × 360) – was bedeutet <strong>«p»</strong>?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_4" value="Kapital"> Das angelegte Kapital in CHF</label>
+          <label><input type="radio" name="e0_4" value="Zinssatz"> Der Zinssatz in Prozent pro Jahr</label>
+          <label><input type="radio" name="e0_4" value="Zeit"> Die Laufzeit in Tagen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_4','Zinssatz','p = Zinssatz in % pro Jahr. K = Kapital. t = Zeit in Tagen. Z = Zinsbetrag.')">Prüfen</button>
+        <div class="fb" id="e0_4-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – Tageberechnung kombiniert und erste Umkehrformeln.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – Zinsen für 3 Monate</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>8'000</strong> · p = <strong>3.5%</strong> · t = <strong>90 Tage</strong><br><br>
+        Berechne Z:</div>
+        Z = CHF <input class="ex-num" type="number" id="n1_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_1',70,0.05,'CHF','Z=8000×3.5×90/(100×360)=2520000/36000=70.')">Prüfen</button>
+        <div class="fb" id="n1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – Kapital berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Z = CHF <strong>150</strong> · p = <strong>6%</strong> · t = <strong>360 Tage</strong><br><br>
+        Wie gross war das Kapital K?<br>
+        <small style="color:var(--muted)">Tipp: K = Z × 100 × 360 / (p × t)</small></div>
+        K = CHF <input class="ex-num" type="number" id="n1_2" placeholder="0">
+        <button class="chk-btn" onclick="chkN('n1_2',2500,1,'CHF','K=150×100×360/(6×360)=150×100/6=2500.')">Prüfen</button>
+        <div class="fb" id="n1_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_3">
+      <div class="ex-head">Aufgabe 3 – Tage + Zinsen kombiniert</div>
+      <div class="ex-body">
+        <div class="ex-q">Kredit vom <strong>15. März</strong> bis <strong>15. Juni</strong>.<br>
+        K = CHF 10'000, p = 4.5%<br><br>
+        <strong>a)</strong> Wie viele Tage? <input class="ex-num" type="number" id="n1_3a" placeholder="0" style="width:80px"> Tage<br><br>
+        <strong>b)</strong> Wie hoch ist Z? CHF <input class="ex-num" type="number" id="n1_3b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n1_3a','n1_3b',90,112.50,'(6−3)×30+(15−15)=90 Tage. Z=10000×4.5×90/(100×360)=112.50.')">Prüfen</button>
+        <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Zinssatz suchen, Verrechnungssteuer, Laufzeit berechnen.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – Zinssatz berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>5'000</strong> · t = <strong>120 Tage</strong> · Z = CHF <strong>100</strong><br><br>
+        Wie hoch ist der Zinssatz p?<br>
+        <small style="color:var(--muted)">Tipp: p = Z × 100 × 360 / (K × t)</small></div>
+        p = <input class="ex-num" type="number" id="n2_1" placeholder="0" step="0.01"> %
+        <button class="chk-btn" onclick="chkN('n2_1',6,0.05,'%','p=100×100×360/(5000×120)=3600000/600000=6%.')">Prüfen</button>
+        <div class="fb" id="n2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Verrechnungssteuer</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Sparkonto generiert einen Brutto-Zinsbetrag von CHF <strong>600</strong>.<br>
+        Die Verrechnungssteuer (VSt) beträgt <strong>35%</strong>.<br><br>
+        <strong>a)</strong> Wie viel VSt wird abgezogen? CHF <input class="ex-num" type="number" id="n2_2a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Wie hoch ist die Nettogutschrift? CHF <input class="ex-num" type="number" id="n2_2b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n2_2a','n2_2b',210,390,'VSt=600×35%=210. Netto=600−210=390 (oder 600×65%=390).')">Prüfen</button>
+        <div class="fb" id="e2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – Laufzeit berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>4'000</strong> · p = <strong>5%</strong> · Z = CHF <strong>150</strong><br><br>
+        Wie viele Tage (t) dauert die Anlage?<br>
+        <small style="color:var(--muted)">Tipp: t = Z × 100 × 360 / (K × p)</small></div>
+        t = <input class="ex-num" type="number" id="n2_3" placeholder="0"> Tage
+        <button class="chk-btn" onclick="chkN('n2_3',270,0,'Tage','t=150×100×360/(4000×5)=5400000/20000=270 Tage (= 9 Monate).')">Prüfen</button>
+        <div class="fb" id="n2_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Mehrstufige Berechnungen, kombinierte Aufgaben.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – Tage + Zinsen (längere Laufzeit)</div>
+      <div class="ex-body">
+        <div class="ex-q">Anlage vom <strong>10. April</strong> bis <strong>10. September</strong>.<br>
+        K = CHF 20'000, p = 3.6%<br><br>
+        <strong>a)</strong> Tage (Deutsche Usanz): <input class="ex-num" type="number" id="n3_1a" placeholder="0" style="width:80px"><br><br>
+        <strong>b)</strong> Z = CHF <input class="ex-num" type="number" id="n3_1b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_1a','n3_1b',150,300,'(9−4)×30+(10−10)=5×30=150 Tage. Z=20000×3.6×150/(100×360)=10800000/36000=300.')">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Kapital rückwärts mit Verrechnungssteuer</div>
+      <div class="ex-body">
+        <div class="ex-q">Nach Abzug der Verrechnungssteuer (35%) beträgt die Nettogutschrift CHF <strong>130</strong>.<br>
+        Der Zinssatz beträgt <strong>4%</strong>, die Laufzeit <strong>180 Tage</strong>.<br><br>
+        <strong>a)</strong> Wie hoch war der Brutto-Zinsbetrag Z? CHF <input class="ex-num" type="number" id="n3_2a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Wie gross war das Kapital K? CHF <input class="ex-num" type="number" id="n3_2b" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_2a','n3_2b',200,10000,'Z(brutto)=130/0.65=200. K=Z×100×360/(p×t)=200×100×360/(4×180)=7200000/720=10000.')">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_3">
+      <div class="ex-head">Aufgabe 3 – Zwei Kapitalien, Gesamtzins</div>
+      <div class="ex-body">
+        <div class="ex-q">Zwei Anlagen gleichzeitig:<br>
+        Anlage 1: K = CHF 5'000, p = 6%, t = 90 Tage<br>
+        Anlage 2: K = CHF 8'000, p = 3%, t = 180 Tage<br><br>
+        <strong>a)</strong> Z1 = CHF <input class="ex-num" type="number" id="n3_3a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Z2 = CHF <input class="ex-num" type="number" id="n3_3b" placeholder="0" step="0.01"><br><br>
+        <strong>c)</strong> Z gesamt = CHF <input class="ex-num" type="number" id="n3_3c" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkDrei('n3_3a','n3_3b','n3_3c',75,120,195,0.05,'Z1=5000×6×90/36000=75. Z2=8000×3×180/36000=120. Gesamt=195.')">Prüfen</button>
+        <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/zinsrechnung.html">← Theorie Zinsrechnung</a>
+    <a href="mwst.html">Übungen MWST →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkN(id,ans,tol,unit,tip){
+  const el=document.getElementById(id),fb=document.getElementById(id+'-fb');
+  const val=parseFloat(el.value);
+  if(isNaN(val)){fb.textContent='⚠️ Bitte gib eine Zahl ein.';fb.className='fb tip';return;}
+  if(Math.abs(val-ans)<=tol){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans.toLocaleString('de-CH')+(unit?' '+unit:'')+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok1=!isNaN(v1)&&Math.abs(v1-a1)<=0.05,ok2=!isNaN(v2)&&Math.abs(v2-a2)<=0.05;
+  if(ok1&&ok2){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1.toLocaleString('de-CH')+', b)='+a2.toLocaleString('de-CH')+'. '+tip;fbEl.className='fb no';}
+}
+function chkDrei(id1,id2,id3,a1,a2,a3,tol,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value),v3=parseFloat(document.getElementById(id3).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=Math.abs(v1-a1)<=tol&&Math.abs(v2-a2)<=tol&&Math.abs(v3-a3)<=tol;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ Z1='+a1+', Z2='+a2+', Gesamt='+a3+'. '+tip;fbEl.className='fb no';}
+}
+</script>
+</body>
+</html>

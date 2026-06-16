@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – Buchungssatz &amp; Erfolgsrechnung</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+select.ex-sel{padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;background:white;cursor:pointer;max-width:200px}
+input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.bst-row{display:grid;grid-template-columns:1fr auto 1fr auto;gap:8px;align-items:center;margin:6px 0;font-size:13px}
+.bst-slash{font-weight:700;color:var(--blue);font-size:16px}
+.tbl-ex{border-collapse:collapse;font-size:13px;margin:8px 0;width:100%}
+.tbl-ex th{background:var(--blue-pale);padding:7px 12px;border:1px solid var(--border);font-weight:700}
+.tbl-ex td{padding:7px 12px;border:1px solid var(--border)}
+.rule-box{background:#f8f4ff;border:1.5px solid #c8a0e8;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px}
+.rule-box .rb-title{font-weight:700;color:var(--purple);margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html" class="active">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html">Zinsrechnung</a>
+    <a href="../learn/mwst.html">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>📒 Übungen – Buchungssatz &amp; Erfolgsrechnung</h1>
+  <p>Kapitel 3–5 · Soll/Haben, AT/PT/KB/KR/EW und Erfolgsrechnung</p>
+</div>
+
+<div class="container">
+
+  <div class="rule-box">
+    <div class="rb-title">📌 Die wichtigste Regel (immer sichtbar)</div>
+    <strong>Aktivkonto</strong>: Zunahme = Soll ↑ &nbsp;|&nbsp; <strong>Passivkonto</strong>: Zunahme = Haben ↑ &nbsp;|&nbsp;
+    <strong>Aufwand</strong>: Zunahme = Soll ↑ &nbsp;|&nbsp; <strong>Ertrag</strong>: Zunahme = Haben ↑<br>
+    <small>AT=Aktivtausch · PT=Passivtausch · KB=Kapitalvermehrung · KR=Kapitalverminderung · EW=Erfolgswirksam</small>
+  </div>
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Soll oder Haben? Grundregel verinnerlichen.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – Kasse</div>
+      <div class="ex-body">
+        <div class="ex-q">Wir <strong>erhalten Bargeld</strong> (Kasse nimmt zu).<br>
+        Kasse ist ein Aktivkonto. Aktivkonten: Zunahme = Soll.<br><br>
+        Kasse kommt ins…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_1" value="Soll"> Soll (linke Seite)</label>
+          <label><input type="radio" name="e0_1" value="Haben"> Haben (rechte Seite)</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_1','Soll','Aktivkonto + Zunahme = Soll. Kasse wächst? → Soll. So einfach ist die Regel.')">Prüfen</button>
+        <div class="fb" id="e0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – VLL (Verbindlichkeiten aus Lieferung und Leistung)</div>
+      <div class="ex-body">
+        <div class="ex-q">Wir kaufen Waren auf Kredit → VLL (Schuld) <strong>nimmt zu</strong>.<br>
+        VLL ist ein Passivkonto. Passivkonten: Zunahme = Haben.<br><br>
+        VLL kommt ins…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_2" value="Soll"> Soll</label>
+          <label><input type="radio" name="e0_2" value="Haben"> Haben</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_2','Haben','Passivkonto + Zunahme = Haben. Schulden steigen? → Haben. Zahlen wir die Schuld zurück (Abnahme)? → Soll.')">Prüfen</button>
+        <div class="fb" id="e0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Aufwand</div>
+      <div class="ex-body">
+        <div class="ex-q">Wir zahlen Miete (= Mietaufwand nimmt zu).<br>
+        Aufwandskonten: Zunahme = Soll.<br><br>
+        «Mietaufwand» kommt ins…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_3" value="Soll"> Soll</label>
+          <label><input type="radio" name="e0_3" value="Haben"> Haben</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_3','Soll','Aufwand steigt → Soll. Aufwand = Kosten des Unternehmens. Genau wie Aktivkonto-Zunahme: immer Soll.')">Prüfen</button>
+        <div class="fb" id="e0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – Ertrag</div>
+      <div class="ex-body">
+        <div class="ex-q">Wir verkaufen etwas für Bargeld (= Warenerlös nimmt zu).<br>
+        Ertragskonten: Zunahme = Haben.<br><br>
+        «Warenerlös» kommt ins…</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_4" value="Soll"> Soll</label>
+          <label><input type="radio" name="e0_4" value="Haben"> Haben</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_4','Haben','Ertrag steigt → Haben. Ertrag = Einnahmen des Unternehmens. Genau wie Passivkonto-Zunahme: immer Haben.')">Prüfen</button>
+        <div class="fb" id="e0_4-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – Vollständige einfache Buchungssätze und AT/PT/KB/KR/EW.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – Buchungssätze vervollständigen</div>
+      <div class="ex-body">
+        <div class="ex-q">Wähle für jeden Buchungssatz das fehlende Konto:</div>
+        <div style="margin:8px 0">
+          <strong>a)</strong> Kauf Waren bar CHF 500:<br>
+          <div class="bst-row">
+            <select class="ex-sel" id="s1_1a"><option value="">– Soll –</option><option value="Warenaufwand">Warenaufwand</option><option value="Kasse">Kasse</option><option value="Bank">Bank</option></select>
+            <span class="bst-slash">/</span>
+            <select class="ex-sel" id="s1_1b"><option value="">– Haben –</option><option value="Warenaufwand">Warenaufwand</option><option value="Kasse">Kasse</option><option value="Bank">Bank</option></select>
+            <span>CHF 500</span>
+          </div>
+        </div>
+        <div style="margin:8px 0">
+          <strong>b)</strong> Lohn CHF 3'200 per Bank bezahlt:<br>
+          <div class="bst-row">
+            <select class="ex-sel" id="s1_1c"><option value="">– Soll –</option><option value="Lohnaufwand">Lohnaufwand</option><option value="Bank">Bank</option><option value="Kasse">Kasse</option></select>
+            <span class="bst-slash">/</span>
+            <select class="ex-sel" id="s1_1d"><option value="">– Haben –</option><option value="Lohnaufwand">Lohnaufwand</option><option value="Bank">Bank</option><option value="Kasse">Kasse</option></select>
+            <span>CHF 3'200</span>
+          </div>
+        </div>
+        <div style="margin:8px 0">
+          <strong>c)</strong> Kundenzahlung CHF 1'800 per Bank erhalten (Debitoren sinken):<br>
+          <div class="bst-row">
+            <select class="ex-sel" id="s1_1e"><option value="">– Soll –</option><option value="Bank">Bank</option><option value="Debitoren">Debitoren</option><option value="Warenerlös">Warenerlös</option></select>
+            <span class="bst-slash">/</span>
+            <select class="ex-sel" id="s1_1f"><option value="">– Haben –</option><option value="Bank">Bank</option><option value="Debitoren">Debitoren</option><option value="Warenerlös">Warenerlös</option></select>
+            <span>CHF 1'800</span>
+          </div>
+        </div>
+        <button class="chk-btn" onclick="chkBst1()">Prüfen</button>
+        <div class="fb" id="e1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – AT / PT / KB / KR / EW zuordnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Bestimme den Typ jedes Geschäftsfalls:</div>
+        <table class="tbl-ex">
+          <tr><th>Buchungssatz</th><th>Typ</th></tr>
+          <tr><td>Bank 5'000 / Kasse 5'000 (Einzahlung)</td>
+            <td><select class="ex-sel" id="s1_2a"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Bankdarlehen 20'000 / Bank 20'000 (Rückzahlung)</td>
+            <td><select class="ex-sel" id="s1_2b"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Fahrzeuge 15'000 / Bankdarlehen 15'000 (Fahrzeugkauf auf Kredit)</td>
+            <td><select class="ex-sel" id="s1_2c"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Zinsaufwand 200 / Bank 200</td>
+            <td><select class="ex-sel" id="s1_2d"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e1_2',['s1_2a','s1_2b','s1_2c','s1_2d'],['AT','KR','KB','EW'],'AT:Bank↑Kasse↓ (2 Aktiven). KR:Darlehen↓Bank↓ (Bilanz schrumpft). KB:Fahrzeuge↑Darlehen↑. EW:Zins=Aufwand.')">Prüfen</button>
+        <div class="fb" id="e1_2-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Komplexere Buchungssätze und Erfolgsrechnung berechnen.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – AT/PT/KB/KR/EW für 5 gemischte Fälle</div>
+      <div class="ex-body">
+        <table class="tbl-ex">
+          <tr><th>Geschäftsfall</th><th>Typ</th></tr>
+          <tr><td>Wir verkaufen Waren bar CHF 2'000 (Kasse ↑, Warenerlös ↑)</td>
+            <td><select class="ex-sel" id="s2_1a"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Lieferantenrechnung CHF 5'000 umgewandelt in Darlehen (VLL ↓, Darlehen ↑)</td>
+            <td><select class="ex-sel" id="s2_1b"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Neues Bankdarlehen CHF 30'000 (Bank ↑, Darlehen ↑)</td>
+            <td><select class="ex-sel" id="s2_1c"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Debitoren CHF 8'000 / Warenerlös CHF 8'000 (Verkauf auf Rechnung)</td>
+            <td><select class="ex-sel" id="s2_1d"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Kauf Maschine CHF 12'000 per Bank (Bank ↓, Maschinen ↑)</td>
+            <td><select class="ex-sel" id="s2_1e"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e2_1',['s2_1a','s2_1b','s2_1c','s2_1d','s2_1e'],['EW','PT','KB','EW','AT'],'EW:Erlös↑=Erfolg. PT:VLL↓Darl↑=2 Passiven. KB:Bank↑Darl↑=Bilanz wächst. EW:Debitoren+Erlös=Erfolg. AT:Bank↓Masch↑=2 Aktiven.')">Prüfen</button>
+        <div class="fb" id="e2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Erfolgsrechnung berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Gegeben sind die Jahresabschluss-Konten (alle Beträge in CHF):<br>
+        <strong>Erträge:</strong> Warenerlöse 180'000 · Dienstleistungsertrag 40'000<br>
+        <strong>Aufwände:</strong> Warenaufwand 95'000 · Lohnaufwand 42'000 · Mietaufwand 18'000 · übriger Aufwand 12'000</div>
+        Total Erträge: CHF <input class="ex-num" type="number" id="n2_2a" placeholder="0"><br><br>
+        Total Aufwände: CHF <input class="ex-num" type="number" id="n2_2b" placeholder="0"><br><br>
+        <strong>Reingewinn</strong> (Erträge − Aufwände): CHF <input class="ex-num" type="number" id="n2_2c" placeholder="0">
+        <button class="chk-btn" onclick="chkDrei('n2_2a','n2_2b','n2_2c',220000,167000,53000,1,'Erträge=180000+40000=220000. Aufwände=95000+42000+18000+12000=167000. RG=220000-167000=53000.')">Prüfen</button>
+        <div class="fb" id="e2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – Buchungssätze für 4 Geschäftsfälle</div>
+      <div class="ex-body">
+        <div class="ex-q">Schreibe die vollständigen Buchungssätze (Soll / Haben):</div>
+        <p><strong>a)</strong> Waren CHF 3'000 auf Kredit gekauft (VLL steigt):<br>
+        <select class="ex-sel" id="s2_3a1"><option value="">– Soll –</option><option value="Warenaufwand">Warenaufwand</option><option value="VLL">VLL</option><option value="Bank">Bank</option></select> /
+        <select class="ex-sel" id="s2_3a2"><option value="">– Haben –</option><option value="Warenaufwand">Warenaufwand</option><option value="VLL">VLL</option><option value="Bank">Bank</option></select></p>
+        <p><strong>b)</strong> Bankdarlehen CHF 10'000 erhalten (Bank steigt):<br>
+        <select class="ex-sel" id="s2_3b1"><option value="">– Soll –</option><option value="Bank">Bank</option><option value="Bankdarlehen">Bankdarlehen</option><option value="Kasse">Kasse</option></select> /
+        <select class="ex-sel" id="s2_3b2"><option value="">– Haben –</option><option value="Bank">Bank</option><option value="Bankdarlehen">Bankdarlehen</option><option value="Kasse">Kasse</option></select></p>
+        <p><strong>c)</strong> VLL CHF 4'500 per Bank bezahlt:<br>
+        <select class="ex-sel" id="s2_3c1"><option value="">– Soll –</option><option value="VLL">VLL</option><option value="Bank">Bank</option><option value="Kasse">Kasse</option></select> /
+        <select class="ex-sel" id="s2_3c2"><option value="">– Haben –</option><option value="VLL">VLL</option><option value="Bank">Bank</option><option value="Kasse">Kasse</option></select></p>
+        <p><strong>d)</strong> Warenertrag CHF 6'000, Zahlung bar:<br>
+        <select class="ex-sel" id="s2_3d1"><option value="">– Soll –</option><option value="Kasse">Kasse</option><option value="Warenerlös">Warenerlös</option><option value="Bank">Bank</option></select> /
+        <select class="ex-sel" id="s2_3d2"><option value="">– Haben –</option><option value="Kasse">Kasse</option><option value="Warenerlös">Warenerlös</option><option value="Bank">Bank</option></select></p>
+        <button class="chk-btn" onclick="chkBst2()">Prüfen</button>
+        <div class="fb" id="e2_3-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Komplexe Buchungssätze und mehrstufige Erfolgsrechnung.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – 5 komplexe Buchungssätze</div>
+      <div class="ex-body">
+        <div class="ex-q">Schreibe den Buchungssatz (Soll / Haben) für jeden Geschäftsfall:</div>
+        <p><strong>a)</strong> Eröffnungsbuchung: Fahrzeuge CHF 40'000 via Bankdarlehen:<br>
+        <select class="ex-sel" id="s3_1a1"><option value="">– Soll –</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Bank">Bank</option><option value="Bankdarlehen">Bankdarlehen</option></select> /
+        <select class="ex-sel" id="s3_1a2"><option value="">– Haben –</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Bank">Bank</option><option value="Bankdarlehen">Bankdarlehen</option></select></p>
+        <p><strong>b)</strong> Wir stellen dem Kunden Rechnung CHF 5'400 (Debitoren + Erlös):<br>
+        <select class="ex-sel" id="s3_1b1"><option value="">– Soll –</option><option value="Debitoren">Debitoren</option><option value="Warenerlös">Warenerlös</option><option value="Bank">Bank</option></select> /
+        <select class="ex-sel" id="s3_1b2"><option value="">– Haben –</option><option value="Debitoren">Debitoren</option><option value="Warenerlös">Warenerlös</option><option value="Bank">Bank</option></select></p>
+        <p><strong>c)</strong> Wertberichtigung / Abschreibung Fahrzeug CHF 8'000:<br>
+        <select class="ex-sel" id="s3_1c1"><option value="">– Soll –</option><option value="AbsFzg">Abschr. auf Fahrzeuge</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Aufwand">Sonstiger Aufwand</option></select> /
+        <select class="ex-sel" id="s3_1c2"><option value="">– Haben –</option><option value="AbsFzg">Abschr. auf Fahrzeuge</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Bank">Bank</option></select></p>
+        <p><strong>d)</strong> Zinsgutschrift Bank CHF 120 (Ertrag):<br>
+        <select class="ex-sel" id="s3_1d1"><option value="">– Soll –</option><option value="Bank">Bank</option><option value="Zinsertrag">Zinsertrag</option><option value="Zinsaufwand">Zinsaufwand</option></select> /
+        <select class="ex-sel" id="s3_1d2"><option value="">– Haben –</option><option value="Bank">Bank</option><option value="Zinsertrag">Zinsertrag</option><option value="Zinsaufwand">Zinsaufwand</option></select></p>
+        <p><strong>e)</strong> Skonto an Kunden gewährt CHF 80 (Kunden zahlen CHF 80 weniger; Skontoaufwand steigt, Debitoren sinken):<br>
+        <select class="ex-sel" id="s3_1e1"><option value="">– Soll –</option><option value="Skontoaufwand">Skontoaufwand</option><option value="Debitoren">Debitoren</option><option value="Bank">Bank</option></select> /
+        <select class="ex-sel" id="s3_1e2"><option value="">– Haben –</option><option value="Skontoaufwand">Skontoaufwand</option><option value="Debitoren">Debitoren</option><option value="Bank">Bank</option></select></p>
+        <button class="chk-btn" onclick="chkBst3()">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Mehrstufige Erfolgsrechnung</div>
+      <div class="ex-body">
+        <div class="ex-q">Berechne die mehrstufige Erfolgsrechnung:<br>
+        Warenerlöse 320'000 · Warenaufwand 180'000<br>
+        Personalaufwand 65'000 · Mietaufwand 18'000 · Versicherungsaufwand 4'200<br>
+        Zinsaufwand 3'600 · Abschreibungen 12'000 · Sonstiger Aufwand 6'800</div>
+        <strong>Bruttogewinn</strong> (Erlöse − Warenaufwand): CHF <input class="ex-num" type="number" id="n3_2a" placeholder="0"><br><br>
+        <strong>Betriebsaufwand</strong> (Personal + Miete + Versicherung): CHF <input class="ex-num" type="number" id="n3_2b" placeholder="0"><br><br>
+        <strong>EBIT</strong> (Bruttogewinn − Betriebsaufwand): CHF <input class="ex-num" type="number" id="n3_2c" placeholder="0"><br><br>
+        <strong>Reingewinn</strong> (EBIT − Zins − Abschr. − Sonst.): CHF <input class="ex-num" type="number" id="n3_2d" placeholder="0">
+        <button class="chk-btn" onclick="chkVier('n3_2a','n3_2b','n3_2c','n3_2d',140000,87200,52800,30400,1,'BG=320-180=140. Betr=65+18+4.2=87.2. EBIT=140-87.2=52.8. RG=52.8-3.6-12-6.8=30.4 (alle in Tausend).')">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/buchungssatz.html">← Theorie Buchungssatz</a>
+    <a href="zinsrechnung.html">Übungen Zinsrechnung →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkTbl(exId,ids,answers,tip){
+  let ok=0;
+  ids.forEach((id,i)=>{const el=document.getElementById(id);el.style.borderColor=el.value===answers[i]?'#2a7a3c':el.value?'#b01c1c':'';if(el.value===answers[i])ok++;});
+  const fb=document.getElementById(exId+'-fb');
+  fb.innerHTML=ok+' von '+answers.length+' richtig.'+(ok===answers.length?' ✅ Perfekt!':'<br>'+tip);
+  fb.className='fb '+(ok===answers.length?'ok':ok>0?'tip':'no');
+}
+function chkDrei(id1,id2,id3,a1,a2,a3,tol,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value),v3=parseFloat(document.getElementById(id3).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=Math.abs(v1-a1)<=tol&&Math.abs(v2-a2)<=tol&&Math.abs(v3-a3)<=tol;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ Erträge='+a1.toLocaleString('de-CH')+', Aufwände='+a2.toLocaleString('de-CH')+', RG='+a3.toLocaleString('de-CH')+'. '+tip;fbEl.className='fb no';}
+}
+function chkVier(id1,id2,id3,id4,a1,a2,a3,a4,tol,tip){
+  const vals=[id1,id2,id3,id4].map(id=>parseFloat(document.getElementById(id).value));
+  const ans=[a1,a2,a3,a4];
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=tol);
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ BG='+a1.toLocaleString()+' Betr='+a2.toLocaleString()+' EBIT='+a3.toLocaleString()+' RG='+a4.toLocaleString()+'. '+tip;fbEl.className='fb no';}
+}
+function chkBst1(){
+  const ans=[['s1_1a','Warenaufwand'],['s1_1b','Kasse'],['s1_1c','Lohnaufwand'],['s1_1d','Bank'],['s1_1e','Bank'],['s1_1f','Debitoren']];
+  let ok=0;
+  ans.forEach(([id,val])=>{const el=document.getElementById(id);el.style.borderColor=el.value===val?'#2a7a3c':el.value?'#b01c1c':'';if(el.value===val)ok++;});
+  const fb=document.getElementById('e1_1-fb');
+  if(ok===6){fb.innerHTML='✅ <strong>Perfekt!</strong> a)Warenaufwand/Kasse. b)Lohnaufwand/Bank. c)Bank/Debitoren.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ '+ok+'/6 richtig. a)Warenaufwand/Kasse b)Lohnaufwand/Bank c)Bank/Debitoren';fb.className='fb no';}
+}
+function chkBst2(){
+  const ans=[['s2_3a1','Warenaufwand'],['s2_3a2','VLL'],['s2_3b1','Bank'],['s2_3b2','Bankdarlehen'],['s2_3c1','VLL'],['s2_3c2','Bank'],['s2_3d1','Kasse'],['s2_3d2','Warenerlös']];
+  let ok=0;
+  ans.forEach(([id,val])=>{const el=document.getElementById(id);el.style.borderColor=el.value===val?'#2a7a3c':el.value?'#b01c1c':'';if(el.value===val)ok++;});
+  const fb=document.getElementById('e2_3-fb');
+  if(ok===8){fb.innerHTML='✅ <strong>Perfekt!</strong> a)Warenaufwand/VLL b)Bank/Bankdarlehen c)VLL/Bank d)Kasse/Warenerlös';fb.className='fb ok';}
+  else{fb.innerHTML='❌ '+ok+'/8 richtig. a)Warenaufwand/VLL b)Bank/Bankdarlehen c)VLL/Bank d)Kasse/Warenerlös';fb.className='fb no';}
+}
+function chkBst3(){
+  const ans=[['s3_1a1','Fahrzeuge'],['s3_1a2','Bankdarlehen'],['s3_1b1','Debitoren'],['s3_1b2','Warenerlös'],['s3_1c1','AbsFzg'],['s3_1c2','Fahrzeuge'],['s3_1d1','Bank'],['s3_1d2','Zinsertrag'],['s3_1e1','Skontoaufwand'],['s3_1e2','Debitoren']];
+  let ok=0;
+  ans.forEach(([id,val])=>{const el=document.getElementById(id);el.style.borderColor=el.value===val?'#2a7a3c':el.value?'#b01c1c':'';if(el.value===val)ok++;});
+  const fb=document.getElementById('e3_1-fb');
+  if(ok===10){fb.innerHTML='✅ <strong>Perfekt!</strong>';fb.className='fb ok';}
+  else{fb.innerHTML='❌ '+ok+'/10 richtig. a)Fahrzeuge/Bankdarlehen b)Debitoren/Warenerlös c)AbsFzg/Fahrzeuge d)Bank/Zinsertrag e)Skontoaufwand/Debitoren';fb.className='fb no';}
+}
+</script>
+</body>
+</html>

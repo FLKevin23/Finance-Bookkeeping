@@ -33,6 +33,13 @@
 .exam-banner h2 { font-size: 20px; margin-bottom: 4px; }
 .exam-banner p  { font-size: 13px; opacity: 0.9; }
 .exam-banner .eb-arrow { font-size: 24px; margin-left: auto; opacity: 0.8; }
+.card-links { display:flex; gap:8px; margin-top:14px; }
+.card-links a { flex:1; text-align:center; padding:7px 0; border-radius:8px; font-size:12px; font-weight:700; text-decoration:none; transition:background 0.15s; }
+.card-links .cl-learn { background:var(--blue-pale); color:var(--blue); border:1.5px solid #b8c8e8; }
+.card-links .cl-learn:hover { background:#d4e0f4; }
+.card-links .cl-ex { background:#e8f5e9; color:#1a5c2e; border:1.5px solid #a5d6a7; }
+.card-links .cl-ex:hover { background:#c8e6c9; }
+.chapter-card { cursor:default; }
 </style>
 </head>
 <body>
@@ -77,7 +84,7 @@
 
   <div class="chapter-grid">
 
-    <a href="learn/bilanz.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">⚖️</div>
       <div class="card-num">Kapitel 1 &amp; 2</div>
       <h3>Bilanz &amp; das Konto</h3>
@@ -88,9 +95,13 @@
         <span class="tag">T-Konto</span>
         <span class="tag exam">Prüfung A1</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/bilanz.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/bilanz.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
-    <a href="learn/buchungssatz.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">📒</div>
       <div class="card-num">Kapitel 3, 4 &amp; 5</div>
       <h3>Buchungssatz &amp; Erfolgsrechnung</h3>
@@ -101,9 +112,13 @@
         <span class="tag">AT/PT/KB/KR/EW</span>
         <span class="tag exam">Prüfung A2 &amp; A3</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/buchungssatz.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/buchungssatz.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
-    <a href="learn/zinsrechnung.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">💰</div>
       <div class="card-num">Kapitel 6</div>
       <h3>Zinsrechnung</h3>
@@ -113,9 +128,13 @@
         <span class="tag">Tageberechnung</span>
         <span class="tag exam">Prüfung A4</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/zinsrechnung.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/zinsrechnung.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
-    <a href="learn/mwst.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">🧾</div>
       <div class="card-num">Kapitel 8</div>
       <h3>Mehrwertsteuer (MWST)</h3>
@@ -126,9 +145,13 @@
         <span class="tag">0% ausgenommen</span>
         <span class="tag exam">Prüfung A5</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/mwst.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/mwst.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
-    <a href="learn/kalkulation.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">🛒</div>
       <div class="card-num">Kapitel 9</div>
       <h3>Kalkulation im Handel</h3>
@@ -139,9 +162,13 @@
         <span class="tag">Handelsmarge</span>
         <span class="tag exam">Prüfung A6 &amp; A7</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/kalkulation.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/kalkulation.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
-    <a href="learn/abschreibungen.html" class="chapter-card">
+    <div class="chapter-card">
       <div class="card-icon">📉</div>
       <div class="card-num">Kapitel 11</div>
       <h3>Abschreibungen</h3>
@@ -151,7 +178,11 @@
         <span class="tag">Degressiv</span>
         <span class="tag">Buchwert</span>
       </div>
-    </a>
+      <div class="card-links">
+        <a href="learn/abschreibungen.html" class="cl-learn">📖 Theorie</a>
+        <a href="uebungen/abschreibungen.html" class="cl-ex">🏋️ Übungen</a>
+      </div>
+    </div>
 
   </div>
 
