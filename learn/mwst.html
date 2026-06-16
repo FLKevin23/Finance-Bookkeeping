@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MWST – Finance Skills</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="bilanz.html">Bilanz</a>
+    <a href="buchungssatz.html">Buchungssatz</a>
+    <a href="zinsrechnung.html">Zinsrechnung</a>
+    <a href="mwst.html" class="active">MWST</a>
+    <a href="kalkulation.html">Kalkulation</a>
+    <a href="abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>🧾 Mehrwertsteuer (MWST)</h1>
+  <p>Kapitel 8 · Steuersätze · Vorsteuer · Buchungssätze · Prüfungsaufgabe 5</p>
+</div>
+
+<div class="learn-layout">
+  <aside class="sidebar">
+    <h4>Auf dieser Seite</h4>
+    <a href="#was-ist-mwst">Was ist MWST?</a>
+    <a href="#saetze">Die 3 Steuersätze</a>
+    <a href="#saetze-beispiele">Was fällt worunter?</a>
+    <a href="#brutto-netto">Brutto ↔ Netto</a>
+    <a href="#vorsteuer">Vorsteuer</a>
+    <a href="#buchungen">MWST-Buchungen</a>
+    <a href="#uebung">Prüfungsaufgaben</a>
+  </aside>
+
+  <main>
+
+    <div class="section-block" id="was-ist-mwst">
+      <div class="block-header blue">📖 Was ist die MWST?</div>
+      <div class="block-body">
+        <p>Die <strong>Mehrwertsteuer (MWST)</strong> ist eine Steuer, die der Staat auf den "Mehrwert" erhebt – also auf den Betrag, der bei jeder Produktions- und Handelsstufe hinzukommt.</p>
+        <ul>
+          <li>Als <strong>Konsument</strong> zahlst du MWST auf fast jede Ware und Dienstleistung</li>
+          <li>Als <strong>Unternehmen</strong> berechne ich die MWST dem Kunden (Schuld an den Staat)</li>
+          <li>Die MWST, die ich selbst bezahle (Vorsteuer), darf ich abziehen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 MWST wie ein Staffelstab</div>
+      <p>Stell dir vor, eine Tasse Kaffee kommt vom Bauern → Röster → Café → dir.</p>
+      <p>Jeder in der Kette berechnet dem nächsten MWST auf seinen "Mehrwert" (Profit/Arbeit). Aber jeder kann sich die MWST, die er selbst gezahlt hat, vom Staat zurückholen. Am Ende <strong>zahlt nur du als Endkunde</strong> die volle MWST – der Rest ist ein Nullsummenspiel für die Firmen.</p>
+    </div>
+
+    <div class="section-block" id="saetze">
+      <div class="block-header blue">🔢 Die 3 Schweizer MWST-Sätze</div>
+      <div class="block-body">
+        <table class="mwst-table">
+          <thead>
+            <tr>
+              <th>Satz</th>
+              <th>Name</th>
+              <th>Gilt für</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff8e1">
+              <td style="font-size:22px;font-weight:800;color:#d46b00;text-align:center">8.1%</td>
+              <td><strong>Normalsatz</strong></td>
+              <td>Alles, was nicht anders geregelt ist: Kleider, Restaurant, Elektronik, Dienstleistungen, Benzin…</td>
+            </tr>
+            <tr style="background:#f1f8e9">
+              <td style="font-size:22px;font-weight:800;color:#2e7d32;text-align:center">2.6%</td>
+              <td><strong>Sondersatz</strong></td>
+              <td>Lebensmittel (nicht Restaurant), Bücher, Zeitungen, Zeitschriften, Blumen, Tiere, Medikamente, Take-Away</td>
+            </tr>
+            <tr style="background:#e8f0fe">
+              <td style="font-size:22px;font-weight:800;color:#1a56db;text-align:center">0%</td>
+              <td><strong>Ausgenommen</strong></td>
+              <td>Bildung (Schule, Kurs), Gesundheit (Arzt, Spital), Soziales, Versicherungen, Bankdienstleistungen, ausländische Leistungen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Die 3 Steuersätze mit Eselsbrücken merken</div>
+      <p><strong>8.1% Normalsatz</strong> = alles "normale" im Alltag. Du kaufst ein T-Shirt? 8.1%. Du gehst essen? 8.1%. Haarschnitt? 8.1%. Wenn du nicht sicher bist, wähle 8.1%.</p>
+      <p><strong>2.6% Sondersatz</strong> = "Grundbedürfnisse" im Supermarkt. Denke an den Einkaufswagen: Brot, Gemüse, Milch, Blumen, Bücher – <em>Dinge, die du kaufst und mit nach Hause nimmst zum Essen oder Lesen</em>. AUSNAHME: Im Restaurant wird auch Essen mit 8.1% besteuert (wegen Service)!</p>
+      <p><strong>0% ausgenommen</strong> = "Dinge, die gut für die Gesellschaft sind." Arzt heilt dich → kein Mehrwert für den Staat. Schule bildet dich → staatliches Interesse. Der Staat will diese Bereiche nicht zusätzlich verteuern.</p>
+    </div>
+
+    <div class="section-block" id="saetze-beispiele">
+      <div class="block-header blue">🛍️ Was fällt unter welchen Satz? (Wichtigste Beispiele)</div>
+      <div class="block-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+          <div style="background:#fff8e1;border-radius:8px;padding:14px;border:1.5px solid #ffe08a">
+            <div style="font-weight:800;font-size:15px;color:#d46b00;margin-bottom:8px">8.1% Normalsatz</div>
+            <ul style="font-size:12px;line-height:1.9;margin:0;padding-left:16px">
+              <li>Kleider &amp; Schuhe</li>
+              <li>Restaurant (auch Take-Away heiss)</li>
+              <li>Elektronik</li>
+              <li>Benzin / Diesel</li>
+              <li>Möbel</li>
+              <li>Coiffeur / Nagelstudio</li>
+              <li>Kino / Theater</li>
+              <li>Hotelnächte</li>
+              <li>Software / Apps</li>
+              <li>Reparaturen</li>
+            </ul>
+          </div>
+          <div style="background:#f1f8e9;border-radius:8px;padding:14px;border:1.5px solid #a5d6a7">
+            <div style="font-weight:800;font-size:15px;color:#2e7d32;margin-bottom:8px">2.6% Sondersatz</div>
+            <ul style="font-size:12px;line-height:1.9;margin:0;padding-left:16px">
+              <li>Brot, Gemüse, Früchte</li>
+              <li>Fleisch, Fisch</li>
+              <li>Milch, Käse, Joghurt</li>
+              <li>Kaffee (zum Mitnehmen, kalt)</li>
+              <li>Bücher (physisch)</li>
+              <li>Zeitungen &amp; Magazine</li>
+              <li>Blumen &amp; Pflanzen</li>
+              <li>Tierfutter</li>
+              <li>Haustiere (Kauf)</li>
+              <li>Medikamente (verschrieben)</li>
+            </ul>
+          </div>
+          <div style="background:#e8f0fe;border-radius:8px;padding:14px;border:1.5px solid #90caf9">
+            <div style="font-weight:800;font-size:15px;color:#1a56db;margin-bottom:8px">0% Ausgenommen</div>
+            <ul style="font-size:12px;line-height:1.9;margin:0;padding-left:16px">
+              <li>Arzt / Spital</li>
+              <li>Zahnarzt</li>
+              <li>Schule / Universität</li>
+              <li>Kurse (nicht-gewerblich)</li>
+              <li>Versicherungsprämien</li>
+              <li>Bankzinsen</li>
+              <li>Miete (Wohnen)</li>
+              <li>Sozialfürsorge</li>
+              <li>Post (Briefmarken)</li>
+              <li>Glücksspiel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="brutto-netto">
+      <div class="block-header blue">🧮 Brutto ↔ Netto rechnen</div>
+      <div class="block-body">
+        <div class="formula-box">
+          <div class="f-title">Die 4 MWST-Formeln</div>
+          <table>
+            <tr><td style="font-weight:700;min-width:200px">Netto → Brutto</td><td><span class="formula" style="padding:4px 10px">Brutto = Netto × (1 + MWST%/100)</span></td></tr>
+            <tr><td style="font-weight:700">Brutto → Netto</td><td><span class="formula" style="padding:4px 10px">Netto = Brutto / (1 + MWST%/100)</span></td></tr>
+            <tr><td style="font-weight:700">MWST-Betrag aus Netto</td><td><span class="formula" style="padding:4px 10px">MWST = Netto × MWST%/100</span></td></tr>
+            <tr><td style="font-weight:700">MWST-Betrag aus Brutto</td><td><span class="formula" style="padding:4px 10px">MWST = Brutto − Netto</span></td></tr>
+          </table>
+        </div>
+
+        <div class="example-box" style="margin-top:12px">
+          <div class="ex-title">📐 Beispiel Normalsatz 8.1%</div>
+          <p>Preis ohne MWST (Netto): <strong>CHF 200.–</strong></p>
+          <p>MWST-Betrag: 200 × 8.1% = 200 × 0.081 = <strong>CHF 16.20</strong></p>
+          <p>Preis mit MWST (Brutto): 200 + 16.20 = <strong>CHF 216.20</strong><br>
+          oder: 200 × 1.081 = CHF 216.20 ✓</p>
+        </div>
+
+        <div class="example-box" style="margin-top:12px">
+          <div class="ex-title">📐 Rückwärts rechnen – MWST aus Brutto herauslösen</div>
+          <p>Rechnungsbetrag inkl. 8.1% MWST: <strong>CHF 216.20</strong></p>
+          <p>Netto: 216.20 / 1.081 = <strong>CHF 200.–</strong></p>
+          <p>MWST-Betrag: 216.20 − 200 = <strong>CHF 16.20</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Brutto/Netto ganz einfach</div>
+      <p><strong>Netto</strong> = der Preis ohne MWST (was die Firma verdient)<br>
+      <strong>Brutto</strong> = der Preis mit MWST (was du als Kunde zahlst)</p>
+      <p>Stell dir vor: Der Bäcker macht ein Brot und sagt "Ich will CHF 3.– für mein Brot." Das sind CHF 3.– Netto. Aber der Staat sagt: "Für jedes Brot, das du verkaufst, nimmst du 2.6% für mich mit." Also berechnet der Bäcker CHF 3.– + CHF 0.078 = CHF 3.08 Brutto. Der Bäcker gibt später die CHF 0.078 an den Staat ab.</p>
+    </div>
+
+    <div class="section-block" id="vorsteuer">
+      <div class="block-header blue">🔄 Vorsteuer – Was Unternehmen abziehen dürfen</div>
+      <div class="block-body">
+        <p>Ein Unternehmen, das MWST-pflichtig ist, kann die bezahlte MWST (= Vorsteuer) mit der erhaltenen MWST (= geschuldete MWST) verrechnen:</p>
+        <div class="formula-box">
+          <div class="f-title">MWST-Abrechnung gegenüber dem Staat</div>
+          <div class="formula">MWST-Schuld = Umsatz-MWST − Vorsteuer</div>
+          <p style="font-size:13px;margin-top:8px;color:var(--muted)">Ist das Ergebnis positiv → Zahlung an Staat. Ist es negativ → Rückerstattung vom Staat.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="ex-title">📐 Beispiel: Schreinerei</div>
+          <p>Einkauf Holz (inkl. 8.1% MWST): CHF 540 brutto → Vorsteuer = 40.–<br>
+          Verkauf Möbel (inkl. 8.1% MWST): CHF 1'296 brutto → MWST = 96.–<br>
+          <strong>MWST-Schuld:</strong> 96 − 40 = <strong>CHF 56 an Staat abführen</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="buchungen">
+      <div class="block-header blue">📒 MWST-Buchungssätze</div>
+      <div class="block-body">
+        <table style="width:100%;font-size:13px;border-collapse:collapse">
+          <thead>
+            <tr style="background:var(--blue);color:white">
+              <th style="padding:8px 12px">Vorgang</th>
+              <th style="padding:8px 12px">Soll</th>
+              <th style="padding:8px 12px">Haben</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Einkauf mit MWST (Wareneingang)</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Warenaufwand + Vorsteuer</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Verbindlichkeiten/Kasse (Brutto)</td>
+            </tr>
+            <tr style="background:var(--bg)">
+              <td style="padding:8px 12px;border:1px solid var(--border)">Verkauf mit MWST</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Forderungen/Kasse (Brutto)</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Erlös (Netto) + MWST-Konto</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px;border:1px solid var(--border)">MWST-Abrechnung an Staat</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">MWST-Konto</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Bank</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-block" id="uebung">
+      <div class="block-header green">✏️ Prüfungsaufgabe 5 – MWST-Sätze zuordnen</div>
+      <div class="block-body">
+        <p>In der Prüfung (Aufgabe 5) musst du den richtigen MWST-Satz für jede Ausgabe bestimmen. Für jede korrekte Zuordnung gibt es 1 Punkt.</p>
+
+        <div class="tip-box">
+          <strong>Merkregel für die Prüfung:</strong><br>
+          1. Lebensmittel im Laden → 2.6%<br>
+          2. Essen im Restaurant (auch Bringdienst heiss) → 8.1%<br>
+          3. Arzt, Schule, Versicherung → 0%<br>
+          4. Alles andere → 8.1%<br>
+          Zweifelsfälle: Blumen → 2.6%, Bücher → 2.6%, Zeitung → 2.6%, Benzin → 8.1%
+        </div>
+
+        <h3>Übungsbeispiele (Lösung aufklappen)</h3>
+        <ol style="font-size:13px;line-height:2.4">
+          <li>Einkauf im Migros (Früchte &amp; Milch): <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>2.6%</strong> – Lebensmittel</details></li>
+          <li>Mittagessen im Restaurant: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>8.1%</strong> – Restaurant</details></li>
+          <li>Arztbesuch: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>0%</strong> – Gesundheit ausgenommen</details></li>
+          <li>Neues Handy gekauft: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>8.1%</strong> – Normalsatz</details></li>
+          <li>Blumen für Mutter gekauft: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>2.6%</strong> – Sondersatz (Pflanzen)</details></li>
+          <li>Kurs an der Privatschule: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>0%</strong> – Bildung ausgenommen</details></li>
+          <li>Zeitung am Kiosk: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>2.6%</strong> – Sondersatz (Printmedien)</details></li>
+          <li>Autowäsche: <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary> <strong>8.1%</strong> – Dienstleistung Normalsatz</details></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="zinsrechnung.html">← Zinsrechnung</a>
+      <a href="kalkulation.html">Kalkulation →</a>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

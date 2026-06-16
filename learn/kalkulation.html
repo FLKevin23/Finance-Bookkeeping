@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulation – Finance Skills</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.kalk-flow { display:flex; flex-direction:column; gap:0; max-width:480px; margin:16px auto; }
+.kalk-row { display:flex; align-items:center; gap:12px; padding:10px 16px; border:1.5px solid var(--border); background:white; }
+.kalk-row:first-child { border-radius:10px 10px 0 0; }
+.kalk-row:last-child  { border-radius:0 0 10px 10px; }
+.kalk-op  { width:22px; font-size:18px; font-weight:700; color:var(--red); flex-shrink:0; }
+.kalk-name { flex:1; font-weight:600; font-size:13px; }
+.kalk-note { font-size:11px; color:var(--muted); margin-top:2px; }
+.kalk-val  { font-family:monospace; font-size:13px; font-weight:700; min-width:80px; text-align:right; }
+.kalk-sep  { height:3px; background:var(--blue); margin:0; }
+.kalk-total { background:#e8f0fe; border-color:var(--blue); }
+.kalk-total .kalk-name { color:var(--blue); font-size:14px; }
+.zuschlag-table td, .zuschlag-table th { padding:8px 12px; font-size:13px; border:1px solid var(--border); }
+.zuschlag-table th { background:var(--blue); color:white; }
+.zuschlag-table tr:nth-child(even) { background:var(--bg); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="bilanz.html">Bilanz</a>
+    <a href="buchungssatz.html">Buchungssatz</a>
+    <a href="zinsrechnung.html">Zinsrechnung</a>
+    <a href="mwst.html">MWST</a>
+    <a href="kalkulation.html" class="active">Kalkulation</a>
+    <a href="abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>🛒 Kalkulation im Handel</h1>
+  <p>Kapitel 9 · Einkaufskalkulation · Verkaufskalkulation · Zuschlagssätze · Prüfungsaufgaben 6 &amp; 7</p>
+</div>
+
+<div class="learn-layout">
+  <aside class="sidebar">
+    <h4>Auf dieser Seite</h4>
+    <a href="#was-ist">Was ist Kalkulation?</a>
+    <a href="#einkauf">Einkaufskalkulation</a>
+    <a href="#verkauf">Verkaufskalkulation</a>
+    <a href="#zuschlaege">Zuschlagssätze</a>
+    <a href="#beispiel-elephant">Thai-Elefant (A6)</a>
+    <a href="#beispiel-gkz">GKZ / RGZ (A7)</a>
+    <a href="#uebung">Übungsaufgaben</a>
+  </aside>
+
+  <main>
+
+    <div class="section-block" id="was-ist">
+      <div class="block-header blue">📖 Was ist Kalkulation?</div>
+      <div class="block-body">
+        <p>Kalkulation bedeutet: <strong>Wie viel muss ich für eine Ware bezahlen, und wie viel muss ich sie verkaufen, damit ich Gewinn mache?</strong></p>
+        <p>Es gibt zwei Richtungen:</p>
+        <ul>
+          <li><strong>Einkaufskalkulation</strong>: Vom Rechnungspreis des Lieferanten → zum echten Einstandspreis</li>
+          <li><strong>Verkaufskalkulation</strong>: Vom Einstandspreis → zum Verkaufspreis</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Kalkulation ist wie Kochen</div>
+      <p>Du willst ein Sandwich verkaufen. Du kaufst Brot, Käse, Salat ein (= Einstandspreis). Dann musst du Strom, Miete, deinen Lohn draufschlagen (= Gemeinkosten). Und am Ende willst du noch etwas verdienen (= Reingewinn).</p>
+      <p>Die Kalkulation berechnet: Bei welchem Verkaufspreis decke ich alle Kosten UND mache noch Gewinn? Zu billig → Verlust. Zu teuer → kein Kunde kauft. Der <em>richtige Preis</em> ist das Ziel der Kalkulation.</p>
+    </div>
+
+    <div class="section-block" id="einkauf">
+      <div class="block-header blue">📦 Einkaufskalkulation – Vom Listenpreis zum Einstandspreis</div>
+      <div class="block-body">
+        <div class="kalk-flow">
+          <div class="kalk-row">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">Brutto-Katalogpreis (BKAP)</div><div class="kalk-note">Listenpreis des Lieferanten</div></div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">−</div>
+            <div><div class="kalk-name">Handelsrabatt (MR)</div><div class="kalk-note">% vom BKAP – Mengenrabatt</div></div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">Netto-Katalogpreis (NKAP)</div></div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">−</div>
+            <div><div class="kalk-name">Skonto</div><div class="kalk-note">% vom NKAP – Rabatt bei Barzahlung</div></div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">Netto-Barpreis (NBAP)</div></div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">+</div>
+            <div><div class="kalk-name">Bezugskosten</div><div class="kalk-note">Transport, Zoll, Verpackung</div></div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row" style="background:#e8f0fe;border-color:var(--blue)">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name" style="color:var(--blue);font-size:15px">= Einstandspreis (ESP)</div><div class="kalk-note">Was die Ware wirklich kostet</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Einkaufskalkulation wie beim Online-Shopping</div>
+      <p>Du willst Sneakers kaufen. Original-Preis (BKAP): CHF 200.–</p>
+      <p>Du hast einen Gutscheincode für 10% Rabatt → 10% Rabatt (MR) = CHF 20 ab → NKAP = CHF 180</p>
+      <p>Wenn du sofort mit Kreditkarte zahlst, bekommst du 2% extra ab → Skonto = CHF 3.60 ab → NBAP = CHF 176.40</p>
+      <p>Versandkosten (Bezugskosten): CHF 8.–</p>
+      <p>Einstandspreis = CHF 176.40 + CHF 8.– = <strong>CHF 184.40</strong> – das kostet dich der Schuh wirklich!</p>
+    </div>
+
+    <div class="section-block" id="verkauf">
+      <div class="block-header blue">💰 Verkaufskalkulation – Vom Einstandspreis zum Verkaufspreis</div>
+      <div class="block-body">
+        <div class="kalk-flow">
+          <div class="kalk-row" style="background:#e8f0fe;border-color:var(--blue)">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name" style="color:var(--blue)">Einstandspreis (ESP)</div></div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">+</div>
+            <div><div class="kalk-name">Gemeinkosten-Zuschlag (GK)</div><div class="kalk-note">GKZ% × ESP = Miete, Löhne, Strom…</div></div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">Selbstkostenpreis (SKP)</div></div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">+</div>
+            <div><div class="kalk-name">Reingewinn-Zuschlag (RG)</div><div class="kalk-note">RGZ% × ESP = unternehmerischer Gewinn</div></div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row" style="background:#e8f5e9;border-color:#2e7d32">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name" style="color:#2e7d32;font-size:15px">= Nettoerlös (NE) / Verkaufspreis</div><div class="kalk-note">Preis ohne MWST an den Kunden</div></div>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top:16px">
+          <strong>Wichtig: GKZ und RGZ werden auf den Einstandspreis berechnet (nicht auf SKP)</strong><br>
+          Gemeinkosten = ESP × GKZ / 100<br>
+          Reingewinn = ESP × RGZ / 100
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="zuschlaege">
+      <div class="block-header blue">📊 Zuschlagssätze berechnen (Aufgabe 7)</div>
+      <div class="block-body">
+        <div class="formula-box">
+          <div class="f-title">Formeln für BGZ, GKZ, RGZ</div>
+          <table>
+            <tr><td style="font-weight:700;min-width:200px">Brutto-Gemeinkosten-Zuschlag BGZ</td><td><span class="formula" style="padding:3px 8px">BGZ = Gesamte Gemeinkosten / Gesamter ESP × 100</span></td></tr>
+            <tr><td style="font-weight:700">Gemeinkosten-Zuschlag GKZ</td><td><span class="formula" style="padding:3px 8px">GKZ = Betriebsgemeinkosten / Gesamter ESP × 100</span></td></tr>
+            <tr><td style="font-weight:700">Reingewinn-Zuschlag RGZ</td><td><span class="formula" style="padding:3px 8px">RGZ = Reingewinn / Gesamter ESP × 100</span></td></tr>
+          </table>
+        </div>
+
+        <div class="example-box" style="margin-top:12px">
+          <div class="ex-title">📐 Aus der Prüfung (Aufgabe 7)</div>
+          <p>Gesamter Einstandspreis aller Waren: <strong>CHF 2'800'000</strong></p>
+          <p>Gemeinkosten gesamt: Personalaufwand 350, Raumaufwand 23, Reklame 59, allg. Verwaltung 46 = <strong>CHF 478'000</strong> (alle in Tausend)</p>
+          <p>Zinsen &amp; Abschreibungen (nicht im GKZ): CHF 36'360<br>
+          Reingewinn: 250'000 − 36'360 = <strong>CHF 213'640</strong></p>
+          <table class="zuschlag-table" style="margin-top:8px;width:100%">
+            <tr><th>Zuschlag</th><th>Formel</th><th>Rechnung</th><th>Ergebnis</th></tr>
+            <tr><td>GKZ</td><td>478'000 / 2'800'000 × 100</td><td>478 / 2'800 × 100</td><td><strong>17.07%</strong></td></tr>
+            <tr><td>RGZ</td><td>213'640 / 2'800'000 × 100</td><td>213.64 / 2'800 × 100</td><td><strong>7.63%</strong></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="beispiel-elephant">
+      <div class="block-header blue">🐘 Thai-Elefant Beispiel (Aufgabe 6)</div>
+      <div class="block-body">
+        <p>In der Prüfung importiert Liam Holzelefanten aus Thailand. Hier ist die vollständige Berechnung:</p>
+
+        <div class="kalk-flow">
+          <div class="kalk-row">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">BKAP</div><div class="kalk-note">48'000 THB (Brutto-Listenpreis)</div></div>
+            <div class="kalk-val">48'000 THB</div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">−</div>
+            <div><div class="kalk-name">Mengenrabatt (MR) 10%</div><div class="kalk-note">48'000 × 10% = 4'800 THB</div></div>
+            <div class="kalk-val">− 4'800</div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">NKAP</div></div>
+            <div class="kalk-val">43'200 THB</div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">−</div>
+            <div><div class="kalk-name">Skonto 2%</div><div class="kalk-note">43'200 × 2% = 864 THB</div></div>
+            <div class="kalk-val">− 864</div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">NBAP</div></div>
+            <div class="kalk-val">42'336 THB</div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">×</div>
+            <div><div class="kalk-name">Wechselkurs CHF/THB</div><div class="kalk-note">1 THB = 0.0275 CHF</div></div>
+            <div class="kalk-val">× 0.0275</div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">NBAP in CHF</div></div>
+            <div class="kalk-val">CHF 1'164.24</div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">+</div>
+            <div><div class="kalk-name">Bezugskosten</div><div class="kalk-note">Transport, Zoll etc.</div></div>
+            <div class="kalk-val">+ CHF 120.–</div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row kalk-total">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name">Einstandspreis (Total, 30 Stk.)</div></div>
+            <div class="kalk-val">CHF 1'284.24</div>
+          </div>
+          <div class="kalk-row">
+            <div class="kalk-op">÷</div>
+            <div><div class="kalk-name">Stückzahl</div><div class="kalk-note">30 Elefanten</div></div>
+            <div class="kalk-val">÷ 30</div>
+          </div>
+          <div class="kalk-sep"></div>
+          <div class="kalk-row" style="background:#e8f0fe;border-color:var(--blue)">
+            <div class="kalk-op"> </div>
+            <div><div class="kalk-name" style="color:var(--blue);font-size:15px">= Einstandspreis pro Elefant</div></div>
+            <div class="kalk-val" style="color:var(--blue);font-size:15px">CHF 42.81</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Warum Fremdwährung vor den Bezugskosten umrechnen?</div>
+      <p>Die Bezugskosten (Transport, Zoll) fallen in der Schweiz an → in CHF. Der Kaufpreis fiel in Thailand an → in THB. Also musst du zuerst den THB-Preis in CHF umrechnen, und dann die CHF-Bezugskosten dazuzählen.</p>
+      <p>Merke: <strong>Alles in die gleiche Währung bringen BEVOR du addierst</strong> – genau wie du nicht Äpfel und Orangen einfach zusammenzählen kannst.</p>
+    </div>
+
+    <div class="section-block" id="uebung">
+      <div class="block-header green">✏️ Übungsaufgaben</div>
+      <div class="block-body">
+        <ol style="font-size:13px;line-height:2.2">
+          <li>BKAP = CHF 500, MR = 20%, Skonto = 3%, Bezugskosten = CHF 15. Einstandspreis?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            NKAP = 500 − 100 = 400. NBAP = 400 − 12 = 388. ESP = 388 + 15 = <strong>CHF 403.–</strong></details>
+          </li>
+          <li>ESP = CHF 100, GKZ = 20%, RGZ = 10%. Nettoerlös?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            GK = 20, RG = 10. NE = 100 + 20 + 10 = <strong>CHF 130.–</strong></details>
+          </li>
+          <li>Gesamter ESP = 400'000, Gemeinkosten = 68'000, Reingewinn = 32'000. GKZ und RGZ?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            GKZ = 68'000/400'000 × 100 = <strong>17%</strong>. RGZ = 32'000/400'000 × 100 = <strong>8%</strong></details>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="mwst.html">← MWST</a>
+      <a href="abschreibungen.html">Abschreibungen →</a>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

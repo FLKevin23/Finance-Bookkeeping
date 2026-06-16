@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zinsrechnung – Finance Skills</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.calc-demo { background:#f8f4ff; border:1.5px solid #c0a8e8; border-radius:10px; padding:16px 20px; margin:12px 0; }
+.calc-demo .cd-title { font-weight:700; color:var(--purple); margin-bottom:8px; }
+.calc-demo .cd-step { display:flex; align-items:baseline; gap:8px; font-size:13px; padding:3px 0; }
+.calc-demo .cd-step .label { min-width:100px; color:var(--muted); }
+.calc-demo .cd-step .val { font-family:monospace; font-weight:700; font-size:14px; }
+.calc-demo .cd-result { margin-top:8px; font-weight:700; color:var(--purple); font-size:15px; padding-top:8px; border-top:1px solid #c0a8e8; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="bilanz.html">Bilanz</a>
+    <a href="buchungssatz.html">Buchungssatz</a>
+    <a href="zinsrechnung.html" class="active">Zinsrechnung</a>
+    <a href="mwst.html">MWST</a>
+    <a href="kalkulation.html">Kalkulation</a>
+    <a href="abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>💰 Zinsrechnung</h1>
+  <p>Kapitel 6 · Die Zinsformeln · Deutsche Usanz · Tageberechnung · Verrechnungssteuer</p>
+</div>
+
+<div class="learn-layout">
+  <aside class="sidebar">
+    <h4>Auf dieser Seite</h4>
+    <a href="#was-ist-zins" class="active">Was ist Zins?</a>
+    <a href="#formel">Die Zinsformeln</a>
+    <a href="#umkehrungen">Z, K, p, t berechnen</a>
+    <a href="#usanz">Deutsche Usanz</a>
+    <a href="#tageberechnung">Tageberechnung</a>
+    <a href="#uebung">Prüfungsaufgaben</a>
+  </aside>
+
+  <main>
+
+    <div class="section-block" id="was-ist-zins">
+      <div class="block-header blue">📖 Was ist Zins?</div>
+      <div class="block-body">
+        <p>Zins ist der <strong>Preis für eine vorübergehende Kapitalüberlassung</strong>. Wer Geld verleiht, bekommt dafür eine Entschädigung – den Zins. Wer Geld borgt, zahlt dafür.</p>
+        <ul>
+          <li><strong>Gläubiger / Kapitalgeber:</strong> Verleiht Geld → erhält Zins</li>
+          <li><strong>Schuldner / Kapitalnehmer:</strong> Borgt Geld → zahlt Zins</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Zins = Miete für Geld</div>
+      <p>Du mietest eine Wohnung und zahlst Miete dafür. Genauso kannst du dir Geld "mieten" (borgen) – und dafür zahlst du Miete auf das Geld, nämlich <strong>Zinsen</strong>.</p>
+      <p>Wenn du CHF 1'000 von der Bank borgst und 5% Zinsen im Jahr zahlst, kostet dich das "Mieten" von CHF 1'000 genau <strong>CHF 50 pro Jahr</strong>.</p>
+      <p>Oder andersherum: Wenn du CHF 1'000 auf die Bank legst, "vermietet" die Bank dein Geld weiter und zahlt dir dafür Zinsen. Du verdienst CHF 50 pro Jahr, einfach weil du dein Geld dort lässt!</p>
+    </div>
+
+    <div class="section-block" id="formel">
+      <div class="block-header blue">🔢 Die Zinsformel</div>
+      <div class="block-body">
+        <p>Der Zinsbetrag (Z) hängt von drei Grössen ab:</p>
+        <ul style="margin-bottom:12px">
+          <li><strong>K</strong> = Kapital (CHF) – wie viel Geld</li>
+          <li><strong>p</strong> = Zinssatz (%) – wie viel Prozent pro Jahr</li>
+          <li><strong>t</strong> = Zeit (Tage) – wie lange</li>
+        </ul>
+
+        <div class="formula-box">
+          <div class="f-title">Grundformel – Zinsbetrag berechnen</div>
+          <div class="formula">Z = K × p × t<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100 × 360</div>
+          <p style="font-size:13px;margin-top:10px;color:var(--muted)">Für <strong>ganzes Jahr</strong> (360 Tage): Z = K × p / 100</p>
+        </div>
+
+        <div class="example-box">
+          <div class="ex-title">📐 Beispiel aus dem Lehrbuch</div>
+          <p>Frau Meier legt <strong>CHF 30'000</strong> bei der Bank an. Zinssatz: <strong>3.5%</strong>. Anlagedauer: <strong>120 Tage</strong>.</p>
+          <div class="calc" style="margin-top:8px">
+            Z = 30'000 × 3.5 × 120 / (100 × 360)<br>
+            Z = 12'600'000 / 36'000<br>
+            Z = <strong>CHF 350.–</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Warum ÷ 100 und ÷ 360?</div>
+      <p>÷ 100: Weil p in Prozent angegeben ist. 5% = 5/100 = 0.05. Wir rechnen immer mit dem Dezimalwert.</p>
+      <p>÷ 360: Weil wir nur einen Teil des Jahres meinen. 120 Tage sind 120/360 = 1/3 des Jahres. Wenn du 1/3 Jahr anlegst, bekommst du auch nur 1/3 der Jahreszinsen.</p>
+      <p>Zusammen: Z = K × (p/100) × (t/360) = K × p × t / (100 × 360) – genauso wie in der Formel!</p>
+    </div>
+
+    <div class="section-block" id="umkehrungen">
+      <div class="block-header blue">🔄 Die 4 Umkehrungen – Finde was gesucht wird</div>
+      <div class="block-body">
+        <div class="formula-box">
+          <div class="f-title">Alle 4 Zinsformeln auf einen Blick</div>
+          <table>
+            <tr><td style="font-weight:700;width:80px">Gesucht Z</td><td><span class="formula" style="padding:4px 10px">Z = K × p × t / (100 × 360)</span></td><td style="font-size:12px;color:var(--muted)">Zinsbetrag</td></tr>
+            <tr><td style="font-weight:700">Gesucht K</td><td><span class="formula" style="padding:4px 10px">K = Z × 100 × 360 / (p × t)</span></td><td style="font-size:12px;color:var(--muted)">Kapital</td></tr>
+            <tr><td style="font-weight:700">Gesucht p</td><td><span class="formula" style="padding:4px 10px">p = Z × 100 × 360 / (K × t)</span></td><td style="font-size:12px;color:var(--muted)">Zinssatz %</td></tr>
+            <tr><td style="font-weight:700">Gesucht t</td><td><span class="formula" style="padding:4px 10px">t = Z × 100 × 360 / (K × p)</span></td><td style="font-size:12px;color:var(--muted)">Tage</td></tr>
+          </table>
+        </div>
+
+        <h3>Prüfungsaufgaben – Gesucht K und p</h3>
+
+        <div class="calc-demo">
+          <div class="cd-title">📝 Aufgabe 4b aus der Prüfung: Gesucht K</div>
+          <p style="font-size:13px;margin-bottom:10px">Liam erhielt <strong>CHF 235</strong> Zinsen. Zinssatz: <strong>3%</strong>. Anlagedauer: <strong>410 Tage</strong>.</p>
+          <div class="cd-step"><span class="label">Formel:</span><span class="val">K = Z × 100 × 360 / (p × t)</span></div>
+          <div class="cd-step"><span class="label">Einsetzen:</span><span class="val">K = 235 × 100 × 360 / (3 × 410)</span></div>
+          <div class="cd-step"><span class="label">Zähler:</span><span class="val">235 × 100 × 360 = 8'460'000</span></div>
+          <div class="cd-step"><span class="label">Nenner:</span><span class="val">3 × 410 = 1'230</span></div>
+          <div class="cd-result">K = 8'460'000 / 1'230 = CHF 6'878</div>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📝 Aufgabe 4c aus der Prüfung: Gesucht p</div>
+          <p style="font-size:13px;margin-bottom:10px">Kapital: <strong>CHF 60'000</strong>. Zinsen: <strong>CHF 9'000</strong>. Laufzeit: <strong>24 Monate</strong>.</p>
+          <div class="cd-step"><span class="label">Umrechnung:</span><span class="val">24 Monate × 30 Tage = 720 Tage</span></div>
+          <div class="cd-step"><span class="label">Formel:</span><span class="val">p = Z × 100 × 360 / (K × t)</span></div>
+          <div class="cd-step"><span class="label">Einsetzen:</span><span class="val">p = 9'000 × 100 × 360 / (60'000 × 720)</span></div>
+          <div class="cd-step"><span class="label">Zähler:</span><span class="val">9'000 × 100 × 360 = 324'000'000</span></div>
+          <div class="cd-step"><span class="label">Nenner:</span><span class="val">60'000 × 720 = 43'200'000</span></div>
+          <div class="cd-result">p = 324'000'000 / 43'200'000 = 7.5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="usanz">
+      <div class="block-header blue">📅 Deutsche Usanz – das 30/360-Prinzip</div>
+      <div class="block-body">
+        <p>Schweizer Banken berechnen Zinsen nach der <strong>deutschen Usanz</strong> – das bedeutet:</p>
+        <ul>
+          <li>Das Zinsjahr hat <strong>360 Tage</strong></li>
+          <li>Jeder Zinsmonat hat <strong>30 Tage</strong></li>
+          <li>Der <strong>letzte Kalendertag eines Monats</strong> gilt immer als Tag 30</li>
+        </ul>
+        <div class="warn-box">
+          <strong>Spezialfall Februar:</strong><br>
+          • In einem <em>Nicht-Schaltjahr</em>: 28. Feb. = letzter Monatstag → zählt als Tag 30<br>
+          • In einem <em>Schaltjahr</em>: 29. Feb. = letzter Monatstag → zählt als Tag 30, aber 28. Feb. zählt normal als Tag 28
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Warum 30 Tage pro Monat?</div>
+      <p>Das klingt komisch, oder? Manche Monate haben 28, 29, 30 oder 31 Tage. Das macht das Rechnen kompliziert.</p>
+      <p>Die Banken haben einfach gesagt: "Wir machen jeden Monat gleich lang – 30 Tage, fertig." Das ist wie wenn alle Pizzen die gleiche Grösse hätten, egal ob es eine kleine oder grosse war.</p>
+      <p>So können Zinsen einfach mit 30-Tage-Monaten und einem 360-Tage-Jahr berechnet werden, ohne sich Gedanken über Schaltjahre zu machen.</p>
+    </div>
+
+    <div class="section-block" id="tageberechnung">
+      <div class="block-header blue">🗓️ Tageberechnung – 4 Prüfungsbeispiele</div>
+      <div class="block-body">
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead>
+            <tr style="background:var(--blue);color:white">
+              <th style="padding:8px 12px">Von</th>
+              <th style="padding:8px 12px">Bis</th>
+              <th style="padding:8px 12px;text-align:center">Tage</th>
+              <th style="padding:8px 12px">Erklärung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px;border:1px solid var(--border)">02.02.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">28.02.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border);text-align:center;font-weight:700;color:var(--blue)">26</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Selber Monat: 28 − 2 = 26 Tage</td>
+            </tr>
+            <tr style="background:var(--bg)">
+              <td style="padding:8px 12px;border:1px solid var(--border)">10.09.2024</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">15.12.2024</td>
+              <td style="padding:8px 12px;border:1px solid var(--border);text-align:center;font-weight:700;color:var(--blue)">95</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">Sept. Rest: 30−10=20, Okt.=30, Nov.=30, Dez. 1–15=15 → 20+30+30+15=95</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px;border:1px solid var(--border)">30.01.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">31.01.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border);text-align:center;font-weight:700;color:var(--blue)">0</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">31. Jan. = Tag 30 (letzter Monatstag). Beide = Tag 30. Differenz = 0.</td>
+            </tr>
+            <tr style="background:var(--bg)">
+              <td style="padding:8px 12px;border:1px solid var(--border)">30.06.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">10.07.2025</td>
+              <td style="padding:8px 12px;border:1px solid var(--border);text-align:center;font-weight:700;color:var(--blue)">10</td>
+              <td style="padding:8px 12px;border:1px solid var(--border)">30. Jun. = Tag 30 (Rest=0 Tage). Juli 1–10 = 10 Tage. Total = 10.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tip-box" style="margin-top:12px">
+          <strong>Schritt-für-Schritt-Methode:</strong><br>
+          1. Schaue, wie viele Tage im Startmonat noch verbleiben (30 − Starttag)<br>
+          2. Zähle die vollen Zwischenmonate (je 30 Tage)<br>
+          3. Zähle die Tage im Endmonat (= Endtag)<br>
+          4. Addiere alles zusammen
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Monatswechsel-Trick</div>
+      <p>Für Zinstage über mehrere Monate: Zähle immer in "30-Tage-Portionen".</p>
+      <p>Von 10. September bis 15. Dezember:<br>
+      September hat noch 30−10 = <strong>20 Tage</strong> übrig<br>
+      Oktober = <strong>30 Tage</strong> voll<br>
+      November = <strong>30 Tage</strong> voll<br>
+      Dezember bis zum 15. = <strong>15 Tage</strong><br>
+      Total: 20 + 30 + 30 + 15 = <strong>95 Tage</strong> ✓</p>
+    </div>
+
+    <div class="section-block" id="uebung">
+      <div class="block-header green">✏️ Formelübungen</div>
+      <div class="block-body">
+        <p>Berechne folgende Grössen (Lösungen aufklappen):</p>
+        <ol style="font-size:13px;line-height:2.2">
+          <li>K=50'000, p=4%, t=180 Tage. Gesucht: Z?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            Z = 50'000 × 4 × 180 / (100 × 360) = 36'000'000 / 36'000 = <strong>CHF 1'000</strong></details>
+          </li>
+          <li>Z=650, p=6%, t=130 Tage. Gesucht: K?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            K = 650 × 100 × 360 / (6 × 130) = 23'400'000 / 780 = <strong>CHF 30'000</strong></details>
+          </li>
+          <li>K=30'000, Z=650, t=130 Tage. Gesucht: p?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            p = 650 × 100 × 360 / (30'000 × 130) = 23'400'000 / 3'900'000 = <strong>6%</strong></details>
+          </li>
+          <li>Tage von 15.03. bis 15.07.?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            März Rest: 30−15=15, April=30, Mai=30, Juni=30, Juli 1–15=15 → 15+30+30+30+15 = <strong>120 Tage</strong></details>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="buchungssatz.html">← Buchungssatz</a>
+      <a href="mwst.html">MWST →</a>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
