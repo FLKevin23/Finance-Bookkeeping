@@ -114,6 +114,40 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e0_4-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Was ist Skonto?</div>
+      <div class="ex-body">
+        <div class="ex-q">Was bedeutet «Skonto» in der Einkaufskalkulation?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_5" value="A"> Ein Mengennachlass für grosse Bestellmengen</label>
+          <label><input type="radio" name="e0_5" value="B"> Ein Nachlass für schnelle Zahlung (berechnet auf NKAP)</label>
+          <label><input type="radio" name="e0_5" value="C"> Die Transportkosten für die Ware</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_5','B','Skonto = Zahlungsrabatt: wer innerhalb einer Frist zahlt, bekommt einen Prozentabzug auf den NKAP. Mengennachlass wäre ein Rabatt. Transportkosten sind Bezugskosten.')">Prüfen</button>
+        <div class="fb" id="e0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Bezugskosten addieren</div>
+      <div class="ex-body">
+        <div class="ex-q">NBAP = CHF <strong>500.–</strong> · Bezugskosten (Frachtkosten) = CHF <strong>50.–</strong><br><br>
+        ESP = NBAP + Bezugskosten = CHF <input class="ex-num" type="number" id="n0_6" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n0_6',550,0.01,'CHF','ESP = 500 + 50 = 550. Bezugskosten sind Frachtkosten, Zölle etc. die beim Einkauf anfallen.')">Prüfen</button>
+        <div class="fb" id="n0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Reingewinnzuschlag berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">ESP = CHF <strong>400.–</strong> · RGZ = <strong>25%</strong><br><br>
+        Reingewinn = CHF <input class="ex-num" type="number" id="n0_7" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n0_7',100,0.01,'CHF','RG = 400 × 25% = 100. Der RGZ wird immer auf den Einstandspreis berechnet, nicht auf den Verkaufspreis.')">Prüfen</button>
+        <div class="fb" id="n0_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 1 ══════════ -->
@@ -163,6 +197,41 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="n1_3-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – GK, RG und NE berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">ESP = CHF <strong>800.–</strong> · GKZ = <strong>25%</strong> · RGZ = <strong>15%</strong><br><br>
+        GK (Gemeinkosten): CHF <input class="ex-num" type="number" id="n1_4a" placeholder="0" step="0.01"><br>
+        RG (Reingewinn): CHF <input class="ex-num" type="number" id="n1_4b" placeholder="0" step="0.01"><br>
+        NE (Nettoerlös): CHF <input class="ex-num" type="number" id="n1_4c" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkDrei('n1_4a','n1_4b','n1_4c',200,120,1120,0.5,'GK=800×25%=200. RG=800×15%=120. NE=800+200+120=1120.')">Prüfen</button>
+        <div class="fb" id="e1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – Bruttogewinnzuschlag (BGZ)</div>
+      <div class="ex-body">
+        <div class="ex-q">GKZ = <strong>25%</strong> · RGZ = <strong>15%</strong><br><br>
+        BGZ = GKZ + RGZ = <input class="ex-num" type="number" id="n1_5" placeholder="0" step="0.01"> %<br><br>
+        Wenn ESP = CHF <strong>800</strong>, dann NE = CHF <input class="ex-num" type="number" id="n1_5b" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">NE = ESP × (1 + BGZ/100)</small></div>
+        <button class="chk-btn" onclick="chkZwei('n1_5','n1_5b',40,1120,'BGZ=25+15=40%. NE=800×1.40=1120.')">Prüfen</button>
+        <div class="fb" id="e1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – Rückwärts: ESP aus NE</div>
+      <div class="ex-body">
+        <div class="ex-q">NE = CHF <strong>1'500</strong> · GKZ = <strong>20%</strong> · RGZ = <strong>5%</strong><br>
+        BGZ = GKZ + RGZ = 25%<br><br>
+        ESP = NE / (1 + BGZ/100) = CHF <input class="ex-num" type="number" id="n1_6" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n1_6',1200,0.5,'CHF','ESP=1500/1.25=1200.')">Prüfen</button>
+        <div class="fb" id="n1_6-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 2 ══════════ -->
@@ -207,6 +276,37 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         ESP = NE ÷ 1.60 = CHF <input class="ex-num" type="number" id="n2_3" placeholder="0" step="0.01"></div>
         <button class="chk-btn" onclick="chkN('n2_3',1500,0.5,'CHF','ESP = 2400 / 1.60 = 1500.')">Prüfen</button>
         <div class="fb" id="n2_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Bruttoerlös (BE) mit MWST</div>
+      <div class="ex-body">
+        <div class="ex-q">NE (Nettoerlös) = CHF <strong>2'000</strong> · MWST-Satz = <strong>8.1%</strong><br><br>
+        BE = NE × 1.081 = CHF <input class="ex-num" type="number" id="n2_4" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">BE ist der Betrag, den der Kunde inkl. MWST zahlt.</small></div>
+        <button class="chk-btn" onclick="chkN('n2_4',2162,0.5,'CHF','BE=2000×1.081=2162.')">Prüfen</button>
+        <div class="fb" id="n2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Vollständiges Kalkulationsschema</div>
+      <div class="ex-body">
+        <div class="ex-q">BKAP = CHF 2'000 · Rabatt 20% · Skonto 2% · Bezugskosten CHF 60<br>
+        GKZ = 35% · RGZ = 15%<br><br>
+        Berechne das vollständige Schema:</div>
+        <table class="tbl-ex">
+          <tr><th>Position</th><th>CHF</th></tr>
+          <tr><td>NKAP (nach Rabatt)</td><td><input class="ex-num" type="number" id="n2_5a" placeholder="0" step="0.01"></td></tr>
+          <tr><td>NBAP (nach Skonto)</td><td><input class="ex-num" type="number" id="n2_5b" placeholder="0" step="0.01"></td></tr>
+          <tr><td>ESP (+ Bezugskosten)</td><td><input class="ex-num" type="number" id="n2_5c" placeholder="0" step="0.01"></td></tr>
+          <tr><td>GK (Gemeinkosten)</td><td><input class="ex-num" type="number" id="n2_5d" placeholder="0" step="0.01"></td></tr>
+          <tr><td>RG (Reingewinn)</td><td><input class="ex-num" type="number" id="n2_5e" placeholder="0" step="0.01"></td></tr>
+          <tr><td>NE (Nettoerlös)</td><td><input class="ex-num" type="number" id="n2_5f" placeholder="0" step="0.01"></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkSechs('n2_5a','n2_5b','n2_5c','n2_5d','n2_5e','n2_5f',1600,1568,1628,569.80,244.20,2442,0.5,'NKAP=2000×0.80=1600. NBAP=1600×0.98=1568. ESP=1568+60=1628. GK=1628×35%=569.80. RG=1628×15%=244.20. NE=1628+570+244=2442.')">Prüfen</button>
+        <div class="fb" id="e2_5-fb"></div>
       </div>
     </div>
   </div>
@@ -260,6 +360,36 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         </div>
         <button class="chk-btn" onclick="chkAngebotsvergleich()">Prüfen</button>
         <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Rückwärts: ESP aus NE (komplex)</div>
+      <div class="ex-body">
+        <div class="ex-q">Bekannt: NE = CHF <strong>2'100</strong> · GKZ = <strong>35%</strong> · RGZ = <strong>25%</strong><br>
+        BGZ = GKZ + RGZ = 60%<br>
+        NE = ESP × (1 + BGZ) = ESP × 1.60<br><br>
+        ESP = CHF <input class="ex-num" type="number" id="n3_4" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n3_4',1312.50,0.5,'CHF','ESP=2100/1.60=1312.50.')">Prüfen</button>
+        <div class="fb" id="n3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Angebotsvergleich 2</div>
+      <div class="ex-body">
+        <div class="ex-q">Zwei Lieferanten für denselben Artikel:<br>
+        <strong>Angebot A:</strong> BKAP CHF 800 · Rabatt 10% · Skonto 0% · Bezugskosten CHF 30<br>
+        <strong>Angebot B:</strong> BKAP CHF 750 · Rabatt 5% · Skonto 2% · Bezugskosten CHF 50<br><br>
+        ESP Angebot A: CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0" step="0.01"><br>
+        ESP Angebot B: CHF <input class="ex-num" type="number" id="n3_5b" placeholder="0" step="0.01"><br>
+        Günstigeres Angebot:
+        <div class="rg">
+          <label><input type="radio" name="e3_5r" value="A"> Angebot A</label>
+          <label><input type="radio" name="e3_5r" value="B"> Angebot B</label>
+        </div></div>
+        <button class="chk-btn" onclick="chkAngebotsvergleich2()">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
   </div>
@@ -329,6 +459,22 @@ function chkAngebotsvergleich(){
   const okA=Math.abs(va-aA)<=0.05,okB=Math.abs(vb-aB)<=0.05,okC=sel.value==='A';
   if(okA&&okB&&okC){fb.innerHTML='✅ <strong>Perfekt!</strong> A=854.50, B=877.90 → Angebot A ist günstiger. A:NKAP=850,NBAP=824.50,ESP=854.50. B:NKAP=855,NBAP=837.90,ESP=877.90.';fb.className='fb ok';}
   else{fb.innerHTML='❌ ESP-A=854.50, ESP-B=877.90 → Angebot <strong>A</strong> ist günstiger. A:1000×0.85×0.97+30=854.50. B:950×0.90×0.98+40=877.90.';fb.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=!isNaN(v1)&&!isNaN(v2)&&Math.abs(v1-a1)<=0.5&&Math.abs(v2-a2)<=0.5;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1+', b)='+a2+'. '+tip;fbEl.className='fb no';}
+}
+function chkAngebotsvergleich2(){
+  const va=parseFloat(document.getElementById('n3_5a').value),vb=parseFloat(document.getElementById('n3_5b').value);
+  const sel=document.querySelector('input[name="e3_5r"]:checked');
+  const fb=document.getElementById('e3_5-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle auch das günstigere Angebot aus.';fb.className='fb tip';return;}
+  const okA=Math.abs(va-750)<=0.05,okB=Math.abs(vb-748.25)<=0.05,okC=sel.value==='B';
+  if(okA&&okB&&okC){fb.innerHTML='✅ <strong>Perfekt!</strong> A=750, B=748.25 → Angebot B ist günstiger. A:720−0=720,ESP=720+30=750. B:712.50×0.98=698.25,ESP=698.25+50=748.25.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ A:NKAP=800×0.90=720, NBAP=720(kein Skonto), ESP=720+30=750. B:NKAP=750×0.95=712.50, NBAP=712.50×0.98=698.25, ESP=698.25+50=748.25 → B gewinnt.';fb.className='fb no';}
 }
 </script>
 </body>

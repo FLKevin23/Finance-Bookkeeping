@@ -123,6 +123,38 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e0_4-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Niedrige Zinsen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>3'000</strong> · p = <strong>2%</strong> · t = <strong>360 Tage</strong><br><br>
+        Berechne Z (ganzes Jahr):</div>
+        Z = CHF <input class="ex-num" type="number" id="n0_5" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_5',60,0.05,'CHF','Z=3000×2×360/(100×360)=3000×2/100=60.')">Prüfen</button>
+        <div class="fb" id="n0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Tageberechnung Übung</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie viele Tage liegen zwischen dem <strong>1. Februar</strong> und dem <strong>1. Mai</strong>? (Deutsche Usanz)</div>
+        <input class="ex-num" type="number" id="n0_6" placeholder="0"> Tage
+        <button class="chk-btn" onclick="chkN('n0_6',90,0,'Tage','(5−2)×30 + (1−1) = 3×30 = 90 Tage.')">Prüfen</button>
+        <div class="fb" id="n0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Quartalszinsen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>6'000</strong> · p = <strong>4%</strong> · t = <strong>90 Tage</strong> (1 Quartal)<br><br>
+        Berechne Z:</div>
+        Z = CHF <input class="ex-num" type="number" id="n0_7" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_7',60,0.05,'CHF','Z=6000×4×90/(100×360)=2160000/36000=60.')">Prüfen</button>
+        <div class="fb" id="n0_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 1 ══════════ -->
@@ -161,6 +193,42 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <strong>b)</strong> Wie hoch ist Z? CHF <input class="ex-num" type="number" id="n1_3b" placeholder="0" step="0.01"></div>
         <button class="chk-btn" onclick="chkZwei('n1_3a','n1_3b',90,112.50,'(6−3)×30+(15−15)=90 Tage. Z=10000×4.5×90/(100×360)=112.50.')">Prüfen</button>
         <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – Zinssatz berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Z = CHF <strong>120</strong> · K = CHF <strong>6'000</strong> · t = <strong>240 Tage</strong><br><br>
+        Berechne den Zinssatz p:<br>
+        <small style="color:var(--muted)">p = Z × 100 × 360 / (K × t)</small></div>
+        p = <input class="ex-num" type="number" id="n1_4" placeholder="0" step="0.01"> %
+        <button class="chk-btn" onclick="chkN('n1_4',3,0.01,'%','p=120×100×360/(6000×240)=4320000/1440000=3%.')">Prüfen</button>
+        <div class="fb" id="n1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – Datum und Zinsen kombiniert</div>
+      <div class="ex-body">
+        <div class="ex-q">Kredit vom <strong>15. Januar</strong> bis <strong>15. April</strong>.<br>
+        K = CHF <strong>5'000</strong> · p = <strong>4%</strong><br><br>
+        <strong>a)</strong> Anzahl Tage: <input class="ex-num" type="number" id="n1_5a" placeholder="0" style="width:80px"> Tage<br><br>
+        <strong>b)</strong> Zinsbetrag Z: CHF <input class="ex-num" type="number" id="n1_5b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n1_5a','n1_5b',90,50,'(4-1)×30+(15-15)=90T. Z=5000×4×90/(100×360)=50.')">Prüfen</button>
+        <div class="fb" id="e1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – Laufzeit bestimmen</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>4'000</strong> · p = <strong>3%</strong> · Z = CHF <strong>30</strong><br><br>
+        Wie viele Tage dauert die Laufzeit?<br>
+        <small style="color:var(--muted)">t = Z × 100 × 360 / (K × p)</small></div>
+        t = <input class="ex-num" type="number" id="n1_6" placeholder="0"> Tage
+        <button class="chk-btn" onclick="chkN('n1_6',90,0,'Tage','t=30×100×360/(4000×3)=1080000/12000=90 Tage.')">Prüfen</button>
+        <div class="fb" id="n1_6-fb"></div>
       </div>
     </div>
   </div>
@@ -204,6 +272,42 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="n2_3-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Verrechnungssteuer rückwärts</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Sparkonto bringt CHF <strong>195</strong> Nettozins (nach 35% VSt).<br><br>
+        <strong>a)</strong> Brutto-Zinsbetrag Z: CHF <input class="ex-num" type="number" id="n2_4a" placeholder="0" step="0.01"><br>
+        <strong>b)</strong> VSt-Betrag: CHF <input class="ex-num" type="number" id="n2_4b" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">Netto = Brutto × (1 − 35%) → Brutto = Netto / 0.65</small></div>
+        <button class="chk-btn" onclick="chkZwei('n2_4a','n2_4b',300,105,'Brutto=195/0.65=300. VSt=300×35%=105.')">Prüfen</button>
+        <div class="fb" id="e2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Laufzeit berechnen (komplex)</div>
+      <div class="ex-body">
+        <div class="ex-q">K = CHF <strong>12'000</strong> · p = <strong>5%</strong> · Z = CHF <strong>500</strong><br><br>
+        Laufzeit t = ? Tage<br>
+        <small style="color:var(--muted)">t = Z × 100 × 360 / (K × p)</small></div>
+        t = <input class="ex-num" type="number" id="n2_5" placeholder="0"> Tage
+        <button class="chk-btn" onclick="chkN('n2_5',300,0,'Tage','t=500×100×360/(12000×5)=18000000/60000=300 Tage (= 10 Monate).')">Prüfen</button>
+        <div class="fb" id="n2_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_6">
+      <div class="ex-head">Aufgabe 6 – Kapital berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">p = <strong>3%</strong> · t = <strong>180 Tage</strong> · Z = CHF <strong>90</strong><br><br>
+        K = ? CHF<br>
+        <small style="color:var(--muted)">K = Z × 100 × 360 / (p × t)</small></div>
+        K = CHF <input class="ex-num" type="number" id="n2_6" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_6',6000,0.5,'CHF','K=90×100×360/(3×180)=3240000/540=6000.')">Prüfen</button>
+        <div class="fb" id="n2_6-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 3 ══════════ -->
@@ -245,6 +349,32 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <strong>c)</strong> Z gesamt = CHF <input class="ex-num" type="number" id="n3_3c" placeholder="0" step="0.01"></div>
         <button class="chk-btn" onclick="chkDrei('n3_3a','n3_3b','n3_3c',75,120,195,0.05,'Z1=5000×6×90/36000=75. Z2=8000×3×180/36000=120. Gesamt=195.')">Prüfen</button>
         <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Zwei Kapitalien parallel</div>
+      <div class="ex-body">
+        <div class="ex-q">Zwei Sparkonten gleichzeitig:<br>
+        Konto 1: K = CHF <strong>3'000</strong> · p = <strong>5%</strong> · t = <strong>120 Tage</strong><br>
+        Konto 2: K = CHF <strong>8'000</strong> · p = <strong>3%</strong> · t = <strong>180 Tage</strong><br><br>
+        Z<sub>1</sub>: CHF <input class="ex-num" type="number" id="n3_4a" placeholder="0" step="0.01"><br>
+        Z<sub>2</sub>: CHF <input class="ex-num" type="number" id="n3_4b" placeholder="0" step="0.01"><br>
+        Z gesamt: CHF <input class="ex-num" type="number" id="n3_4c" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkDrei('n3_4a','n3_4b','n3_4c',50,120,170,0.05,'Z1=3000×5×120/36000=50. Z2=8000×3×180/36000=120. Gesamt=170.')">Prüfen</button>
+        <div class="fb" id="e3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Kapital berechnen + Verrechnungssteuer</div>
+      <div class="ex-body">
+        <div class="ex-q">Brutto-Zins Z = CHF <strong>250</strong> · p = <strong>2.5%</strong> · t = <strong>240 Tage</strong><br><br>
+        <strong>a)</strong> Kapital K: CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Netto-Zins nach 35% VSt: CHF <input class="ex-num" type="number" id="n3_5b" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">K = Z×100×360/(p×t) · Netto = Brutto×0.65</small></div>
+        <button class="chk-btn" onclick="chkZwei('n3_5a','n3_5b',15000,162.50,'K=250×100×360/(2.5×240)=15000. Netto=250×0.65=162.50.')">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
   </div>

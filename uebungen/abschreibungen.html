@@ -119,6 +119,38 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e0_4-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Linear: Abschreibungsbetrag</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug: AW = CHF <strong>15'000</strong> · Linear <strong>20%</strong> p.a.<br><br>
+        Abschreibung pro Jahr: CHF <input class="ex-num" type="number" id="n0_5" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n0_5',3000,0.5,'CHF','15000 × 20% = 3000. Bei linear ist dieser Betrag jedes Jahr gleich.')">Prüfen</button>
+        <div class="fb" id="n0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Nach wie vielen Jahren ist BW = 0?</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug: AW = CHF <strong>15'000</strong> · Linear 20% → Abs/Jahr = CHF 3'000<br><br>
+        Nach wie vielen Jahren ist der Buchwert = CHF 0?<br>
+        <small style="color:var(--muted)">Tipp: 15000 ÷ 3000 = ?</small></div>
+        <input class="ex-num" type="number" id="n0_6" placeholder="0"> Jahre
+        <button class="chk-btn" onclick="chkN('n0_6',5,0,'Jahre','15000 ÷ 3000 = 5 Jahre. Das ist die Nutzungsdauer. 1/20% = 5 Jahre.')">Prüfen</button>
+        <div class="fb" id="n0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Was bleibt nach 3 Jahren? (Linear)</div>
+      <div class="ex-body">
+        <div class="ex-q">Büroeinrichtung: AW = CHF <strong>12'000</strong> · Linear <strong>25%</strong> p.a.<br><br>
+        Buchwert nach 3 Jahren: CHF <input class="ex-num" type="number" id="n0_7" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n0_7',3000,0.5,'CHF','Abs/Jahr=12000×25%=3000. Nach 3J: BW=12000−3×3000=3000.')">Prüfen</button>
+        <div class="fb" id="n0_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 1 ══════════ -->
@@ -163,6 +195,45 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         Konto im Haben: <select class="ex-sel" id="s1_3c"><option value="">– wählen –</option><option value="Abs_Fzg">Abschreibungen auf Fahrzeuge</option><option value="Fahrzeuge">Fahrzeuge</option><option value="Bank">Bank</option></select>
         <button class="chk-btn" onclick="chkBuchung()">Prüfen</button>
         <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – Degressiv 2 Jahre: Tabelle ausfüllen</div>
+      <div class="ex-body">
+        <div class="ex-q">Maschine: AW = CHF <strong>20'000</strong> · Degressiv <strong>25%</strong> p.a.<br>
+        Fülle die Tabelle aus:</div>
+        <table class="tbl-ex">
+          <tr><th>Jahr</th><th>Abschreibung (CHF)</th><th>Buchwert Ende Jahr (CHF)</th></tr>
+          <tr><td>1</td><td><input class="ex-num" type="number" id="n1_4a" placeholder="0" step="0.01"></td><td><input class="ex-num" type="number" id="n1_4b" placeholder="0" step="0.01"></td></tr>
+          <tr><td>2</td><td><input class="ex-num" type="number" id="n1_4c" placeholder="0" step="0.01"></td><td><input class="ex-num" type="number" id="n1_4d" placeholder="0" step="0.01"></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkVier('n1_4a','n1_4b','n1_4c','n1_4d',5000,15000,3750,11250,0.5,'J1:20000×25%=5000→BW=15000. J2:15000×25%=3750→BW=11250.')">Prüfen</button>
+        <div class="fb" id="e1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – Welche Methode ist das?</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Maschine wird jedes Jahr mit dem <strong>gleichen Betrag</strong> abgeschrieben. Welche Methode ist das?</div>
+        <div class="rg">
+          <label><input type="radio" name="e1_5" value="Linear"> Linear</label>
+          <label><input type="radio" name="e1_5" value="Degressiv"> Degressiv</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e1_5','Linear','Linear: immer derselbe CHF-Betrag (% vom AW). Degressiv: jedes Jahr ein kleinerer Betrag (% vom Buchwert).')">Prüfen</button>
+        <div class="fb" id="e1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – Buchwert nach 3 Jahren (Degressiv)</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug: AW = CHF <strong>30'000</strong> · Degressiv <strong>20%</strong> p.a.<br><br>
+        Buchwert nach <strong>3 Jahren</strong>: CHF <input class="ex-num" type="number" id="n1_6" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">Formel: BW = AW × (1 − Satz)ⁿ = 30000 × 0.80³</small></div>
+        <button class="chk-btn" onclick="chkN('n1_6',15360,0.5,'CHF','30000×0.80³=30000×0.512=15360.')">Prüfen</button>
+        <div class="fb" id="n1_6-fb"></div>
       </div>
     </div>
   </div>
@@ -228,6 +299,28 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e2_3-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Buchwert nach 4 Jahren (Linear)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ladeneinrichtung: AW = CHF <strong>30'000</strong> · Linear <strong>10%</strong> p.a.<br><br>
+        Abschreibung pro Jahr: CHF <input class="ex-num" type="number" id="n2_4a" placeholder="0" step="0.01"><br>
+        Buchwert nach <strong>4 Jahren</strong>: CHF <input class="ex-num" type="number" id="n2_4b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n2_4a','n2_4b',3000,18000,'Abs/J=30000×10%=3000. BW=30000-4×3000=18000.')">Prüfen</button>
+        <div class="fb" id="e2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Buchwert nach 5 Jahren (Degressiv)</div>
+      <div class="ex-body">
+        <div class="ex-q">Computersystem: AW = CHF <strong>60'000</strong> · Degressiv <strong>20%</strong> p.a.<br><br>
+        BW nach 5 Jahren = AW × (1 − 0.20)⁵ = CHF <input class="ex-num" type="number" id="n2_5" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">60000 × 0.80⁵ = 60000 × 0.32768</small></div>
+        <button class="chk-btn" onclick="chkN('n2_5',19660.80,0.5,'CHF','60000×0.80^5=60000×0.32768=19660.80.')">Prüfen</button>
+        <div class="fb" id="n2_5-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 3 ══════════ -->
@@ -277,6 +370,35 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         </div>
         <button class="chk-btn" onclick="chkStrategie()">Prüfen</button>
         <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Buchwert nach 4 Jahren (Degressiv)</div>
+      <div class="ex-body">
+        <div class="ex-q">Anlage: AW = CHF <strong>100'000</strong> · Degressiv <strong>30%</strong> p.a.<br><br>
+        BW nach 4 Jahren = AW × (1 − 0.30)⁴ = CHF <input class="ex-num" type="number" id="n3_4" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">100000 × 0.70⁴ = 100000 × 0.2401</small></div>
+        <button class="chk-btn" onclick="chkN('n3_4',24010,0.5,'CHF','100000×0.70^4=100000×0.2401=24010.')">Prüfen</button>
+        <div class="fb" id="n3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Methodenvergleich nach 3 Jahren</div>
+      <div class="ex-body">
+        <div class="ex-q">Fahrzeug: AW = CHF <strong>80'000</strong><br>
+        Methode A: Linear 20% · Methode B: Degressiv 25%<br><br>
+        BW nach 3 Jahren – Linear: CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0" step="0.01"><br>
+        BW nach 3 Jahren – Degressiv: CHF <input class="ex-num" type="number" id="n3_5b" placeholder="0" step="0.01"><br>
+        Welche Methode ergibt den tieferen Buchwert?
+        <div class="rg">
+          <label><input type="radio" name="e3_5r" value="Linear"> Linear</label>
+          <label><input type="radio" name="e3_5r" value="Degressiv"> Degressiv</label>
+        </div>
+        <small style="color:var(--muted)">Lin: BW=AW−3×(AW×20%) · Deg: BW=AW×0.75³</small></div>
+        <button class="chk-btn" onclick="chkVergleich2()">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
   </div>
@@ -385,6 +507,26 @@ function chkStrategie(){
   const okC=sel&&sel.value==='linear';
   if(okA&&okB&&okC){fb.innerHTML='✅ <strong>Richtig!</strong> Linear BW=5000 (20000−3×5000). Degressiv BW=8437.50 (20000×0.75³). Linear ist nach 3 Jahren tiefer! Bei gleichem Satz: Linear ist schneller bei kleinen n.';fb.className='fb ok';}
   else{fb.innerHTML='❌ Linear BW=5000, Degressiv BW=8437.50 → Linear hat tieferen Buchwert. 0.75³=0.421875. Bei gleichem Prozentsatz ist die lineare Methode anfangs (bis ca. 50% des AW) aggressiver.';fb.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=!isNaN(v1)&&!isNaN(v2)&&Math.abs(v1-a1)<=0.5&&Math.abs(v2-a2)<=0.5;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1+', b)='+a2+'. '+tip;fbEl.className='fb no';}
+}
+function chkVergleich2(){
+  const lin=parseFloat(document.getElementById('n3_5a').value);
+  const deg=parseFloat(document.getElementById('n3_5b').value);
+  const sel=document.querySelector('input[name="e3_5r"]:checked');
+  const fb=document.getElementById('e3_5-fb');
+  const okL=!isNaN(lin)&&Math.abs(lin-32000)<=0.5;
+  const okD=!isNaN(deg)&&Math.abs(deg-33750)<=0.5;
+  const okW=sel&&sel.value==='Linear';
+  document.getElementById('n3_5a').style.borderColor=okL?'#2a7a3c':'#b01c1c';
+  document.getElementById('n3_5b').style.borderColor=okD?'#2a7a3c':'#b01c1c';
+  if(okL&&okD&&okW){fb.innerHTML='✅ <strong>Richtig!</strong> Lin=80000−3×16000=32000. Deg=80000×0.75³=33750. Linear hat tieferen BW.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ Lin=80000-3×16000=32000. Deg=80000×0.75³=33750. → Linear hat tieferen BW.';fb.className='fb no';}
 }
 </script>
 </body>

@@ -132,6 +132,48 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e0_4-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Kaffee Take-Away</div>
+      <div class="ex-body">
+        <div class="ex-q">Du kaufst am Kiosk einen Kaffee latte zum Mitnehmen (kalt, keine Bestuhlung). Welcher Satz?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_5" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_5" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_5" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_5','2.6','Kaffee Take-Away (ohne Bestuhlung vor Ort) = Getränk = Lebensmittel-Sondersatz 2.6%. Wäre es ein Restaurant mit Service: 8.1%.')">Prüfen</button>
+        <div class="fb" id="e0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Autowäsche</div>
+      <div class="ex-body">
+        <div class="ex-q">Du lässt dein Auto waschen (Dienstleistung). Welcher MWST-Satz gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_6" value="8.1"> 8.1% Normalsatz</label>
+          <label><input type="radio" name="e0_6" value="2.6"> 2.6% Sondersatz</label>
+          <label><input type="radio" name="e0_6" value="0"> 0% ausgenommen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_6','8.1','Autowäsche = Dienstleistung → 8.1% Normalsatz. Der Sondersatz gilt nur für bestimmte Grundbedürfnisse (Lebensmittel, Bücher, Zeitungen, Pflanzen).')">Prüfen</button>
+        <div class="fb" id="e0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Welcher Satz fehlt?</div>
+      <div class="ex-body">
+        <div class="ex-q">Welches dieser drei Produkte hat den <strong>Sondersatz 2.6%</strong>?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_7" value="Jacke"> Winterjacke</label>
+          <label><input type="radio" name="e0_7" value="Milch"> Flasche Milch</label>
+          <label><input type="radio" name="e0_7" value="Haarschnitt"> Haarschnitt beim Coiffeur</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_7','Milch','Milch = Lebensmittel → 2.6%. Jacke = Kleider → 8.1%. Haarschnitt = Dienstleistung → 8.1%.')">Prüfen</button>
+        <div class="fb" id="e0_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 1 ══════════ -->
@@ -181,6 +223,34 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e1_3-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – Netto → Brutto (weitere 3 Fälle)</div>
+      <div class="ex-body">
+        <div class="ex-q">Berechne den Bruttobetrag inkl. MWST:<br>
+        <small style="color:var(--muted)">Brutto = Netto × (1 + Satz%/100)</small></div>
+        <table class="tbl-ex">
+          <tr><th>Netto</th><th>Satz</th><th>Brutto (CHF)</th></tr>
+          <tr><td>CHF 400.–</td><td>8.1%</td><td><input class="ex-num" type="number" id="n1_4a" placeholder="0" step="0.01"></td></tr>
+          <tr><td>CHF 150.–</td><td>2.6%</td><td><input class="ex-num" type="number" id="n1_4b" placeholder="0" step="0.01"></td></tr>
+          <tr><td>CHF 1'000.–</td><td>8.1%</td><td><input class="ex-num" type="number" id="n1_4c" placeholder="0" step="0.01"></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkDrei('n1_4a','n1_4b','n1_4c',432.40,153.90,1081.00,0.05,'400×1.081=432.40 | 150×1.026=153.90 | 1000×1.081=1081.')">Prüfen</button>
+        <div class="fb" id="e1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – MWST-Betrag berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Dienstleister stellt CHF <strong>250.–</strong> (exkl. MWST) in Rechnung.<br>
+        Satz: <strong>8.1%</strong><br><br>
+        MWST-Betrag = CHF <input class="ex-num" type="number" id="n1_5" placeholder="0" step="0.01"><br>
+        Bruttobetrag = CHF <input class="ex-num" type="number" id="n1_5b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n1_5','n1_5b',20.25,270.25,'MWST=250×8.1%=20.25. Brutto=250+20.25=270.25.')">Prüfen</button>
+        <div class="fb" id="e1_5-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 2 ══════════ -->
@@ -226,6 +296,32 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         CHF <input class="ex-num" type="number" id="n2_3" placeholder="0" step="0.01">
         <button class="chk-btn" onclick="chkN('n2_3',2025,0.05,'CHF','Zahllast = MWST auf Verkäufe − Vorsteuer = 3240 − 1215 = 2025.')">Prüfen</button>
         <div class="fb" id="n2_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Brutto → Netto rückwärts (2 Fälle)</div>
+      <div class="ex-body">
+        <div class="ex-q">Berechne Netto und MWST-Betrag aus dem Bruttobetrag:<br>
+        <small style="color:var(--muted)">Netto = Brutto / (1 + Satz)</small></div>
+        <table class="tbl-ex">
+          <tr><th>Brutto</th><th>Satz</th><th>Netto (CHF)</th><th>MWST-Betrag (CHF)</th></tr>
+          <tr><td>CHF 432.40</td><td>8.1%</td><td><input class="ex-num" type="number" id="n2_4a" placeholder="0" step="0.01"></td><td><input class="ex-num" type="number" id="n2_4b" placeholder="0" step="0.01"></td></tr>
+          <tr><td>CHF 153.90</td><td>2.6%</td><td><input class="ex-num" type="number" id="n2_4c" placeholder="0" step="0.01"></td><td><input class="ex-num" type="number" id="n2_4d" placeholder="0" step="0.01"></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkVier('n2_4a','n2_4b','n2_4c','n2_4d',400,32.40,150,3.90,0.05,'432.40/1.081=400, MWST=32.40 | 153.90/1.026=150, MWST=3.90')">Prüfen</button>
+        <div class="fb" id="e2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Zahllast berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Jahresumsatz netto: CHF <strong>60'000</strong> (Satz 8.1%)<br>
+        Vorsteuern aus Einkäufen: CHF <strong>22'000</strong> netto (Satz 8.1%)<br><br>
+        Zahllast = (Umsatz − Vorsteuer-Basis) × Satz = CHF <input class="ex-num" type="number" id="n2_5" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkN('n2_5',3078,0.5,'CHF','Zahllast=(60000-22000)×8.1%=38000×8.1%=3078.')">Prüfen</button>
+        <div class="fb" id="n2_5-fb"></div>
       </div>
     </div>
   </div>
@@ -279,6 +375,34 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <p>c) <select class="ex-sel" id="s3_3c"><option value="">–</option><option>8.1</option><option>2.6</option><option>0</option></select> %</p>
         <button class="chk-btn" onclick="chkTbl('e3_3',['s3_3a','s3_3b','s3_3c'],['2.6','8.1','2.6'],'a)Take-Away kalt=Lebensmittel→2.6%. b)Vor Ort mit Service=Restaurant→8.1%. c)Getränk take-away=Lebensmittel→2.6%. Der Ort und die Art des Konsums entscheiden!')">Prüfen</button>
         <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Gemischte Rechnung (Elektronik + Lebensmittel)</div>
+      <div class="ex-body">
+        <div class="ex-q">Rechnung mit zwei Positionen:<br>
+        · Laptop (Elektronik): CHF <strong>500.–</strong> netto (8.1%)<br>
+        · Käse (Lebensmittel): CHF <strong>200.–</strong> netto (2.6%)<br><br>
+        MWST auf Laptop: CHF <input class="ex-num" type="number" id="n3_4a" placeholder="0" step="0.01"><br>
+        Brutto Laptop: CHF <input class="ex-num" type="number" id="n3_4b" placeholder="0" step="0.01"><br>
+        MWST auf Käse: CHF <input class="ex-num" type="number" id="n3_4c" placeholder="0" step="0.01"><br>
+        Total Rechnungsbetrag: CHF <input class="ex-num" type="number" id="n3_4d" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkVier('n3_4a','n3_4b','n3_4c','n3_4d',40.50,540.50,5.20,745.70,0.05,'Laptop:500×8.1%=40.50→540.50. Käse:200×2.6%=5.20→205.20. Total=540.50+205.20=745.70.')">Prüfen</button>
+        <div class="fb" id="e3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Jahresabrechnung MWST</div>
+      <div class="ex-body">
+        <div class="ex-q">Jahresumsatz (Netto, 8.1%): CHF <strong>480'000</strong><br>
+        Gesamte Vorsteuern aus Einkäufen: CHF <strong>16'524</strong><br><br>
+        MWST geschuldet (auf Umsatz): CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0" step="0.01"><br>
+        Jahres-Zahllast: CHF <input class="ex-num" type="number" id="n3_5b" placeholder="0" step="0.01"><br>
+        <small style="color:var(--muted)">Zahllast = MWST geschuldet − Vorsteuern</small></div>
+        <button class="chk-btn" onclick="chkZwei('n3_5a','n3_5b',38880,22356,'480000×8.1%=38880. Zahllast=38880-16524=22356.')">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
   </div>
@@ -338,6 +462,13 @@ function chkDreiB(id1,id2,id3,a1,a2,a3,tol,tip){
   const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=tol);
   if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
   else{fbEl.innerHTML='❌ a)'+a1+' b)'+a2+' c)'+a3+'. '+tip;fbEl.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok=!isNaN(v1)&&!isNaN(v2)&&Math.abs(v1-a1)<=0.5&&Math.abs(v2-a2)<=0.5;
+  if(ok){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1+', b)='+a2+'. '+tip;fbEl.className='fb no';}
 }
 </script>
 </body>

@@ -122,6 +122,51 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e0_4-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Welches ist ein Aktivkonto?</div>
+      <div class="ex-body">
+        <div class="ex-q">Welches der folgenden Konten steht auf der <strong>Aktivseite</strong> der Bilanz?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_5" value="Kasse"> Kasse (Bargeld)</label>
+          <label><input type="radio" name="e0_5" value="Hypothek"> Hypothek (langfristige Schuld)</label>
+          <label><input type="radio" name="e0_5" value="Reserven"> Reserven (zurückbehaltene Gewinne)</label>
+          <label><input type="radio" name="e0_5" value="Darlehen"> Bankdarlehen</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_5','Kasse','Kasse = Bargeld = Vermögen = Aktiv. Hypothek, Reserven und Bankdarlehen sind alle Passivkonten (FK oder EK).')">Prüfen</button>
+        <div class="fb" id="e0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Aktiv oder Passiv? (4 Konten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ordne jedes Konto der richtigen Bilanzseite zu:</div>
+        <table class="tbl-ex">
+          <tr><th>Konto</th><th>Aktiv oder Passiv?</th></tr>
+          <tr><td>Vorräte (Lagerware)</td><td><select class="ex-sel" id="s0_6a"><option value="">–</option><option>Aktiv</option><option>Passiv</option></select></td></tr>
+          <tr><td>Hypothek (langfr. Schuld)</td><td><select class="ex-sel" id="s0_6b"><option value="">–</option><option>Aktiv</option><option>Passiv</option></select></td></tr>
+          <tr><td>Reserven (EK-Position)</td><td><select class="ex-sel" id="s0_6c"><option value="">–</option><option>Aktiv</option><option>Passiv</option></select></td></tr>
+          <tr><td>Maschinen</td><td><select class="ex-sel" id="s0_6d"><option value="">–</option><option>Aktiv</option><option>Passiv</option></select></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e0_6',['s0_6a','s0_6b','s0_6c','s0_6d'],['Aktiv','Passiv','Passiv','Aktiv'],'Vorräte=Aktiv(UV). Hypothek=Passiv(FK). Reserven=Passiv(EK). Maschinen=Aktiv(AV).')">Prüfen</button>
+        <div class="fb" id="e0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Was bedeutet «Aktiven = Passiven»?</div>
+      <div class="ex-body">
+        <div class="ex-q">Die Bilanzsumme der Aktivseite ist immer gleich gross wie die der Passivseite. Was bedeutet das?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_7" value="A"> Das Unternehmen hat keine Schulden</label>
+          <label><input type="radio" name="e0_7" value="B"> Jedes Vermögen muss irgendwoher finanziert sein (FK oder EK)</label>
+          <label><input type="radio" name="e0_7" value="C"> Aktiven und Passiven sind die gleichen Konten</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_7','B','Alles, was ein Unternehmen besitzt (Aktiven = Vermögen), wurde entweder durch Eigenkapital (EK) oder Fremdkapital (FK) finanziert. Die Bilanz ist immer im Gleichgewicht.')">Prüfen</button>
+        <div class="fb" id="e0_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 1 ══════════ -->
@@ -167,6 +212,41 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         EK = Aktiven − FK: CHF <input class="ex-num" type="number" id="n1_3b" placeholder="0">
         <button class="chk-btn" onclick="chkTwo('n1_3a','n1_3b',38000,30000,1,'FK=30000+8000=38000. EK=68000-38000=30000.')">Prüfen</button>
         <div class="fb" id="e1_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – Eigenkapital berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Bilanzsumme Aktiven = CHF <strong>200'000</strong><br>
+        Schulden total (FK): Bankdarlehen 80'000 + VLL 55'000<br><br>
+        FK total: CHF <input class="ex-num" type="number" id="n1_4a" placeholder="0"><br>
+        EK = Aktiven − FK: CHF <input class="ex-num" type="number" id="n1_4b" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkTwo('n1_4a','n1_4b',135000,65000,1,'FK=80000+55000=135000. EK=200000-135000=65000.')">Prüfen</button>
+        <div class="fb" id="e1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – T-Konto Bank: Endsaldo</div>
+      <div class="ex-body">
+        <div class="ex-q">T-Konto <strong>Bank</strong>:<br>
+        Anfangsbestand: CHF 10'000 | Einzahlungen: +3'500 und +8'000<br>
+        Auszahlungen: −4'200 und −1'800<br><br>
+        Endsaldo Bank: CHF <input class="ex-num" type="number" id="n1_5" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkN('n1_5',15500,0.5,'CHF','10000+3500+8000−4200−1800=15500.')">Prüfen</button>
+        <div class="fb" id="n1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – EK-Quote berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Aktiven total = CHF <strong>180'000</strong> · Eigenkapital = CHF <strong>72'000</strong><br><br>
+        EK-Quote = EK / Aktiven × 100 = <input class="ex-num" type="number" id="n1_6" placeholder="0" step="0.01"> %<br>
+        <small style="color:var(--muted)">Die EK-Quote zeigt, wie gross der Eigenfinanzierungsanteil ist.</small></div>
+        <button class="chk-btn" onclick="chkN('n1_6',40,0.05,'%','EK-Quote = 72000/180000 × 100 = 40%. Das bedeutet: 40% des Vermögens ist eigenfinanziert.')">Prüfen</button>
+        <div class="fb" id="n1_6-fb"></div>
       </div>
     </div>
   </div>
@@ -223,6 +303,41 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         CHF <input class="ex-num" type="number" id="n2_3" placeholder="0">
         <button class="chk-btn" onclick="chkN('n2_3',5500,1,'CHF','5000+3200+1800−4500 = 5500. Kasse hat Soll-Mehrung bei Einnahmen, Haben-Minderung bei Ausgaben. Saldo = 5500 im Soll.')">Prüfen</button>
         <div class="fb" id="n2_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Bilanzveränderungen (4 weitere)</div>
+      <div class="ex-body">
+        <div class="ex-q">Bestimme den Typ:<br>
+        <small><strong>AT</strong>=Aktivtausch · <strong>PT</strong>=Passivtausch · <strong>KB</strong>=Kapitalvermehrung · <strong>KR</strong>=Kapitalverminderung · <strong>EW</strong>=Erfolgswirksam</small></div>
+        <table class="tbl-ex">
+          <tr><th>Buchungssatz</th><th>Typ</th></tr>
+          <tr><td>Kasse 3'000 / Bank 3'000 (Barabhebung)</td>
+            <td><select class="ex-sel" id="s2_4a"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Bank 20'000 / Eigenkapital 20'000 (Einlage)</td>
+            <td><select class="ex-sel" id="s2_4b"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>Bank 5'000 / Debitoren 5'000 (Kundenzahlung)</td>
+            <td><select class="ex-sel" id="s2_4c"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+          <tr><td>VLL 12'000 / Bankdarlehen 12'000 (Umschuldung)</td>
+            <td><select class="ex-sel" id="s2_4d"><option value="">–</option><option>AT</option><option>PT</option><option>KB</option><option>KR</option><option>EW</option></select></td></tr>
+        </table>
+        <button class="chk-btn" onclick="chkTbl('e2_4',['s2_4a','s2_4b','s2_4c','s2_4d'],['AT','KB','AT','PT'],'AT: 2 Aktiven tauschen. KB: Aktiven+EK steigen. AT: Bank↑Debitoren↓. PT: Schuld umgeschuldet.')">Prüfen</button>
+        <div class="fb" id="e2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Bilanz aus Bestandsliste</div>
+      <div class="ex-body">
+        <div class="ex-q">Bestandsliste: Kasse 4'000 · Bank 16'000 · Vorräte 28'000 · Maschinen 52'000<br>
+        Schulden: VLL 12'000 · Bankdarlehen 35'000<br><br>
+        Berechne:
+        Aktiven total: CHF <input class="ex-num" type="number" id="n2_5a" placeholder="0"><br>
+        Fremdkapital total: CHF <input class="ex-num" type="number" id="n2_5b" placeholder="0"><br>
+        Eigenkapital: CHF <input class="ex-num" type="number" id="n2_5c" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkThree('n2_5a','n2_5b','n2_5c',100000,47000,53000,1,'Aktiven=4+16+28+52=100000. FK=12+35=47000. EK=100000-47000=53000.')">Prüfen</button>
+        <div class="fb" id="e2_5-fb"></div>
       </div>
     </div>
   </div>
@@ -283,6 +398,31 @@ input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);borde
         CHF <input class="ex-num" type="number" id="n3_3" placeholder="0">
         <button class="chk-btn" onclick="chkN('n3_3',219000,1,'CHF','Start 200000. KB+15000=215000. KR-8000=207000. AT±0=207000. EW+12000=219000. Ertrag erhöht EK (Aktiven+12000).')">Prüfen</button>
         <div class="fb" id="n3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Eigenkapital nach Gewinn</div>
+      <div class="ex-body">
+        <div class="ex-q">Jahresbeginn-Bilanz: Aktiven = CHF <strong>250'000</strong> · FK = CHF <strong>150'000</strong> · EK = CHF <strong>100'000</strong><br>
+        Im Jahr wird ein Reingewinn von CHF <strong>35'000</strong> erzielt.<br><br>
+        EK Jahresende: CHF <input class="ex-num" type="number" id="n3_4a" placeholder="0"><br>
+        Neue Bilanzsumme (Aktiven): CHF <input class="ex-num" type="number" id="n3_4b" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkTwo('n3_4a','n3_4b',135000,285000,1,'Gewinn erhöht EK: 100000+35000=135000. Aktiven steigen um Gewinn: 250000+35000=285000.')">Prüfen</button>
+        <div class="fb" id="e3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Bilanz mit UV/AV gliedern</div>
+      <div class="ex-body">
+        <div class="ex-q">Aktivpositionen: Kasse 2'500 · Debitoren 18'500 · Vorräte 34'000 · Maschinen 63'000 · Liegenschaften 150'000 · Fahrzeuge 42'000<br>
+        Passivpositionen: VLL 21'000 · Bankdarlehen 55'000 · Hypothek 90'000<br><br>
+        UV total: CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0"><br>
+        AV total: CHF <input class="ex-num" type="number" id="n3_5b" placeholder="0"><br>
+        EK: CHF <input class="ex-num" type="number" id="n3_5c" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkThree('n3_5a','n3_5b','n3_5c',55000,255000,144000,1,'UV=2500+18500+34000=55000. AV=42000+63000+150000=255000. FK=21+55+90=166000. EK=310000-166000=144000.')">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
   </div>
