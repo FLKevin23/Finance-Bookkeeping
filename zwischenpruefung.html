@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. Zwischenprüfung – Finance Skills</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --blue: #1a3a6b;
+  --blue-light: #2a5298;
+  --green: #1a7a3c;
+  --red: #b01c1c;
+  --orange: #d46b00;
+  --bg: #f4f6fa;
+  --card: #ffffff;
+  --border: #d0d8e8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: #222; font-size: 14px; }
+
+header {
+  background: var(--blue);
+  color: white;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+header h1 { font-size: 20px; font-weight: bold; }
+header p { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+
+.container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+
+.scenario-box {
+  background: #fffbf0;
+  border: 1px solid #e8d8a0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.scenario-box h3 { color: var(--orange); margin-bottom: 6px; font-size: 14px; font-weight: bold; }
+
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.task-header {
+  background: var(--blue);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.task-header .badge {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.task-header h2 { font-size: 16px; }
+.task-body { padding: 16px 20px; }
+
+.class-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.class-table th, .class-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.class-table th { background: #edf1fa; font-weight: bold; }
+.class-table td:first-child { text-align: left; font-weight: 500; }
+.class-table td.betrag-col { text-align: right; color: #555; font-size: 12px; width: 80px; }
+.class-table input[type=radio] { width: 16px; height: 16px; cursor: pointer; }
+
+.booking-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.booking-table th, .booking-table td { border: 1px solid var(--border); padding: 6px 8px; }
+.booking-table th { background: #edf1fa; font-weight: bold; }
+.booking-table select, .booking-table input[type=number] {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #c0c8d8;
+  border-radius: 4px;
+  background: white;
+  font-size: 13px;
+}
+
+.type-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.type-table th, .type-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.type-table th { background: #edf1fa; font-weight: bold; }
+.type-table td:first-child { text-align: left; font-weight: bold; }
+.type-table td:nth-child(2) { text-align: left; font-size: 12px; color: #555; }
+.type-table input[type=radio] { width: 16px; height: 16px; cursor: pointer; }
+
+.calc-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.calc-row label { min-width: 220px; font-weight: 500; }
+.calc-input {
+  width: 140px;
+  padding: 5px 8px;
+  border: 1px solid #c0c8d8;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: right;
+}
+.unit { color: #555; }
+
+.expl { display: none; font-size: 12px; color: var(--red); padding: 4px 0 2px 8px; line-height: 1.4; }
+.expl.show { display: block; }
+
+table tr.row-correct td { background: #d4edda; }
+table tr.row-wrong td { background: #f8d7da; }
+
+.btn-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.btn-check {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-check:hover { background: var(--blue-light); }
+.btn-reset {
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-reset:hover { background: #edf1fa; }
+
+#score-panel {
+  display: none;
+  background: var(--card);
+  border: 2px solid var(--blue);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+#score-panel.show { display: block; }
+#score-value { font-size: 36px; font-weight: bold; color: var(--blue); }
+#score-label { font-size: 14px; color: #555; margin-top: 4px; }
+
+.kontenplan {
+  background: #fffbf0;
+  border: 1px solid #e8d8a0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+.kontenplan summary { font-weight: bold; cursor: pointer; color: var(--orange); }
+.kontenplan ul { margin: 8px 0 0 16px; columns: 2; gap: 20px; }
+.kontenplan li { margin: 2px 0; }
+
+.subtask { font-weight: bold; color: var(--blue); margin: 16px 0 6px; font-size: 14px; }
+.task-desc { color: #444; margin-bottom: 10px; font-size: 13px; line-height: 1.5; }
+
+.task-score { display: none; margin-left: auto; font-size: 13px; font-weight: bold; background: white; color: var(--blue); padding: 2px 10px; border-radius: 10px; }
+.task-score.show { display: inline-block; }
+
+.total-bar { text-align: center; margin: 24px 0; }
+.total-btn {
+  background: #1a7a3c;
+  color: white;
+  border: none;
+  padding: 14px 48px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.total-btn:hover { background: #145f2f; }
+.reset-all-btn {
+  background: transparent;
+  color: #555;
+  border: 2px solid #999;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+.reset-all-btn:hover { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="exam.html">Nullserie</a>
+  </nav>
+  <a href="../index.html" class="exam-btn" style="background:#555">← Zurück zum Hub</a>
+</div>
+
+<header>
+  <div>
+    <h1>1. Zwischenprüfung – Finance Skills (Finanz- und Rechnungswesen)</h1>
+    <p>BVS St. Gallen · Handelsdiplom VSH · Kurseinheiten 1–5 · Interaktive Prüfungsübung</p>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="scenario-box">
+  <h3>Ausgangssituation</h3>
+  <p><strong>Stefan Riedmann</strong> betreibt das <em>«Velodepot Riedmann»</em> in Romanshorn (TG) als Einzelunternehmung. Er handelt mit Fahrrädern aller Art, bietet Veloreparaturen an und verkauft Zubehör und Ersatzteile. Im letzten Geschäftsjahr erzielte er einen Umsatzerlös von <strong>CHF 720'000</strong>. Alle folgenden Aufgaben beziehen sich auf dieses Unternehmen.</p>
+</div>
+
+<div id="score-panel">
+  <div id="score-value"></div>
+  <div id="score-label"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 1 – Theorie -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task1">
+  <div class="task-header">
+    <h2>Aufgabe 1 – Theorie: Buchführungspflicht und Kontenlehre</h2>
+    <span class="badge">20 Punkte</span>
+    <span class="task-score" id="score1"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Entscheiden Sie bei jeder Aussage, ob sie <strong>Richtig</strong> oder <strong>Falsch</strong> ist. (je 2 Punkte)</p>
+    <table class="class-table" id="a1table">
+      <thead>
+        <tr>
+          <th style="text-align:left">Aussage</th>
+          <th style="width:70px">Richtig</th>
+          <th style="width:70px">Falsch</th>
+          <th style="width:0;border:none"></th>
+        </tr>
+      </thead>
+      <tbody id="a1body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask1()">Aufgabe 1 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask1()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 2 – Kontenklassifikation -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task2">
+  <div class="task-header">
+    <h2>Aufgabe 2 – Kontenklassifikation</h2>
+    <span class="badge">16 Punkte</span>
+    <span class="task-score" id="score2"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Ordnen Sie die folgenden Begriffe der richtigen Kategorie zu: Umlaufvermögen (UV), Anlagevermögen (AV), Fremdkapital (FK), Eigenkapital (EK), Aufwand oder Ertrag.</p>
+    <table class="class-table" id="a2table">
+      <thead>
+        <tr>
+          <th style="width:200px;text-align:left">Begriff</th>
+          <th>UV</th><th>AV</th><th>FK</th><th>EK</th><th>Aufwand</th><th>Ertrag</th>
+          <th style="width:0;border:none"></th>
+        </tr>
+      </thead>
+      <tbody id="a2body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask2()">Aufgabe 2 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask2()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 3 – Bilanz erstellen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task3">
+  <div class="task-header">
+    <h2>Aufgabe 3 – Bilanz erstellen</h2>
+    <span class="badge">14 Punkte</span>
+    <span class="task-score" id="score3"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Die folgende Aufstellung zeigt die Kontostände des Velodepots Riedmann per 31. Dezember (Beträge in CHF). Ordnen Sie jeden Posten der richtigen Bilanzposition zu und berechnen Sie anschliessend das Eigenkapital.</p>
+
+    <div class="subtask">3a) Kontenpositionen zuordnen (10 Punkte, je 1 Punkt)</div>
+    <table class="class-table" id="a3table">
+      <thead>
+        <tr>
+          <th style="text-align:left">Konto</th>
+          <th class="betrag-col">Betrag CHF</th>
+          <th>UV</th><th>AV</th><th>FK</th>
+          <th style="width:0;border:none"></th>
+        </tr>
+      </thead>
+      <tbody id="a3body"></tbody>
+    </table>
+
+    <div class="subtask">3b) Eigenkapital berechnen (4 Punkte)</div>
+    <p class="task-desc" style="font-size:12px;color:#555">Formel: <b>EK = Total Aktiven (UV + AV) − Total Fremdkapital</b></p>
+    <div class="calc-row">
+      <label for="ek_input">Eigenkapital =</label>
+      <input type="number" class="calc-input" id="ek_input" placeholder="0" step="1">
+      <span class="unit">CHF</span>
+    </div>
+    <div id="fb3ek" class="expl"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask3()">Aufgabe 3 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask3()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 4 – Buchungssätze -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task4">
+  <div class="task-header">
+    <h2>Aufgabe 4 – Buchungssätze</h2>
+    <span class="badge">30 Punkte</span>
+    <span class="task-score" id="score4"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Erfassen Sie die Buchungssätze (Soll / Haben / Betrag CHF) für die folgenden Geschäftsfälle des Velodepots Riedmann. Je 1 Punkt für Soll, Haben und Betrag = 3 Punkte pro Buchungssatz.</p>
+    <details class="kontenplan">
+      <summary>📋 Kontenplan anzeigen</summary>
+      <ul>
+        <li>1000 Kasse</li>
+        <li>1020 Bankguthaben</li>
+        <li>1100 Forderungen aus L+L (FLL)</li>
+        <li>1200 Warenvorrat</li>
+        <li>1510 Mobiliar und Einrichtungen</li>
+        <li>2000 Verbindlichkeiten aus L+L (VLL)</li>
+        <li>2100 Bankverbindlichkeiten</li>
+        <li>2400 Passivdarlehen</li>
+        <li>2800 Eigenkapital</li>
+        <li>3200 Warenertrag</li>
+        <li>5000 Lohnaufwand</li>
+        <li>6000 Raumaufwand</li>
+        <li>6500 Verwaltungsaufwand</li>
+      </ul>
+    </details>
+    <table class="booking-table" id="a4table">
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th style="width:260px">Beschreibung</th>
+          <th>Soll (Konto)</th>
+          <th>Haben (Konto)</th>
+          <th style="width:110px">Betrag CHF</th>
+        </tr>
+      </thead>
+      <tbody id="a4body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask4()">Aufgabe 4 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask4()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 5 – Bilanzveränderungstypen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task5">
+  <div class="task-header">
+    <h2>Aufgabe 5 – Bilanzveränderungstypen</h2>
+    <span class="badge">20 Punkte</span>
+    <span class="task-score" id="score5"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Klassifizieren Sie jeden Buchungssatz aus Aufgabe 4 nach dem Typ der Bilanzveränderung. (je 2 Punkte)</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:#555">
+      <span><b>AT</b> = Aktivtausch (nur Aktivseite ändert, Bilanzsumme gleich)</span>
+      <span><b>PT</b> = Passivtausch (nur Passivseite ändert, Bilanzsumme gleich)</span>
+      <span><b>KB</b> = Kapitalbeschaffung (Aktiv↑ und Passiv↑)</span>
+      <span><b>KR</b> = Kapitalrückzahlung (Aktiv↓ und Passiv↓)</span>
+      <span><b>EW</b> = Erfolgswirksam (Aufwand oder Ertrag betroffen)</span>
+    </div>
+    <table class="type-table" id="a5table">
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th style="text-align:left;width:260px">Buchungssatz</th>
+          <th>AT</th><th>PT</th><th>KB</th><th>KR</th><th>EW</th>
+          <th style="width:0;border:none"></th>
+        </tr>
+      </thead>
+      <tbody id="a5body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask5()">Aufgabe 5 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask5()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<div class="total-bar">
+  <button class="total-btn" onclick="checkAll()">✓ Alle Aufgaben korrigieren</button>
+  <button class="reset-all-btn" onclick="resetAll()">↺ Alles zurücksetzen</button>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// AUFGABE 1 – Theorie Richtig/Falsch
+// ============================================================
+const a1data = [
+  {
+    label: 'Einzelunternehmen und Personengesellschaften sind ab einem Jahresumsatz von CHF 500\'000 zur Buchführung und Rechnungslegung verpflichtet (OR 957).',
+    ans: 'R',
+    why: 'Richtig. OR 957 Abs. 1: Buchführungspflicht gilt ab CHF 500\'000 Umsatzerlös im letzten Geschäftsjahr.'
+  },
+  {
+    label: 'Juristische Personen (z.B. AG, GmbH) sind nur buchführungspflichtig, wenn ihr Jahresumsatz CHF 500\'000 übersteigt.',
+    ans: 'F',
+    why: 'Falsch. Juristische Personen sind gemäss OR 957 stets buchführungspflichtig – unabhängig vom Umsatz.'
+  },
+  {
+    label: 'Stefan Riedmann (Einzelunternehmer, Umsatz CHF 720\'000) ist nach OR 957 buchführungspflichtig.',
+    ans: 'R',
+    why: 'Richtig. CHF 720\'000 übersteigt die Grenze von CHF 500\'000 → Buchführungspflicht nach OR 957.'
+  },
+  {
+    label: 'Gemäss OR 957a darf keine Buchung ohne Beleg erfolgen (Belegpflicht).',
+    ans: 'R',
+    why: 'Richtig. Die Belegpflicht («keine Buchung ohne Beleg») ist ein zentraler Grundsatz der ordnungsmässigen Buchführung nach OR 957a.'
+  },
+  {
+    label: '«Vollständige, wahrheitsgetreue und systematische Erfassung der Geschäftsvorfälle» ist ein Grundsatz nach OR 957a.',
+    ans: 'R',
+    why: 'Richtig. Dies ist der erste Grundsatz der ordnungsmässigen Buchführung nach OR 957a.'
+  },
+  {
+    label: 'Klarheit, Zweckmässigkeit und Nachprüfbarkeit sind keine gesetzlichen Grundsätze der ordnungsmässigen Buchführung.',
+    ans: 'F',
+    why: 'Falsch. Klarheit, Zweckmässigkeit und Nachprüfbarkeit sind ausdrücklich in OR 957a als Grundsätze der ordnungsmässigen Buchführung verankert.'
+  },
+  {
+    label: 'Der Anfangssaldo (AB) eines Aktivkontos steht im SOLL (links).',
+    ans: 'R',
+    why: 'Richtig. Aktivkonten leiten sich aus der Aktivseite der Bilanz ab. Der AB steht wie in der Bilanz links → im SOLL.'
+  },
+  {
+    label: 'Bei einem Aktivkonto werden Zugänge (Zunahmen) im HABEN (rechts) erfasst.',
+    ans: 'F',
+    why: 'Falsch. Zugänge bei Aktivkonten werden im SOLL (links) erfasst. Im HABEN stehen Abgänge (Abnahmen).'
+  },
+  {
+    label: 'Der Anfangssaldo (AB) eines Passivkontos steht im HABEN (rechts).',
+    ans: 'R',
+    why: 'Richtig. Passivkonten leiten sich aus der Passivseite der Bilanz ab. Der AB steht wie in der Bilanz rechts → im HABEN.'
+  },
+  {
+    label: 'Abnahmen bei Passivkonten werden im HABEN (rechts) gebucht.',
+    ans: 'F',
+    why: 'Falsch. Abnahmen bei Passivkonten werden im SOLL (links) gebucht. Im HABEN stehen Zunahmen.'
+  },
+];
+
+// ============================================================
+// AUFGABE 2 – Kontenklassifikation
+// ============================================================
+const a2data = [
+  { label: 'Warenvorrat (Fahrräder)', ans: 'UV',
+    why: 'Vorräte werden innerhalb eines Jahres verkauft → Umlaufvermögen (UV).' },
+  { label: 'Bankguthaben', ans: 'UV',
+    why: 'Guthaben auf dem Bankkonto ist kurzfristig verfügbar → Umlaufvermögen (UV).' },
+  { label: 'Immobilien (Werkstatt-Gebäude)', ans: 'AV',
+    why: 'Gebäude werden langfristig (über 1 Jahr) genutzt → Anlagevermögen (AV).' },
+  { label: 'Fahrzeuge (Lieferwagen)', ans: 'AV',
+    why: 'Fahrzeuge sind langfristige Sachanlagen → Anlagevermögen (AV).' },
+  { label: 'Forderungen aus L+L (FLL)', ans: 'UV',
+    why: 'Ausstehende Kundenzahlungen werden kurzfristig eingelöst → Umlaufvermögen (UV).' },
+  { label: 'Verbindlichkeiten aus L+L (VLL)', ans: 'FK',
+    why: 'Schulden gegenüber Lieferanten sind Verbindlichkeiten → Fremdkapital (FK).' },
+  { label: 'Hypothekarschuld', ans: 'FK',
+    why: 'Eine Hypothek ist eine langfristige Schuld des Unternehmens → Fremdkapital (FK).' },
+  { label: 'Eigenkapital (Stefan Riedmann)', ans: 'EK',
+    why: 'Das Kapital des Unternehmers = Eigenkapital (EK). EK = Aktiven − Fremdkapital.' },
+  { label: 'Mietaufwand (Lagermiete)', ans: 'Aufwand',
+    why: 'Miete ist Wertverzehr → Aufwand. Aufwand reduziert den Gewinn (EK sinkt).' },
+  { label: 'Reparaturertrag (Veloreparaturen)', ans: 'Ertrag',
+    why: 'Einnahmen aus Reparaturen sind Wertzuwachs → Ertrag. Ertrag erhöht den Gewinn (EK steigt).' },
+  { label: 'Mobiliar und Einrichtungen', ans: 'AV',
+    why: 'Mobiliar ist ein langfristig genutztes Anlagegut → Anlagevermögen (AV).' },
+  { label: 'Kasse', ans: 'UV',
+    why: 'Bargeld ist sofort verfügbar → Umlaufvermögen (UV).' },
+  { label: 'Passivdarlehen', ans: 'FK',
+    why: 'Ein aufgenommenes Darlehen ist eine Schuld des Unternehmens → Fremdkapital (FK).' },
+  { label: 'Lohnaufwand', ans: 'Aufwand',
+    why: 'Löhne und Gehälter sind Aufwand (Wertverzehr). Sie reduzieren den Gewinn.' },
+  { label: 'Warenertrag (Fahrradverkäufe)', ans: 'Ertrag',
+    why: 'Verkaufserlöse aus Fahrrädern sind Wertzuwachs → Ertrag. Sie erhöhen den Gewinn.' },
+  { label: 'Abschreibungen', ans: 'Aufwand',
+    why: 'Abschreibungen erfassen den Wertverlust von Anlagegütern → Aufwand.' },
+];
+const a2cats = ['UV','AV','FK','EK','Aufwand','Ertrag'];
+
+// ============================================================
+// AUFGABE 3 – Bilanz
+// ============================================================
+const a3classify = [
+  { label: 'Kasse',                            betrag: '80',      ans: 'UV', why: 'Bargeld → sofort verfügbar → Umlaufvermögen (UV).' },
+  { label: 'PostFinance',                       betrag: '280',     ans: 'UV', why: 'Guthaben bei der Post ist kurzfristig → UV.' },
+  { label: 'Forderungen aus L+L (FLL)',         betrag: '320',     ans: 'UV', why: 'Ausstehende Kundenzahlungen → kurzfristig → UV.' },
+  { label: 'Warenvorrat (Fahrräder)',           betrag: '220',     ans: 'UV', why: 'Vorräte → werden innerhalb eines Jahres verkauft → UV.' },
+  { label: 'Mobiliar und Einrichtungen',        betrag: '300',     ans: 'AV', why: 'Langfristig genutztes Anlagegut → Anlagevermögen (AV).' },
+  { label: 'Immobilien (Werkstatt)',            betrag: "4'300",   ans: 'AV', why: 'Immobilien sind langfristige Sachanlagen → AV.' },
+  { label: 'Verbindlichkeiten aus L+L (VLL)',  betrag: '410',     ans: 'FK', why: 'Schulden gegenüber Lieferanten → Fremdkapital (FK).' },
+  { label: 'Bankverbindlichkeiten',            betrag: '260',     ans: 'FK', why: 'Bankschuld ist eine Verbindlichkeit → Fremdkapital (FK).' },
+  { label: 'Passivdarlehen',                   betrag: '100',     ans: 'FK', why: 'Aufgenommenes Darlehen → Schuld des Unternehmens → FK.' },
+  { label: 'Hypothekarschuld',                 betrag: "2'000",   ans: 'FK', why: 'Hypothek auf der Immobilie → langfristiges Fremdkapital (FK).' },
+];
+const EK_CORRECT = 2730;
+
+// ============================================================
+// AUFGABE 4 – Buchungssätze
+// ============================================================
+const ACCOUNTS = [
+  { val: '',                  label: '– Konto wählen –' },
+  { val: 'kasse',             label: '1000 Kasse' },
+  { val: 'bank',              label: '1020 Bankguthaben' },
+  { val: 'fll',               label: '1100 Forderungen aus L+L (FLL)' },
+  { val: 'waren',             label: '1200 Warenvorrat' },
+  { val: 'mobiliar',          label: '1510 Mobiliar und Einrichtungen' },
+  { val: 'vll',               label: '2000 Verbindlichkeiten aus L+L (VLL)' },
+  { val: 'bankschuld',        label: '2100 Bankverbindlichkeiten' },
+  { val: 'passivdarlehen',    label: '2400 Passivdarlehen' },
+  { val: 'eigenkapital',      label: '2800 Eigenkapital' },
+  { val: 'warenertrag',       label: '3200 Warenertrag' },
+  { val: 'lohnaufwand',       label: '5000 Lohnaufwand' },
+  { val: 'raumaufwand',       label: '6000 Raumaufwand' },
+  { val: 'verwaltungsaufwand',label: '6500 Verwaltungsaufwand' },
+];
+
+const a4data = [
+  {
+    id:'a', label:'a)',
+    desc:'Ein Kunde kauft ein Mountainbike für CHF 1\'800 auf Rechnung.',
+    soll:'fll', haben:'warenertrag', betrag:1800,
+    why_soll:'FLL: Eine Forderung entsteht → Aktivkonto ↑ → SOLL.',
+    why_haben:'Warenertrag: Verkaufserlös = Ertrag → Ertragskonto → HABEN.',
+    why_betrag:'CHF 1\'800 gemäss Rechnung.'
+  },
+  {
+    id:'b', label:'b)',
+    desc:'Der Lohn der Mitarbeiterin CHF 4\'200 wird per Banküberweisung bezahlt.',
+    soll:'lohnaufwand', haben:'bank', betrag:4200,
+    why_soll:'Lohnaufwand: Löhne = Aufwand → Aufwandskonto → SOLL.',
+    why_haben:'Bankguthaben: Zahlung geht vom Konto → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 4\'200 gemäss Lohnabrechnung.'
+  },
+  {
+    id:'c', label:'c)',
+    desc:'Stefan kauft 5 neue E-Bikes auf Kredit (Lieferantenrechnung) für total CHF 12\'500.',
+    soll:'waren', haben:'vll', betrag:12500,
+    why_soll:'Warenvorrat: Neue Ware eingelagert → Aktivkonto ↑ → SOLL.',
+    why_haben:'VLL: Lieferantenrechnung offen → neue Schuld → Passivkonto ↑ → HABEN.',
+    why_betrag:'CHF 12\'500 gemäss Rechnung.'
+  },
+  {
+    id:'d', label:'d)',
+    desc:'Eine ausstehende Lieferantenrechnung (VLL) von CHF 8\'000 wird per Bank bezahlt.',
+    soll:'vll', haben:'bank', betrag:8000,
+    why_soll:'VLL: Schuld wird getilgt → Passivkonto ↓ → SOLL.',
+    why_haben:'Bankguthaben: Zahlung geht vom Konto → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 8\'000 gemäss Zahlungsbeleg.'
+  },
+  {
+    id:'e', label:'e)',
+    desc:'3 Velos werden bar für total CHF 2\'100 verkauft.',
+    soll:'kasse', haben:'warenertrag', betrag:2100,
+    why_soll:'Kasse: Barzahlung erhalten → Aktivkonto ↑ → SOLL.',
+    why_haben:'Warenertrag: Barverkauf = Ertrag → Ertragskonto → HABEN.',
+    why_betrag:'CHF 2\'100 gemäss Kassenbon.'
+  },
+  {
+    id:'f', label:'f)',
+    desc:'Die Bankverbindlichkeit von CHF 5\'000 wird durch ein neues Passivdarlehen ersetzt.',
+    soll:'bankschuld', haben:'passivdarlehen', betrag:5000,
+    why_soll:'Bankverbindlichkeiten: Bankschuld sinkt → Passivkonto ↓ → SOLL.',
+    why_haben:'Passivdarlehen: Neues Darlehen entsteht → Passivkonto ↑ → HABEN.',
+    why_betrag:'CHF 5\'000 gemäss Darlehensvertrag.'
+  },
+  {
+    id:'g', label:'g)',
+    desc:'Büromaterial (Briefpapier, Stifte) wird bar für CHF 350 eingekauft.',
+    soll:'verwaltungsaufwand', haben:'kasse', betrag:350,
+    why_soll:'Verwaltungsaufwand: Büromaterial = Verwaltungsaufwand → Aufwandskonto → SOLL.',
+    why_haben:'Kasse: Barzahlung → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 350 gemäss Kassenquittung.'
+  },
+  {
+    id:'h', label:'h)',
+    desc:'Ein alter Fahrradanhänger (Mobiliar, Buchwert = Verkaufspreis CHF 1\'500) wird bar verkauft.',
+    soll:'kasse', haben:'mobiliar', betrag:1500,
+    why_soll:'Kasse: Verkaufserlös bar erhalten → Aktivkonto ↑ → SOLL.',
+    why_haben:'Mobiliar: Anlagegut verlässt den Betrieb → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 1\'500 gemäss Vereinbarung.'
+  },
+  {
+    id:'i', label:'i)',
+    desc:'Der monatliche Mietzins für die Werkstatt CHF 1\'800 wird per Bank bezahlt.',
+    soll:'raumaufwand', haben:'bank', betrag:1800,
+    why_soll:'Raumaufwand: Miete = Raumaufwand → Aufwandskonto → SOLL.',
+    why_haben:'Bankguthaben: Mietzahlung geht vom Konto → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 1\'800 gemäss Mietvertrag.'
+  },
+  {
+    id:'j', label:'j)',
+    desc:'Der Kunde aus Buchung a) bezahlt seine Rechnung vollständig per Bank.',
+    soll:'bank', haben:'fll', betrag:1800,
+    why_soll:'Bankguthaben: Geld geht auf unser Konto → Aktivkonto ↑ → SOLL.',
+    why_haben:'FLL: Forderung wird beglichen → Aktivkonto ↓ → HABEN.',
+    why_betrag:'CHF 1\'800 – volle Zahlung der Rechnung aus Buchung a).'
+  },
+];
+
+// ============================================================
+// AUFGABE 5 – Bilanzveränderungstypen
+// ============================================================
+const a5data = [
+  { id:'a', label:'a)', booking:"FLL / Warenertrag 1'800", ans:'EW',
+    why:'Warenertrag ist ein Ertragskonto → erfolgswirksam (EW). EK steigt, da Ertrag den Gewinn erhöht.' },
+  { id:'b', label:'b)', booking:"Lohnaufwand / Bankguthaben 4'200", ans:'EW',
+    why:'Lohnaufwand ist ein Aufwandskonto → erfolgswirksam (EW). Aufwand reduziert den Gewinn (EK sinkt).' },
+  { id:'c', label:'c)', booking:"Warenvorrat / VLL 12'500", ans:'KB',
+    why:'Warenvorrat ↑ (Aktiv steigt) und VLL ↑ (Passiv steigt) → Kapitalbeschaffung (KB). Bilanzsumme wächst.' },
+  { id:'d', label:'d)', booking:"VLL / Bankguthaben 8'000", ans:'KR',
+    why:'VLL ↓ (Passiv sinkt) und Bankguthaben ↓ (Aktiv sinkt) → Kapitalrückzahlung (KR). Bilanzsumme schrumpft.' },
+  { id:'e', label:'e)', booking:"Kasse / Warenertrag 2'100", ans:'EW',
+    why:'Warenertrag ist ein Ertragskonto → erfolgswirksam (EW). Barverkauf erhöht den Gewinn.' },
+  { id:'f', label:'f)', booking:"Bankverbindlichkeiten / Passivdarlehen 5'000", ans:'PT',
+    why:'Bankverbindlichkeiten ↓ (Passiv sinkt) und Passivdarlehen ↑ (Passiv steigt) → Passivtausch (PT). Nur die Passivseite ändert, Bilanzsumme bleibt gleich.' },
+  { id:'g', label:'g)', booking:"Verwaltungsaufwand / Kasse 350", ans:'EW',
+    why:'Verwaltungsaufwand ist ein Aufwandskonto → erfolgswirksam (EW). Büromaterial reduziert den Gewinn.' },
+  { id:'h', label:'h)', booking:"Kasse / Mobiliar 1'500", ans:'AT',
+    why:'Kasse ↑ (Aktiv steigt) und Mobiliar ↓ (Aktiv sinkt) → Aktivtausch (AT). Nur die Aktivseite ändert, Bilanzsumme bleibt gleich.' },
+  { id:'i', label:'i)', booking:"Raumaufwand / Bankguthaben 1'800", ans:'EW',
+    why:'Raumaufwand ist ein Aufwandskonto → erfolgswirksam (EW). Miete reduziert den Gewinn.' },
+  { id:'j', label:'j)', booking:"Bankguthaben / FLL 1'800", ans:'AT',
+    why:'Bankguthaben ↑ (Aktiv steigt) und FLL ↓ (Aktiv sinkt) → Aktivtausch (AT). Nur die Aktivseite ändert, Bilanzsumme bleibt gleich.' },
+];
+const a5types = ['AT','PT','KB','KR','EW'];
+
+// ============================================================
+// BUILD + CHECK – Aufgabe 1
+// ============================================================
+function buildTask1() {
+  const tbody = document.getElementById('a1body');
+  tbody.innerHTML = '';
+  a1data.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    tr.id = 'a1r' + i;
+    let cells = `<td>${item.label}</td>`;
+    cells += `<td><input type="radio" name="a1_${i}" value="R"></td>`;
+    cells += `<td><input type="radio" name="a1_${i}" value="F"></td>`;
+    cells += `<td style="border:none;width:0"></td>`;
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+    const er = document.createElement('tr');
+    er.innerHTML = `<td colspan="4" style="padding:0;border-top:none"><div class="expl" id="a1fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+
+function checkTask1() {
+  let correct = 0;
+  a1data.forEach((item, i) => {
+    const tr = document.getElementById('a1r' + i);
+    const fb = document.getElementById('a1fb' + i);
+    const sel = document.querySelector(`input[name="a1_${i}"]:checked`);
+    const val = sel ? sel.value : null;
+    if (val === item.ans) {
+      tr.className = 'row-correct';
+      fb.className = 'expl'; fb.textContent = '';
+      correct++;
+    } else {
+      tr.className = 'row-wrong';
+      fb.className = 'expl show';
+      const ansLabel = item.ans === 'R' ? 'Richtig' : 'Falsch';
+      fb.innerHTML = `✗ Korrekte Antwort: <b>${ansLabel}</b> &nbsp;–&nbsp; ${item.why}`;
+    }
+  });
+  const sc = document.getElementById('score1');
+  sc.textContent = (correct * 2) + '/20';
+  sc.className = 'task-score show';
+}
+
+function resetTask1() {
+  a1data.forEach((item, i) => {
+    document.getElementById('a1r' + i).className = '';
+    const fb = document.getElementById('a1fb' + i);
+    fb.className = 'expl'; fb.textContent = '';
+    document.querySelectorAll(`input[name="a1_${i}"]`).forEach(r => r.checked = false);
+  });
+  document.getElementById('score1').className = 'task-score';
+}
+
+// ============================================================
+// BUILD + CHECK – Aufgabe 2
+// ============================================================
+function buildTask2() {
+  const tbody = document.getElementById('a2body');
+  tbody.innerHTML = '';
+  a2data.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    tr.id = 'a2r' + i;
+    let cells = `<td>${item.label}</td>`;
+    a2cats.forEach(cat => {
+      cells += `<td><input type="radio" name="a2_${i}" value="${cat}"></td>`;
+    });
+    cells += `<td style="border:none;width:0"></td>`;
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+    const er = document.createElement('tr');
+    er.innerHTML = `<td colspan="8" style="padding:0;border-top:none"><div class="expl" id="a2fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+
+function checkTask2() {
+  let correct = 0;
+  a2data.forEach((item, i) => {
+    const tr = document.getElementById('a2r' + i);
+    const fb = document.getElementById('a2fb' + i);
+    const sel = document.querySelector(`input[name="a2_${i}"]:checked`);
+    const val = sel ? sel.value : null;
+    if (val === item.ans) {
+      tr.className = 'row-correct';
+      fb.className = 'expl'; fb.textContent = '';
+      correct++;
+    } else {
+      tr.className = 'row-wrong';
+      fb.className = 'expl show';
+      fb.innerHTML = `✗ Richtig: <b>${item.ans}</b> &nbsp;–&nbsp; ${item.why}`;
+    }
+  });
+  const sc = document.getElementById('score2');
+  sc.textContent = correct + '/16';
+  sc.className = 'task-score show';
+}
+
+function resetTask2() {
+  a2data.forEach((item, i) => {
+    document.getElementById('a2r' + i).className = '';
+    const fb = document.getElementById('a2fb' + i);
+    fb.className = 'expl'; fb.textContent = '';
+    document.querySelectorAll(`input[name="a2_${i}"]`).forEach(r => r.checked = false);
+  });
+  document.getElementById('score2').className = 'task-score';
+}
+
+// ============================================================
+// BUILD + CHECK – Aufgabe 3
+// ============================================================
+function buildTask3() {
+  const tbody = document.getElementById('a3body');
+  tbody.innerHTML = '';
+  a3classify.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    tr.id = 'a3r' + i;
+    let cells = `<td>${item.label}</td>`;
+    cells += `<td class="betrag-col">${item.betrag}</td>`;
+    ['UV','AV','FK'].forEach(cat => {
+      cells += `<td><input type="radio" name="a3_${i}" value="${cat}"></td>`;
+    });
+    cells += `<td style="border:none;width:0"></td>`;
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+    const er = document.createElement('tr');
+    er.innerHTML = `<td colspan="6" style="padding:0;border-top:none"><div class="expl" id="a3fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+
+function checkTask3() {
+  let classifyCorrect = 0;
+  a3classify.forEach((item, i) => {
+    const tr = document.getElementById('a3r' + i);
+    const fb = document.getElementById('a3fb' + i);
+    const sel = document.querySelector(`input[name="a3_${i}"]:checked`);
+    const val = sel ? sel.value : null;
+    if (val === item.ans) {
+      tr.className = 'row-correct';
+      fb.className = 'expl'; fb.textContent = '';
+      classifyCorrect++;
+    } else {
+      tr.className = 'row-wrong';
+      fb.className = 'expl show';
+      fb.innerHTML = `✗ Richtig: <b>${item.ans}</b> &nbsp;–&nbsp; ${item.why}`;
+    }
+  });
+
+  let ekPts = 0;
+  const ekEl = document.getElementById('ek_input');
+  const ekFb = document.getElementById('fb3ek');
+  const ekVal = parseFloat(ekEl.value);
+  if (!isNaN(ekVal) && Math.abs(ekVal - EK_CORRECT) <= 0.5) {
+    ekEl.style.background = '#d4edda';
+    ekFb.className = 'expl'; ekFb.textContent = '';
+    ekPts = 4;
+  } else {
+    ekEl.style.background = ekEl.value ? '#f8d7da' : '';
+    ekFb.className = 'expl show';
+    ekFb.innerHTML = "✗ Richtig: CHF 2'730 &nbsp;|&nbsp; EK = (80 + 280 + 320 + 220 + 300 + 4'300) &minus; (410 + 260 + 100 + 2'000) = 5'500 &minus; 2'770 = CHF 2'730";
+  }
+
+  const sc = document.getElementById('score3');
+  sc.textContent = (classifyCorrect + ekPts) + '/14';
+  sc.className = 'task-score show';
+}
+
+function resetTask3() {
+  a3classify.forEach((item, i) => {
+    document.getElementById('a3r' + i).className = '';
+    const fb = document.getElementById('a3fb' + i);
+    fb.className = 'expl'; fb.textContent = '';
+    document.querySelectorAll(`input[name="a3_${i}"]`).forEach(r => r.checked = false);
+  });
+  const ekEl = document.getElementById('ek_input');
+  ekEl.value = ''; ekEl.style.background = '';
+  const ekFb = document.getElementById('fb3ek');
+  ekFb.className = 'expl'; ekFb.textContent = '';
+  document.getElementById('score3').className = 'task-score';
+}
+
+// ============================================================
+// BUILD + CHECK – Aufgabe 4
+// ============================================================
+function makeSelect(name) {
+  const sel = document.createElement('select');
+  sel.id = name;
+  ACCOUNTS.forEach(a => {
+    const opt = document.createElement('option');
+    opt.value = a.val;
+    opt.textContent = a.label;
+    sel.appendChild(opt);
+  });
+  return sel;
+}
+
+function buildTask4() {
+  const tbody = document.getElementById('a4body');
+  tbody.innerHTML = '';
+  a4data.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.id = 'a4r' + item.id;
+    const tdNum = document.createElement('td');
+    tdNum.style.fontWeight = 'bold';
+    tdNum.textContent = item.label;
+    const tdDesc = document.createElement('td');
+    tdDesc.style.fontSize = '12px';
+    tdDesc.textContent = item.desc;
+    const tdSoll = document.createElement('td');
+    tdSoll.appendChild(makeSelect('a4s_' + item.id));
+    const tdHaben = document.createElement('td');
+    tdHaben.appendChild(makeSelect('a4h_' + item.id));
+    const tdBet = document.createElement('td');
+    const inp = document.createElement('input');
+    inp.type = 'number'; inp.id = 'a4b_' + item.id;
+    inp.placeholder = '0.00'; inp.step = '0.01';
+    tdBet.appendChild(inp);
+    tr.appendChild(tdNum); tr.appendChild(tdDesc);
+    tr.appendChild(tdSoll); tr.appendChild(tdHaben); tr.appendChild(tdBet);
+    tbody.appendChild(tr);
+    const er = document.createElement('tr');
+    er.innerHTML = `<td colspan="5" style="padding:0;border-top:none"><div class="expl" id="a4fb${item.id}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+
+function labelOf(val) {
+  const a = ACCOUNTS.find(x => x.val === val);
+  return a ? a.label : val;
+}
+
+function checkTask4() {
+  let correct = 0;
+  a4data.forEach(item => {
+    const tr = document.getElementById('a4r' + item.id);
+    const fb = document.getElementById('a4fb' + item.id);
+    const soll  = document.getElementById('a4s_' + item.id).value;
+    const haben = document.getElementById('a4h_' + item.id).value;
+    const betRaw = parseFloat(document.getElementById('a4b_' + item.id).value);
+    const bet = isNaN(betRaw) ? -1 : betRaw;
+    const msgs = [];
+    if (soll === item.soll)                     { correct++; } else { msgs.push(`✗ Soll: Richtig wäre „${labelOf(item.soll)}" – ${item.why_soll}`); }
+    if (haben === item.haben)                   { correct++; } else { msgs.push(`✗ Haben: Richtig wäre „${labelOf(item.haben)}" – ${item.why_haben}`); }
+    if (Math.abs(bet - item.betrag) <= 0.5)     { correct++; } else { msgs.push(`✗ Betrag: Richtig wäre CHF ${item.betrag.toLocaleString('de-CH')} – ${item.why_betrag}`); }
+    if (msgs.length === 0) {
+      tr.className = 'row-correct';
+      fb.className = 'expl'; fb.textContent = '';
+    } else {
+      tr.className = 'row-wrong';
+      fb.className = 'expl show';
+      fb.innerHTML = msgs.join('<br>');
+    }
+  });
+  const sc = document.getElementById('score4');
+  sc.textContent = correct + '/30';
+  sc.className = 'task-score show';
+}
+
+function resetTask4() {
+  a4data.forEach(item => {
+    document.getElementById('a4r' + item.id).className = '';
+    document.getElementById('a4s_' + item.id).value = '';
+    document.getElementById('a4h_' + item.id).value = '';
+    document.getElementById('a4b_' + item.id).value = '';
+    const fb = document.getElementById('a4fb' + item.id);
+    fb.className = 'expl'; fb.textContent = '';
+  });
+  document.getElementById('score4').className = 'task-score';
+}
+
+// ============================================================
+// BUILD + CHECK – Aufgabe 5
+// ============================================================
+function buildTask5() {
+  const tbody = document.getElementById('a5body');
+  tbody.innerHTML = '';
+  a5data.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    tr.id = 'a5r' + i;
+    let cells = `<td>${item.label}</td><td>${item.booking}</td>`;
+    a5types.forEach(t => {
+      cells += `<td><input type="radio" name="a5_${i}" value="${t}"></td>`;
+    });
+    cells += `<td style="border:none"></td>`;
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+    const er = document.createElement('tr');
+    er.innerHTML = `<td colspan="8" style="padding:0;border-top:none"><div class="expl" id="a5fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+
+function checkTask5() {
+  let correct = 0;
+  a5data.forEach((item, i) => {
+    const tr = document.getElementById('a5r' + i);
+    const fb = document.getElementById('a5fb' + i);
+    const sel = document.querySelector(`input[name="a5_${i}"]:checked`);
+    const val = sel ? sel.value : null;
+    if (val === item.ans) {
+      tr.className = 'row-correct';
+      fb.className = 'expl'; fb.textContent = '';
+      correct++;
+    } else {
+      tr.className = 'row-wrong';
+      fb.className = 'expl show';
+      fb.innerHTML = `✗ Richtig: <b>${item.ans}</b> &nbsp;–&nbsp; ${item.why}`;
+    }
+  });
+  const sc = document.getElementById('score5');
+  sc.textContent = (correct * 2) + '/20';
+  sc.className = 'task-score show';
+}
+
+function resetTask5() {
+  a5data.forEach((item, i) => {
+    document.getElementById('a5r' + i).className = '';
+    const fb = document.getElementById('a5fb' + i);
+    fb.className = 'expl'; fb.textContent = '';
+    document.querySelectorAll(`input[name="a5_${i}"]`).forEach(r => r.checked = false);
+  });
+  document.getElementById('score5').className = 'task-score';
+}
+
+// ============================================================
+// CHECK ALL / RESET ALL
+// ============================================================
+function checkAll() {
+  checkTask1(); checkTask2(); checkTask3(); checkTask4(); checkTask5();
+  const total = readScore('score1') + readScore('score2') + readScore('score3')
+              + readScore('score4') + readScore('score5');
+  const panel = document.getElementById('score-panel');
+  const sv = document.getElementById('score-value');
+  const sl = document.getElementById('score-label');
+  sv.textContent = total + ' / 100 Punkte';
+  sl.textContent = total >= 60
+    ? '✓ Bestanden (≥ 60 Punkte)'
+    : '✗ Noch nicht bestanden – weiter üben!';
+  panel.className = 'show';
+  panel.style.borderColor = total >= 60 ? '#1a7a3c' : '#b01c1c';
+  sv.style.color          = total >= 60 ? '#1a7a3c' : '#b01c1c';
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+function readScore(id) {
+  const txt = document.getElementById(id).textContent;
+  if (!txt) return 0;
+  return parseInt(txt.split('/')[0]) || 0;
+}
+
+function resetAll() {
+  resetTask1(); resetTask2(); resetTask3(); resetTask4(); resetTask5();
+  document.getElementById('score-panel').className = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  buildTask1();
+  buildTask2();
+  buildTask3();
+  buildTask4();
+  buildTask5();
+});
+</script>
+</body>
+</html>
