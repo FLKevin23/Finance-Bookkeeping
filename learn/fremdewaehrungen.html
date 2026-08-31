@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fremde Währungen – Finance Skills</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.kurs-table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+.kurs-table th, .kurs-table td { border:1px solid var(--border); padding:7px 10px; text-align:center; }
+.kurs-table th { background:var(--blue); color:white; }
+.kurs-table td:first-child, .kurs-table th:first-child { text-align:left; font-weight:600; }
+.kurs-table tr:nth-child(even) { background:var(--bg); }
+.calc-demo { background:#f8f4ff; border:1.5px solid #c0a8e8; border-radius:10px; padding:16px 20px; margin:12px 0; }
+.calc-demo .cd-title { font-weight:700; color:var(--purple); margin-bottom:8px; }
+.calc-demo .cd-step { display:flex; align-items:baseline; gap:8px; font-size:13px; padding:3px 0; flex-wrap:wrap; }
+.calc-demo .cd-step .label { min-width:100px; color:var(--muted); }
+.calc-demo .cd-step .val { font-family:monospace; font-weight:700; font-size:14px; }
+.calc-demo .cd-result { margin-top:8px; font-weight:700; color:var(--purple); font-size:15px; padding-top:8px; border-top:1px solid #c0a8e8; }
+.begriff-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; margin:12px 0; }
+.begriff-card { background:white; border:1.5px solid var(--border); border-radius:8px; padding:12px 14px; }
+.begriff-card b { color:var(--blue); display:block; margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="bilanz.html">Bilanz</a>
+    <a href="buchungssatz.html">Buchungssatz</a>
+    <a href="zinsrechnung.html">Zinsrechnung</a>
+    <a href="fremdewaehrungen.html" class="active">Fremde Währungen</a>
+    <a href="mwst.html">MWST</a>
+    <a href="kalkulation.html">Kalkulation</a>
+    <a href="abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>💱 Fremde Währungen</h1>
+  <p>Kapitel 7 · Devisen &amp; Noten · Geldkurs / Briefkurs · CHF ↔ Fremdwährung umrechnen</p>
+</div>
+
+<div class="learn-layout">
+  <aside class="sidebar">
+    <h4>Auf dieser Seite</h4>
+    <a href="#begriffe" class="active">Begriffe</a>
+    <a href="#kurstabelle">Kurstabelle</a>
+    <a href="#berechnungen">Die 3 Berechnungen</a>
+    <a href="#uebung">Prüfungsaufgaben</a>
+  </aside>
+
+  <main>
+
+    <div class="section-block" id="begriffe">
+      <div class="block-header blue">📖 Begriffe</div>
+      <div class="block-body">
+        <p>Bilanz und Erfolgsrechnung werden immer in <strong>CHF</strong> geführt (OR 958d). Rechnungen in Euro, Dollar &amp; Co. müssen deshalb bei jeder Buchung in CHF umgerechnet werden.</p>
+
+        <div class="begriff-grid">
+          <div class="begriff-card"><b>Tageskurs</b>Der tatsächliche Kurs am Zahlungstag, den die Bank aktuell verwendet.</div>
+          <div class="begriff-card"><b>Buchkurs</b>Ein für längere Zeit (Monat/Quartal) festgelegter Kurs, mit dem ein Unternehmen seine Buchungen vereinfacht.</div>
+          <div class="begriff-card"><b>Bilanzkurs</b>Der Kurs, der für den Jahresabschluss verwendet wird.</div>
+          <div class="begriff-card"><b>Devisen</b>Bargeldloses Buchgeld – z.B. eine Gutschrift auf einem Fremdwährungskonto.</div>
+          <div class="begriff-card"><b>Noten</b>Bargeld – Banknoten und Münzen einer fremden Währung.</div>
+        </div>
+
+        <div class="warn-box">
+          <strong>Geldkurs (Kauf):</strong> Der Kunde gibt der Bank Fremdwährung und will dafür CHF. Aus Sicht der Bank ist das ein <em>Kauf</em> von Fremdwährung → <strong>Geldkurs / Kaufkurs</strong>.<br><br>
+          <strong>Briefkurs (Verkauf):</strong> Der Kunde gibt der Bank CHF und will dafür Fremdwährung. Aus Sicht der Bank ist das ein <em>Verkauf</em> von Fremdwährung → <strong>Briefkurs / Verkaufskurs</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Merksatz: Immer aus Sicht der Bank denken</div>
+      <p>Die Begriffe "Kauf" und "Verkauf" beziehen sich immer auf die <strong>Bank</strong>, nie auf den Kunden!</p>
+      <p>Willst du als Kunde Euro <u>kaufen</u> (du gibst CHF, bekommst EUR) → für die Bank ist das ein <u>Verkauf</u> → Briefkurs.<br>
+      Willst du als Kunde Euro <u>verkaufen</u> (du gibst EUR, bekommst CHF) → für die Bank ist das ein <u>Kauf</u> → Geldkurs.</p>
+    </div>
+
+    <div class="section-block" id="kurstabelle">
+      <div class="block-header blue">📊 Fremdwährungskurstabelle (Beispiel)</div>
+      <div class="block-body">
+        <p>Jede Währung hat vier Kurse: Devisen Kauf/Verkauf (bargeldlos) und Noten Kauf/Verkauf (Bargeld). Noten-Kurse liegen weiter auseinander, weil das Handling von Bargeld für die Bank aufwändiger ist.</p>
+        <table class="kurs-table">
+          <thead>
+            <tr><th>Währung</th><th>ISO</th><th>Einheit</th><th>Devisen Kauf</th><th>Devisen Verkauf</th><th>Noten Kauf</th><th>Noten Verkauf</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Euro</td><td>EUR</td><td>1</td><td>0.91</td><td>0.94</td><td>0.90</td><td>0.95</td></tr>
+            <tr><td>US-Dollar</td><td>USD</td><td>1</td><td>0.80</td><td>0.83</td><td>0.78</td><td>0.85</td></tr>
+            <tr><td>Britisches Pfund</td><td>GBP</td><td>1</td><td>1.06</td><td>1.10</td><td>1.02</td><td>1.14</td></tr>
+            <tr><td>Japanischer Yen</td><td>JPY</td><td>100</td><td>0.56</td><td>0.58</td><td>0.54</td><td>0.60</td></tr>
+            <tr><td>Dänische Krone</td><td>DKK</td><td>100</td><td>12.20</td><td>12.63</td><td>11.79</td><td>13.04</td></tr>
+            <tr><td>Norwegische Krone</td><td>NOK</td><td>100</td><td>7.59</td><td>7.86</td><td>7.33</td><td>8.12</td></tr>
+            <tr><td>Schwedische Krone</td><td>SEK</td><td>100</td><td>8.23</td><td>8.53</td><td>7.89</td><td>8.86</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">
+          <strong>Achtung Einheit:</strong> Bei JPY, DKK, NOK und SEK gilt der Kurs pro <strong>100</strong> Einheiten (1:100). Bei EUR, USD und GBP gilt der Kurs pro <strong>1</strong> Einheit (1:1). Das musst du in der Formel berücksichtigen!
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="berechnungen">
+      <div class="block-header blue">🔢 Die 3 Berechnungen</div>
+      <div class="block-body">
+        <p>Es gibt immer 3 mögliche Fragestellungen – je nachdem, was gesucht ist:</p>
+
+        <div class="formula-box">
+          <div class="f-title">1) Betrag in CHF gesucht</div>
+          <div class="formula">Fremde Währung × Kurs = CHF</div>
+          <p style="font-size:13px;margin-top:8px;color:var(--muted)">Bei 1:100-Währungen: FW × Kurs / 100 = CHF</p>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📐 Beispiel: JPY → CHF</div>
+          <p style="font-size:13px;margin-bottom:8px">U. Schweizer kauft für eine Reise JPY 50'000 bei der Bank (Noten Verkauf, Kurs 0.60).</p>
+          <div class="cd-step"><span class="label">Formel:</span><span class="val">FW × Kurs / 100 = CHF</span></div>
+          <div class="cd-step"><span class="label">Einsetzen:</span><span class="val">50'000 × 0.60 / 100</span></div>
+          <div class="cd-result">= CHF 300.–</div>
+        </div>
+
+        <div class="formula-box">
+          <div class="f-title">2) Betrag in Fremdwährung gesucht</div>
+          <div class="formula">CHF / Kurs = Fremde Währung</div>
+          <p style="font-size:13px;margin-top:8px;color:var(--muted)">Bei 1:100-Währungen: CHF / Kurs × 100 = FW</p>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📐 Beispiel: CHF → SEK</div>
+          <p style="font-size:13px;margin-bottom:8px">P. Huber kauft für CHF 1'000 schwedische Kronen (Noten Verkauf, Kurs 8.86).</p>
+          <div class="cd-step"><span class="label">Formel:</span><span class="val">CHF / Kurs × 100 = FW</span></div>
+          <div class="cd-step"><span class="label">Einsetzen:</span><span class="val">1'000 / 8.86 × 100</span></div>
+          <div class="cd-result">= SEK 11'286.70</div>
+        </div>
+
+        <div class="formula-box">
+          <div class="f-title">3) Kurs gesucht</div>
+          <div class="formula">CHF / Fremde Währung = Kurs</div>
+          <p style="font-size:13px;margin-top:8px;color:var(--muted)">Bei 1:100-Währungen: CHF × 100 / FW = Kurs</p>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📐 Beispiel: Kurs berechnen</div>
+          <p style="font-size:13px;margin-bottom:8px">S. Dürr wechselt CHF 1'000 in USD 1'176.47. Mit welchem Kurs hat die Bank gerechnet?</p>
+          <div class="cd-step"><span class="label">Formel:</span><span class="val">CHF / FW = Kurs</span></div>
+          <div class="cd-step"><span class="label">Einsetzen:</span><span class="val">1'000 / 1'176.47</span></div>
+          <div class="cd-result">= 0.85 CHF/USD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Welcher Kurs bei welcher Richtung?</div>
+      <p><strong>CHF → Fremdwährung</strong> (Kunde kauft FW): Bank verkauft → <strong>Verkaufskurs (Briefkurs)</strong> verwenden.</p>
+      <p><strong>Fremdwährung → CHF</strong> (Kunde verkauft FW): Bank kauft → <strong>Kaufkurs (Geldkurs)</strong> verwenden.</p>
+      <p>Ob Devisen- oder Notenkurs gilt, hängt davon ab, ob es sich um Bargeld (Noten) oder bargeldlosen Zahlungsverkehr (Devisen, z.B. Banküberweisung) handelt.</p>
+    </div>
+
+    <div class="section-block" id="uebung">
+      <div class="block-header green">✏️ Formelübungen</div>
+      <div class="block-body">
+        <p>Berechne folgende Grössen (Lösungen aufklappen):</p>
+        <ol style="font-size:13px;line-height:2.2">
+          <li>Ein Kunde kauft USD 2'400 in Banknoten (Noten Verkauf 0.85). Betrag in CHF?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            CHF = 2'400 × 0.85 = <strong>CHF 2'040.–</strong></details>
+          </li>
+          <li>Eine Kundin bezahlt eine Rechnung von EUR 3'200 per Banküberweisung (Devisen Verkauf 0.94). Betrag in CHF?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            CHF = 3'200 × 0.94 = <strong>CHF 3'008.–</strong></details>
+          </li>
+          <li>Für CHF 500 möchte ein Reisender GBP in bar (Noten Verkauf 1.14). Wie viele GBP erhält er?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            GBP = 500 / 1.14 = <strong>GBP 438.60</strong></details>
+          </li>
+          <li>Eine Überweisung von JPY 700'000 kostet CHF 4'550. Welcher Kurs wurde angewendet?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            Kurs = 4'550 × 100 / 700'000 = <strong>0.65</strong></details>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="zinsrechnung.html">← Zinsrechnung</a>
+      <a href="../uebungen/fremdewaehrungen.html">🏋️ Übungen Fremde Währungen</a>
+      <a href="mwst.html">MWST →</a>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

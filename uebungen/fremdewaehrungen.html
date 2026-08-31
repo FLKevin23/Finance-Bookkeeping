@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – Fremde Währungen</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.formel-reminder{background:#f0f4ff;border:1.5px solid #a0b8f0;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px}
+.formel-reminder .fr-title{font-weight:700;color:var(--blue);margin-bottom:6px}
+.formel-reminder code{background:white;padding:4px 8px;border-radius:4px;font-size:13px;font-weight:700;border:1px solid #a0b8f0}
+.kurs-mini{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
+.kurs-mini th,.kurs-mini td{border:1px solid var(--border);padding:5px 8px;text-align:center}
+.kurs-mini th{background:var(--blue);color:white}
+.kurs-mini td:first-child,.kurs-mini th:first-child{text-align:left;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html">Zinsrechnung</a>
+    <a href="../learn/fremdewaehrungen.html" class="active">Fremde Währungen</a>
+    <a href="../learn/mwst.html">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>💱 Übungen – Fremde Währungen</h1>
+  <p>Kapitel 7 · Geldkurs/Briefkurs, Devisen/Noten und Kursberechnungen</p>
+</div>
+
+<div class="container">
+
+  <div class="formel-reminder">
+    <div class="fr-title">📌 Formel-Reminder</div>
+    <code>FW × Kurs = CHF</code> &nbsp;|&nbsp;
+    <code>CHF / Kurs = FW</code> &nbsp;|&nbsp;
+    <code>CHF / FW = Kurs</code><br>
+    <small style="color:var(--muted)">Bei JPY/DKK/NOK/SEK (Einheit 100): zusätzlich × 100 bzw. ÷ 100 rechnen. FW→CHF: Kaufkurs (Geldkurs). CHF→FW: Verkaufskurs (Briefkurs).</small>
+    <table class="kurs-mini">
+      <thead><tr><th>Währung</th><th>Einheit</th><th>Devisen Kauf</th><th>Devisen Verkauf</th><th>Noten Kauf</th><th>Noten Verkauf</th></tr></thead>
+      <tbody>
+        <tr><td>EUR</td><td>1</td><td>0.91</td><td>0.94</td><td>0.90</td><td>0.95</td></tr>
+        <tr><td>USD</td><td>1</td><td>0.80</td><td>0.83</td><td>0.78</td><td>0.85</td></tr>
+        <tr><td>GBP</td><td>1</td><td>1.06</td><td>1.10</td><td>1.02</td><td>1.14</td></tr>
+        <tr><td>JPY</td><td>100</td><td>0.56</td><td>0.58</td><td>0.54</td><td>0.60</td></tr>
+        <tr><td>DKK</td><td>100</td><td>12.20</td><td>12.63</td><td>11.79</td><td>13.04</td></tr>
+        <tr><td>NOK</td><td>100</td><td>7.59</td><td>7.86</td><td>7.33</td><td>8.12</td></tr>
+        <tr><td>SEK</td><td>100</td><td>8.23</td><td>8.53</td><td>7.89</td><td>8.86</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Einfache Umrechnung mit 1:1-Währungen (EUR, USD, GBP). Kurs ist gegeben.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – FW → CHF (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde verkauft der Bank <strong>EUR 500</strong> in bar. Noten Kauf-Kurs = <strong>0.90</strong>.<br><br>Wie viel CHF erhält er?</div>
+        CHF <input class="ex-num" type="number" id="n0_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_1',450,0.05,'CHF','FW→CHF: Kaufkurs verwenden. 500×0.90=450.')">Prüfen</button>
+        <div class="fb" id="n0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – CHF → FW (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde kauft <strong>USD 200</strong> in bar für seine Reise. Noten Verkauf-Kurs = <strong>0.85</strong>.<br><br>Wie viel CHF bezahlt er?</div>
+        CHF <input class="ex-num" type="number" id="n0_2" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_2',170,0.05,'CHF','CHF→FW: Verkaufskurs verwenden. 200×0.85=170.')">Prüfen</button>
+        <div class="fb" id="n0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Begriff: Geldkurs</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde gibt der Bank Euro und erhält dafür CHF. Aus Sicht der Bank ist das ein ...</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_3" value="Kauf"> Kauf von Fremdwährung → Geldkurs</label>
+          <label><input type="radio" name="e0_3" value="Verkauf"> Verkauf von Fremdwährung → Briefkurs</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_3','Kauf','Die Bank erhält FW und gibt CHF → das ist für die Bank ein Kauf von Fremdwährung → Geldkurs (Kaufkurs).')">Prüfen</button>
+        <div class="fb" id="e0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – FW → CHF (Devisen)</div>
+      <div class="ex-body">
+        <div class="ex-q">Einer Firma werden <strong>GBP 100</strong> per Banküberweisung gutgeschrieben (Devisen). Devisen Kauf-Kurs = <strong>1.06</strong>.<br><br>Wie viel CHF wird gutgeschrieben?</div>
+        CHF <input class="ex-num" type="number" id="n0_4" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_4',106,0.05,'CHF','FW→CHF, bargeldlos: Devisen Kaufkurs. 100×1.06=106.')">Prüfen</button>
+        <div class="fb" id="n0_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Begriff: Noten</div>
+      <div class="ex-body">
+        <div class="ex-q">Was versteht man unter «Noten»?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_5" value="Bargeld"> Bargeld (Banknoten und Münzen)</label>
+          <label><input type="radio" name="e0_5" value="Buchgeld"> Bargeldloses Buchgeld</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_5','Bargeld','Noten = Bargeld. Devisen = bargeldloses Buchgeld (z.B. Bankkonto).')">Prüfen</button>
+        <div class="fb" id="e0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – CHF → FW (Devisen)</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Firma überweist <strong>EUR 1'000</strong> an einen Lieferanten (Devisen). Devisen Verkauf-Kurs = <strong>0.94</strong>.<br><br>Wie hoch ist die Bankbelastung in CHF?</div>
+        CHF <input class="ex-num" type="number" id="n0_6" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_6',940,0.05,'CHF','CHF→FW, bargeldlos: Devisen Verkaufskurs. 1000×0.94=940.')">Prüfen</button>
+        <div class="fb" id="n0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – FW → CHF (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Reisender verkauft restliche <strong>USD 50</strong> in bar. Noten Kauf-Kurs = <strong>0.78</strong>.<br><br>Wie viel CHF erhält er?</div>
+        CHF <input class="ex-num" type="number" id="n0_7" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_7',39,0.05,'CHF','FW→CHF: Kaufkurs. 50×0.78=39.')">Prüfen</button>
+        <div class="fb" id="n0_7-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – 1:100-Währungen (JPY, SEK, NOK) und die Umkehrrichtung CHF → FW.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – JPY → CHF (1:100)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde verkauft <strong>JPY 10'000</strong> in bar. Noten Kauf-Kurs = <strong>0.54</strong> (pro 100).<br><br>Wie viel CHF erhält er?<br>
+        <small style="color:var(--muted)">Tipp: FW × Kurs / 100</small></div>
+        CHF <input class="ex-num" type="number" id="n1_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_1',54,0.05,'CHF','10000×0.54/100=54.')">Prüfen</button>
+        <div class="fb" id="n1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – CHF → EUR</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde möchte für <strong>CHF 100</strong> Euro per Überweisung kaufen. Devisen Verkauf-Kurs = <strong>0.94</strong>.<br><br>Wie viele EUR erhält er?</div>
+        EUR <input class="ex-num" type="number" id="n1_2" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_2',106.38,0.05,'EUR','100/0.94=106.38.')">Prüfen</button>
+        <div class="fb" id="n1_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_3">
+      <div class="ex-head">Aufgabe 3 – SEK → CHF (Devisen)</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Firma erhält eine Gutschrift von <strong>SEK 5'000</strong> (Devisen). Devisen Kauf-Kurs = <strong>8.23</strong> (pro 100).<br><br>Wie viel CHF wird gutgeschrieben?</div>
+        CHF <input class="ex-num" type="number" id="n1_3" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_3',411.50,0.05,'CHF','5000×8.23/100=411.50.')">Prüfen</button>
+        <div class="fb" id="n1_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – CHF → USD (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Reisender kauft für <strong>CHF 200</strong> USD-Noten. Noten Verkauf-Kurs = <strong>0.85</strong>.<br><br>Wie viele USD erhält er?</div>
+        USD <input class="ex-num" type="number" id="n1_4" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_4',235.29,0.05,'USD','200/0.85=235.29.')">Prüfen</button>
+        <div class="fb" id="n1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – NOK → CHF (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde verkauft <strong>NOK 2'000</strong> in bar. Noten Kauf-Kurs = <strong>7.33</strong> (pro 100).<br><br>Wie viel CHF erhält er?</div>
+        CHF <input class="ex-num" type="number" id="n1_5" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_5',146.60,0.05,'CHF','2000×7.33/100=146.60.')">Prüfen</button>
+        <div class="fb" id="n1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – Begriff: Welcher Kurs bei CHF → FW?</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde will mit CHF eine Fremdwährung kaufen. Welchen Kurs verwendet die Bank?</div>
+        <div class="rg">
+          <label><input type="radio" name="e1_6" value="Briefkurs"> Briefkurs (Verkaufskurs)</label>
+          <label><input type="radio" name="e1_6" value="Geldkurs"> Geldkurs (Kaufkurs)</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e1_6','Briefkurs','CHF→FW: Die Bank verkauft dem Kunden Fremdwährung → Briefkurs (Verkaufskurs).')">Prüfen</button>
+        <div class="fb" id="e1_6-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Kurs berechnen und die richtige Kursart (Devisen/Noten, Kauf/Verkauf) selbst bestimmen.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – Kurs gesucht</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde bezahlt CHF 950 und erhält dafür genau <strong>EUR 1'000</strong>.<br><br>Mit welchem Kurs wurde gerechnet?<br>
+        <small style="color:var(--muted)">Tipp: Kurs = CHF / FW</small></div>
+        Kurs = <input class="ex-num" type="number" id="n2_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_1',0.95,0.01,'','950/1000=0.95.')">Prüfen</button>
+        <div class="fb" id="n2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Kurs gesucht (1:100)</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Überweisung von <strong>JPY 700'000</strong> kostet CHF 4'550.<br><br>Welcher Kurs (pro 100) wurde verwendet?<br>
+        <small style="color:var(--muted)">Tipp: Kurs = CHF × 100 / FW</small></div>
+        Kurs = <input class="ex-num" type="number" id="n2_2" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_2',0.65,0.01,'','4550×100/700000=0.65.')">Prüfen</button>
+        <div class="fb" id="n2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – Welcher Kurs? (Szenario)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein amerikanischer Tourist tauscht USD-Bargeld am Bankschalter in CHF um. Welcher Kurs gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e2_3" value="Noten Kauf"> Noten Kauf</label>
+          <label><input type="radio" name="e2_3" value="Noten Verkauf"> Noten Verkauf</label>
+          <label><input type="radio" name="e2_3" value="Devisen Kauf"> Devisen Kauf</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e2_3','Noten Kauf','Bargeld (Noten) wird gegen CHF getauscht → FW→CHF → Noten Kaufkurs.')">Prüfen</button>
+        <div class="fb" id="e2_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Welcher Kurs? (Szenario)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Schweizer Importeur überweist per Bank Geld an einen Lieferanten in der EU. Welcher Kurs gilt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e2_4" value="Devisen Verkauf"> Devisen Verkauf</label>
+          <label><input type="radio" name="e2_4" value="Devisen Kauf"> Devisen Kauf</label>
+          <label><input type="radio" name="e2_4" value="Noten Verkauf"> Noten Verkauf</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e2_4','Devisen Verkauf','Banküberweisung = Devisen. CHF→FW = die Bank verkauft Fremdwährung → Devisen Verkaufskurs.')">Prüfen</button>
+        <div class="fb" id="e2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Zwei Beträge</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde kauft GBP in bar. Noten Verkauf-Kurs = <strong>1.14</strong>.<br><br>
+        <strong>a)</strong> GBP 500 kosten wie viel CHF? <input class="ex-num" type="number" id="n2_5a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> GBP 250 kosten wie viel CHF? <input class="ex-num" type="number" id="n2_5b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n2_5a','n2_5b',570,285,'a) 500×1.14=570. b) 250×1.14=285.')">Prüfen</button>
+        <div class="fb" id="e2_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_6">
+      <div class="ex-head">Aufgabe 6 – SEK → CHF (Noten)</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde verkauft <strong>SEK 3'300</strong> in bar. Noten Kauf-Kurs = <strong>7.89</strong> (pro 100).<br><br>Wie viel CHF erhält er?</div>
+        CHF <input class="ex-num" type="number" id="n2_6" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_6',260.37,0.05,'CHF','3300×7.89/100=260.37.')">Prüfen</button>
+        <div class="fb" id="n2_6-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Mehrstufige Aufgaben mit Hin- und Rückrichtung.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – Hin- und Rückreise</div>
+      <div class="ex-body">
+        <div class="ex-q">Für eine Reise wechselt ein Kunde <strong>CHF 800</strong> in USD-Noten (Verkauf-Kurs 0.85).<br><br>
+        <strong>a)</strong> Wie viele USD erhält er? <input class="ex-num" type="number" id="n3_1a" placeholder="0" step="0.01"><br><br>
+        Nach der Reise verkauft er die restlichen <strong>USD 200</strong> wieder (Kauf-Kurs 0.78).<br>
+        <strong>b)</strong> Wie viel CHF erhält er dafür? <input class="ex-num" type="number" id="n3_1b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_1a','n3_1b',941.18,156,'a) 800/0.85=941.18. b) 200×0.78=156.')">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Kurs + neue Belastung</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Bank belastet für eine Überweisung von <strong>JPY 90'000</strong> den Betrag CHF 522.00.<br><br>
+        <strong>a)</strong> Welcher Kurs (pro 100) wurde angewendet? <input class="ex-num" type="number" id="n3_2a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Wie hoch wäre die Belastung für JPY 150'000 beim gleichen Kurs? CHF <input class="ex-num" type="number" id="n3_2b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_2a','n3_2b',0.58,870,'a) 522×100/90000=0.58. b) 150000×0.58/100=870.')">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_3">
+      <div class="ex-head">Aufgabe 3 – Verkauf und Rückkauf</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Kunde verkauft <strong>GBP 2'460</strong> (Devisen Kauf-Kurs 1.06) und lässt sich den Betrag in CHF gutschreiben. Mit der Hälfte dieses Betrags kauft er anschliessend wieder EUR (Devisen Verkauf-Kurs 0.94).<br><br>
+        <strong>a)</strong> CHF-Gutschrift total? <input class="ex-num" type="number" id="n3_3a" placeholder="0" step="0.01"><br><br>
+        <strong>b)</strong> Wie viel EUR erhält er mit der Hälfte davon? <input class="ex-num" type="number" id="n3_3b" placeholder="0" step="0.01"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_3a','n3_3b',2607.60,1387.02,'a) 2460×1.06=2607.60. b) (2607.60/2)/0.94=1387.02.')">Prüfen</button>
+        <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Kurs gesucht (grosser Betrag)</div>
+      <div class="ex-body">
+        <div class="ex-q">Für eine Vergütung an einen Lieferanten in Stockholm über <strong>SEK 52'850</strong> verrechnet die Bank CHF 4'492.25.<br><br>Mit welchem Kurs (pro 100) hat die Bank gerechnet?</div>
+        Kurs = <input class="ex-num" type="number" id="n3_4" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n3_4',8.50,0.02,'','4492.25×100/52850=8.50.')">Prüfen</button>
+        <div class="fb" id="n3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Betrag in Fremdwährung gesucht</div>
+      <div class="ex-body">
+        <div class="ex-q">Ein Reisender bringt von einer Reise restliche CAD zurück und erhält dafür CHF 258.50 bei einem Kurs von CHF 0.70/CAD (Kauf-Kurs).<br><br>Wie viele CAD hat er umgetauscht?</div>
+        CAD <input class="ex-num" type="number" id="n3_5" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n3_5',369.29,0.05,'CAD','258.50/0.70=369.29.')">Prüfen</button>
+        <div class="fb" id="n3_5-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/fremdewaehrungen.html">← Theorie Fremde Währungen</a>
+    <a href="mwst.html">Übungen MWST →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkN(id,ans,tol,unit,tip){
+  const el=document.getElementById(id),fb=document.getElementById(id+'-fb');
+  const val=parseFloat(el.value);
+  if(isNaN(val)){fb.textContent='⚠️ Bitte gib eine Zahl ein.';fb.className='fb tip';return;}
+  if(Math.abs(val-ans)<=tol){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans.toLocaleString('de-CH')+(unit?' '+unit:'')+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok1=!isNaN(v1)&&Math.abs(v1-a1)<=0.05,ok2=!isNaN(v2)&&Math.abs(v2-a2)<=0.05;
+  if(ok1&&ok2){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1.toLocaleString('de-CH')+', b)='+a2.toLocaleString('de-CH')+'. '+tip;fbEl.className='fb no';}
+}
+</script>
+</body>
+</html>
