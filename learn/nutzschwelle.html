@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutzschwelle / Break-Even – Finance Skills</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.fk-vk-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:12px 0; }
+.fk-vk-card { border:1.5px solid var(--border); border-radius:10px; padding:14px 16px; }
+.fk-vk-card.fk .title { color:var(--blue); }
+.fk-vk-card.vk .title { color:var(--purple); }
+.fk-vk-card .title { font-weight:800; font-size:14px; margin-bottom:6px; }
+.calc-demo { background:#f8f4ff; border:1.5px solid #c0a8e8; border-radius:10px; padding:16px 20px; margin:12px 0; }
+.calc-demo .cd-title { font-weight:700; color:var(--purple); margin-bottom:8px; }
+.calc-demo .cd-step { display:flex; align-items:baseline; gap:8px; font-size:13px; padding:3px 0; flex-wrap:wrap; }
+.calc-demo .cd-step .label { min-width:160px; color:var(--muted); }
+.calc-demo .cd-step .val { font-family:monospace; font-weight:700; font-size:14px; }
+.calc-demo .cd-result { margin-top:8px; font-weight:700; color:var(--purple); font-size:15px; padding-top:8px; border-top:1px solid #c0a8e8; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="bilanz.html">Bilanz</a>
+    <a href="buchungssatz.html">Buchungssatz</a>
+    <a href="zinsrechnung.html">Zinsrechnung</a>
+    <a href="fremdewaehrungen.html">Fremde Währungen</a>
+    <a href="mwst.html">MWST</a>
+    <a href="kalkulation.html">Kalkulation</a>
+    <a href="nutzschwelle.html" class="active">Nutzschwelle</a>
+    <a href="abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>⚖️ Nutzschwelle / Break-Even-Analyse</h1>
+  <p>Kapitel 10 · Fixe &amp; variable Kosten · Deckungsbeitrag · Break-Even-Point</p>
+</div>
+
+<div class="learn-layout">
+  <aside class="sidebar">
+    <h4>Auf dieser Seite</h4>
+    <a href="#kosten" class="active">Fixe &amp; variable Kosten</a>
+    <a href="#db">Deckungsbeitrag</a>
+    <a href="#einprodukt">Nutzschwelle – ein Produkt</a>
+    <a href="#mehrprodukt">Nutzschwelle – mehrere Produkte</a>
+    <a href="#uebung">Prüfungsaufgaben</a>
+  </aside>
+
+  <main>
+
+    <div class="section-block" id="kosten">
+      <div class="block-header blue">📖 Fixe und variable Kosten</div>
+      <div class="block-body">
+        <p>Um zu berechnen, ab welchem Absatz ein Unternehmen Gewinn macht, teilt man alle Kosten in zwei Gruppen auf – das nennt man <strong>Kostenauflösung</strong>.</p>
+        <div class="fk-vk-grid">
+          <div class="fk-vk-card fk">
+            <div class="title">Fixe Kosten</div>
+            <p style="font-size:13px">Immer gleich hoch, unabhängig vom Absatz.</p>
+            <p style="font-size:12px;color:var(--muted)">Bsp.: Miete, Abschreibungen, Zinskosten, ein Teil der Personalkosten</p>
+          </div>
+          <div class="fk-vk-card vk">
+            <div class="title">Variable Kosten</div>
+            <p style="font-size:13px">Verändern sich mit dem Absatz – steigen bei mehr Umsatz, sinken bei weniger.</p>
+            <p style="font-size:12px;color:var(--muted)">Bsp.: Rohmaterial, Warenaufwand, ein Teil der Personalkosten</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Miete zahlst du auch, wenn du nichts verkaufst</div>
+      <p>Die Miete für dein Ladenlokal zahlst du jeden Monat gleich – egal ob du 10 oder 1'000 Produkte verkaufst. Das ist eine <strong>fixe</strong> Kost.</p>
+      <p>Das Rohmaterial für dein Produkt kaufst du dagegen nur, wenn du wirklich produzierst – je mehr du verkaufst, desto mehr Material brauchst du. Das ist eine <strong>variable</strong> Kost.</p>
+    </div>
+
+    <div class="section-block" id="db">
+      <div class="block-header blue">🔢 Der Deckungsbeitrag (DB)</div>
+      <div class="block-body">
+        <div class="formula-box">
+          <div class="f-title">Deckungsbeitrag pro Stück</div>
+          <div class="formula">DB = Verkaufspreis (VP) − variable Kosten pro Stück</div>
+          <p style="font-size:13px;margin-top:8px;color:var(--muted)">Der DB ist der Betrag, der pro verkauftem Stück übrig bleibt, um die fixen Kosten zu decken.</p>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📐 Beispiel aus dem Lehrbuch: Barbara Müller</div>
+          <p style="font-size:13px;margin-bottom:8px">Barbara importiert ein Heilmittel für CHF 3/Stück (variable Kosten) und verkauft es für CHF 5/Stück (VP). Fixkosten: CHF 100'000.</p>
+          <div class="cd-step"><span class="label">Verkaufspreis (VP):</span><span class="val">CHF 5</span></div>
+          <div class="cd-step"><span class="label">− variable Kosten:</span><span class="val">CHF 3</span></div>
+          <div class="cd-result">= Deckungsbeitrag (DB) = CHF 2 pro Stück</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="einprodukt">
+      <div class="block-header blue">🎯 Nutzschwelle – Unternehmen mit einem Produkt</div>
+      <div class="block-body">
+        <p>Die <strong>Nutzschwelle</strong> (Break-Even-Point) ist der Punkt, an dem eine Unternehmung <strong>weder Gewinn noch Verlust</strong> erzielt.</p>
+        <div class="formula-box">
+          <table>
+            <tr><td style="font-weight:700;width:220px">Nutzschwelle mengenmässig (NSm)</td><td><span class="formula" style="padding:4px 10px">NSm = Fixkosten / DB pro Stück</span></td></tr>
+            <tr><td style="font-weight:700">Nutzschwelle wertmässig (NSw)</td><td><span class="formula" style="padding:4px 10px">NSw = NSm × VP</span></td></tr>
+            <tr><td style="font-weight:700">Zielmenge</td><td><span class="formula" style="padding:4px 10px">Zielmenge = (Fixkosten + Gewinn) / DB pro Stück</span></td></tr>
+            <tr><td style="font-weight:700">Zielumsatz</td><td><span class="formula" style="padding:4px 10px">Zielumsatz = Zielmenge × VP</span></td></tr>
+          </table>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📝 Weiterführung Barbara Müller</div>
+          <div class="cd-step"><span class="label">NSm:</span><span class="val">100'000 / 2 = 50'000 Stück</span></div>
+          <div class="cd-step"><span class="label">NSw:</span><span class="val">50'000 × 5 = CHF 250'000</span></div>
+          <p style="font-size:13px;margin:8px 0 4px">Für einen Gewinn von CHF 40'000:</p>
+          <div class="cd-step"><span class="label">Zielmenge:</span><span class="val">(100'000 + 40'000) / 2 = 70'000 Stück</span></div>
+          <div class="cd-result">Zielumsatz = 70'000 × 5 = CHF 350'000</div>
+        </div>
+
+        <div class="tip-box">
+          <strong>Merke:</strong> Ab der Nutzschwelle deckt jedes weitere verkaufte Stück nur noch die variablen Kosten – der ganze DB darüber hinaus ist reiner Gewinn (die Fixkosten sind ja bereits gedeckt).
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbulb-box">
+      <div class="lb-title">💡 Kebab-Stand-Beispiel</div>
+      <p>Ali verkauft einen Kebab für CHF 9.10, die Zutaten kosten CHF 4.35 → DB = CHF 4.75/Stück. Seine Fixkosten pro Tag (Miete + Lohn) betragen CHF 198.</p>
+      <p>NSm = 198 / 4.75 = 41.68 → <strong>er muss 42 Kebabs pro Tag verkaufen</strong>, um kostendeckend zu sein (aufgerundet, weil ein halber Kebab nicht reicht!).</p>
+    </div>
+
+    <div class="section-block" id="mehrprodukt">
+      <div class="block-header blue">🛍️ Nutzschwelle – Unternehmen mit mehreren Produkten</div>
+      <div class="block-body">
+        <p>Verkauft ein Unternehmen viele verschiedene Produkte, rechnet man nicht mehr mit einem einzelnen DB pro Stück, sondern mit der <strong>Deckungsbeitragsmarge (DB-Marge)</strong> – dem DB in Prozent des Nettoerlöses.</p>
+        <div class="formula-box">
+          <table>
+            <tr><td style="font-weight:700;width:220px">DB-Marge</td><td><span class="formula" style="padding:4px 10px">DB-Marge = DB total × 100 / Nettoerlös</span></td></tr>
+            <tr><td style="font-weight:700">Nutzschwelle wertmässig</td><td><span class="formula" style="padding:4px 10px">NSw = Fixkosten / DB-Marge</span></td></tr>
+            <tr><td style="font-weight:700">Zielumsatz</td><td><span class="formula" style="padding:4px 10px">Zielumsatz = (Fixkosten + Gewinn) / DB-Marge</span></td></tr>
+          </table>
+        </div>
+
+        <div class="calc-demo">
+          <div class="cd-title">📝 Beispiel: Pizzeria Torre</div>
+          <p style="font-size:13px;margin-bottom:8px">Warenertrag CHF 300'000, Warenaufwand CHF 160'000, Fixkosten (Montagabend) CHF 470.</p>
+          <div class="cd-step"><span class="label">DB total:</span><span class="val">300'000 − 160'000 = 140'000</span></div>
+          <div class="cd-step"><span class="label">DB-Marge:</span><span class="val">140'000 × 100 / 300'000 = 46.67%</span></div>
+          <div class="cd-result">NSw = 470 / 46.67% = CHF 1'007.10</div>
+        </div>
+
+        <div class="warn-box">
+          <strong>Achtung Prozentrechnung:</strong> «÷ DB-Marge» bedeutet «÷ Prozentsatz als Dezimalzahl» (z.B. ÷ 0.4667) <em>oder</em> «× 100 ÷ Prozentsatz» (z.B. × 100 ÷ 46.67) – beides führt zum gleichen Resultat.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="uebung">
+      <div class="block-header green">✏️ Formelübungen</div>
+      <div class="block-body">
+        <p>Berechne folgende Grössen (Lösungen aufklappen):</p>
+        <ol style="font-size:13px;line-height:2.2">
+          <li>VP=CHF 20, variable Kosten=CHF 12, Fixkosten=CHF 40'000. Gesucht: NSm?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            DB = 20−12 = 8. NSm = 40'000/8 = <strong>5'000 Stück</strong></details>
+          </li>
+          <li>Wie im Beispiel oben, aber gesucht: NSw?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            NSw = 5'000 × 20 = <strong>CHF 100'000</strong></details>
+          </li>
+          <li>Fixkosten=CHF 40'000, Gewinnziel=CHF 8'000, DB/Stück=CHF 8. Gesucht: Zielmenge?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            Zielmenge = (40'000+8'000)/8 = <strong>6'000 Stück</strong></details>
+          </li>
+          <li>Nettoerlös=CHF 500'000, DB total=CHF 200'000, Fixkosten=CHF 90'000. Gesucht: NSw (Mehrprodukte)?
+            <details style="display:inline"><summary style="cursor:pointer;color:var(--blue)">Lösung</summary>
+            DB-Marge = 200'000×100/500'000 = 40%. NSw = 90'000/40% = <strong>CHF 225'000</strong></details>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="kalkulation.html">← Kalkulation</a>
+      <a href="../uebungen/nutzschwelle.html">🏋️ Übungen Nutzschwelle</a>
+      <a href="abschreibungen.html">Abschreibungen →</a>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

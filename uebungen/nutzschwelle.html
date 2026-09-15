@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungen – Nutzschwelle / Break-Even</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.diff-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.diff-tab{padding:8px 20px;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:13px;font-weight:700;transition:all 0.15s}
+.diff-tab.lv0.active{background:#4caf50;color:white;border-color:#4caf50}
+.diff-tab.lv1.active{background:#2196f3;color:white;border-color:#2196f3}
+.diff-tab.lv2.active{background:#ff9800;color:white;border-color:#ff9800}
+.diff-tab.lv3.active{background:#f44336;color:white;border-color:#f44336}
+.level-desc{font-size:13px;color:var(--muted);margin-bottom:20px;padding:10px 16px;background:white;border-radius:8px;border:1px solid var(--border)}
+.ex{background:white;border:1.5px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.ex-head{padding:10px 16px;font-weight:700;font-size:13px;background:var(--blue-pale);border-bottom:1px solid var(--border)}
+.ex-body{padding:16px}
+.ex-q{font-size:14px;margin-bottom:12px;line-height:1.6}
+.rg{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.rg label{display:flex;align-items:center;gap:6px;padding:6px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px}
+.rg label:hover{border-color:var(--blue)}
+.rg input[type=radio]{accent-color:var(--blue)}
+input.ex-num{width:110px;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right}
+.chk-btn{background:var(--blue);color:white;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;margin-top:10px}
+.chk-btn:hover{background:var(--blue-light)}
+.fb{margin-top:10px;padding:9px 14px;border-radius:7px;font-size:13px;display:none;line-height:1.5}
+.fb.ok{background:#f0fff4;border:1.5px solid #86d9a0;color:#1a5c2e;display:block}
+.fb.no{background:#fff5f5;border:1.5px solid #f0a0a0;color:#8b0000;display:block}
+.fb.tip{background:#f0f4ff;border:1.5px solid #a0b8f0;color:#1a3a6b;display:block}
+.formel-reminder{background:#f0f4ff;border:1.5px solid #a0b8f0;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px}
+.formel-reminder .fr-title{font-weight:700;color:var(--blue);margin-bottom:6px}
+.formel-reminder code{background:white;padding:4px 8px;border-radius:4px;font-size:13px;font-weight:700;border:1px solid #a0b8f0}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="../index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="../index.html">Übersicht</a>
+    <a href="../learn/bilanz.html">Bilanz</a>
+    <a href="../learn/buchungssatz.html">Buchungssatz</a>
+    <a href="../learn/zinsrechnung.html">Zinsrechnung</a>
+    <a href="../learn/fremdewaehrungen.html">Fremde Währungen</a>
+    <a href="../learn/mwst.html">MWST</a>
+    <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/nutzschwelle.html" class="active">Nutzschwelle</a>
+    <a href="../learn/abschreibungen.html">Abschreibungen</a>
+  </nav>
+  <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
+</div>
+
+<div class="page-hero">
+  <h1>⚖️ Übungen – Nutzschwelle / Break-Even</h1>
+  <p>Kapitel 10 · Deckungsbeitrag, Nutzschwelle, Zielumsatz – ein und mehrere Produkte</p>
+</div>
+
+<div class="container">
+
+  <div class="formel-reminder">
+    <div class="fr-title">📌 Formel-Reminder</div>
+    <code>DB = VP − vK/Stk</code> &nbsp;|&nbsp;
+    <code>NSm = FK / DB</code> &nbsp;|&nbsp;
+    <code>NSw = NSm × VP</code> &nbsp;|&nbsp;
+    <code>Zielmenge = (FK+Gewinn) / DB</code><br>
+    <small style="color:var(--muted)">Mehrprodukte: DB-Marge = DB total × 100 / Nettoerlös &nbsp;|&nbsp; NSw = FK / DB-Marge &nbsp;|&nbsp; Zielumsatz = (FK+Gewinn) / DB-Marge</small>
+  </div>
+
+  <div class="diff-tabs">
+    <button class="diff-tab lv0 active" onclick="showLv(0)">⭐ Kinderleicht</button>
+    <button class="diff-tab lv1" onclick="showLv(1)">🟢 Einfach</button>
+    <button class="diff-tab lv2" onclick="showLv(2)">🟡 Mittel</button>
+    <button class="diff-tab lv3" onclick="showLv(3)">🔴 Schwer</button>
+  </div>
+
+  <!-- ══════════ LEVEL 0 ══════════ -->
+  <div class="level-section" id="lv0">
+    <div class="level-desc">⭐ <strong>Kinderleicht</strong> – Deckungsbeitrag und Grundformel anwenden.</div>
+
+    <div class="ex" id="e0_1">
+      <div class="ex-head">Aufgabe 1 – Deckungsbeitrag berechnen</div>
+      <div class="ex-body">
+        <div class="ex-q">Verkaufspreis = CHF <strong>20</strong> · variable Kosten pro Stück = CHF <strong>12</strong><br><br>Wie hoch ist der Deckungsbeitrag (DB)?</div>
+        DB = CHF <input class="ex-num" type="number" id="n0_1" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_1',8,0.05,'CHF','DB=VP-vK=20-12=8.')">Prüfen</button>
+        <div class="fb" id="n0_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_2">
+      <div class="ex-head">Aufgabe 2 – Nutzschwelle mengenmässig (NSm)</div>
+      <div class="ex-body">
+        <div class="ex-q">DB pro Stück = CHF <strong>8</strong> · Fixkosten = CHF <strong>40'000</strong><br><br>Wie viele Stück müssen verkauft werden, um die Nutzschwelle zu erreichen?</div>
+        NSm = <input class="ex-num" type="number" id="n0_2" placeholder="0"> Stück
+        <button class="chk-btn" onclick="chkN('n0_2',5000,0,'Stück','NSm=40000/8=5000.')">Prüfen</button>
+        <div class="fb" id="n0_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_3">
+      <div class="ex-head">Aufgabe 3 – Nutzschwelle wertmässig (NSw)</div>
+      <div class="ex-body">
+        <div class="ex-q">NSm = <strong>5'000 Stück</strong> · Verkaufspreis = CHF <strong>20</strong><br><br>Wie hoch ist der Umsatz bei der Nutzschwelle?</div>
+        NSw = CHF <input class="ex-num" type="number" id="n0_3" placeholder="0">
+        <button class="chk-btn" onclick="chkN('n0_3',100000,1,'CHF','NSw=5000×20=100000.')">Prüfen</button>
+        <div class="fb" id="n0_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_4">
+      <div class="ex-head">Aufgabe 4 – Begriff: Fixe Kosten</div>
+      <div class="ex-body">
+        <div class="ex-q">Welche Aussage beschreibt fixe Kosten korrekt?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_4" value="A"> Sie sind immer gleich hoch, unabhängig vom Absatz</label>
+          <label><input type="radio" name="e0_4" value="B"> Sie steigen und fallen mit dem Absatz</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_4','A','Fixe Kosten (z.B. Miete) bleiben gleich, egal wie viel verkauft wird. Variable Kosten verändern sich mit dem Absatz.')">Prüfen</button>
+        <div class="fb" id="e0_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_5">
+      <div class="ex-head">Aufgabe 5 – Begriff: Variable Kosten</div>
+      <div class="ex-body">
+        <div class="ex-q">Welches ist ein typisches Beispiel für <strong>variable</strong> Kosten?</div>
+        <div class="rg">
+          <label><input type="radio" name="e0_5" value="A"> Mietkosten</label>
+          <label><input type="radio" name="e0_5" value="B"> Rohmaterialverbrauch</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e0_5','B','Rohmaterial wird nur gekauft, wenn produziert wird → variabel. Miete fällt immer gleich an → fix.')">Prüfen</button>
+        <div class="fb" id="e0_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_6">
+      <div class="ex-head">Aufgabe 6 – Kebab-Stand: Deckungsbeitrag</div>
+      <div class="ex-body">
+        <div class="ex-q">Ali verkauft einen Kebab für CHF <strong>9.10</strong>. Die Zutaten kosten CHF <strong>4.35</strong> pro Kebab.<br><br>Wie hoch ist der Deckungsbeitrag pro Kebab?</div>
+        DB = CHF <input class="ex-num" type="number" id="n0_6" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n0_6',4.75,0.02,'CHF','DB=9.10-4.35=4.75.')">Prüfen</button>
+        <div class="fb" id="n0_6-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e0_7">
+      <div class="ex-head">Aufgabe 7 – Kebab-Stand: Nutzschwelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Fixkosten pro Tag = CHF <strong>198</strong> · DB pro Kebab = CHF <strong>4.75</strong><br><br>Wie viele Kebabs muss Ali pro Tag verkaufen? <small style="color:var(--muted)">(auf ganze Kebabs aufrunden!)</small></div>
+        NSm = <input class="ex-num" type="number" id="n0_7" placeholder="0"> Kebabs
+        <button class="chk-btn" onclick="chkN('n0_7',42,0,'Kebabs','198/4.75=41.68 → aufgerundet 42 Kebabs.')">Prüfen</button>
+        <div class="fb" id="n0_7-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 1 ══════════ -->
+  <div class="level-section" id="lv1" style="display:none">
+    <div class="level-desc">🟢 <strong>Einfach</strong> – Zielmenge, Zielumsatz und mehrstufige Aufgaben.</div>
+
+    <div class="ex" id="e1_1">
+      <div class="ex-head">Aufgabe 1 – Freitag-Taschen: Nutzschwelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Fixkosten/Monat = CHF <strong>24'000</strong> · Einstandspreis = CHF <strong>480</strong> · Verkaufspreis = CHF <strong>640</strong><br><br>Wie viele Taschen müssen pro Monat verkauft werden?</div>
+        NSm = <input class="ex-num" type="number" id="n1_1" placeholder="0"> Taschen
+        <button class="chk-btn" onclick="chkN('n1_1',150,0,'Taschen','DB=640-480=160. NSm=24000/160=150.')">Prüfen</button>
+        <div class="fb" id="n1_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_2">
+      <div class="ex-head">Aufgabe 2 – Freitag-Taschen: Zielmenge &amp; Zielumsatz</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie im Beispiel oben. Gesucht: Menge und Umsatz für einen Monatsgewinn von CHF <strong>4'000</strong>.<br><br>
+        <strong>a)</strong> Zielmenge: <input class="ex-num" type="number" id="n1_2a" placeholder="0" style="width:80px"> Taschen<br><br>
+        <strong>b)</strong> Zielumsatz: CHF <input class="ex-num" type="number" id="n1_2b" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkZwei('n1_2a','n1_2b',175,112000,'Zielmenge=(24000+4000)/160=175. Zielumsatz=175×640=112000.')">Prüfen</button>
+        <div class="fb" id="e1_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_3">
+      <div class="ex-head">Aufgabe 3 – Open Air Festival: Deckungsbeitrag pro Ticket</div>
+      <div class="ex-body">
+        <div class="ex-q">Ticketpreis = CHF <strong>60</strong> · Vergnügungssteuer = <strong>10%</strong> vom Ticketpreis · Provision an Verkaufsvermittler = CHF <strong>3</strong> pro Ticket<br><br>Wie hoch ist der Deckungsbeitrag pro Ticket?</div>
+        DB = CHF <input class="ex-num" type="number" id="n1_3" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n1_3',51,0.05,'CHF','60-6(10%)-3=51.')">Prüfen</button>
+        <div class="fb" id="n1_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_4">
+      <div class="ex-head">Aufgabe 4 – Open Air Festival: benötigte Besucherzahl</div>
+      <div class="ex-body">
+        <div class="ex-q">Fixkosten total (Gage 250'000 + Miete 40'000 + Löhne 20'000 + übrige Kosten 30'000) = CHF <strong>340'000</strong>. DB pro Ticket = CHF <strong>51</strong>.<br><br>Wie viele Besucher werden mindestens benötigt? <small style="color:var(--muted)">(aufrunden!)</small></div>
+        NSm = <input class="ex-num" type="number" id="n1_4" placeholder="0"> Besucher
+        <button class="chk-btn" onclick="chkN('n1_4',6667,0,'Besucher','340000/51=6666.67 → aufgerundet 6667.')">Prüfen</button>
+        <div class="fb" id="n1_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_5">
+      <div class="ex-head">Aufgabe 5 – Güggeli-Express: DB und Nutzschwelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Verkaufspreis je Poulet = CHF <strong>15</strong> · variable Kosten je Poulet = CHF <strong>8</strong> · Fixkosten je Tag = CHF <strong>700</strong><br><br>
+        <strong>a)</strong> DB pro Poulet: CHF <input class="ex-num" type="number" id="n1_5a" placeholder="0" style="width:80px"><br><br>
+        <strong>b)</strong> Tägliche Nutzschwelle: <input class="ex-num" type="number" id="n1_5b" placeholder="0"> Poulets</div>
+        <button class="chk-btn" onclick="chkZwei('n1_5a','n1_5b',7,100,'DB=15-8=7. NSm=700/7=100.')">Prüfen</button>
+        <div class="fb" id="e1_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e1_6">
+      <div class="ex-head">Aufgabe 6 – Begriff: Deckungsbeitrag-Formel</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie berechnet man den Deckungsbeitrag pro Stück?</div>
+        <div class="rg">
+          <label><input type="radio" name="e1_6" value="A"> Verkaufspreis − variable Kosten pro Stück</label>
+          <label><input type="radio" name="e1_6" value="B"> Verkaufspreis − Fixkosten</label>
+          <label><input type="radio" name="e1_6" value="C"> Fixkosten / Verkaufspreis</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e1_6','A','DB = VP − variable Kosten pro Stück. Fixkosten fliessen erst bei der Nutzschwellenberechnung (NSm=FK/DB) ein.')">Prüfen</button>
+        <div class="fb" id="e1_6-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 2 ══════════ -->
+  <div class="level-section" id="lv2" style="display:none">
+    <div class="level-desc">🟡 <strong>Mittel</strong> – Deckungsbeitragsmarge und Mehrprodukte-Betriebe.</div>
+
+    <div class="ex" id="e2_1">
+      <div class="ex-head">Aufgabe 1 – Pizzeria Torre: DB-Marge</div>
+      <div class="ex-body">
+        <div class="ex-q">Warenertrag = CHF <strong>300'000</strong> · Warenaufwand = CHF <strong>160'000</strong><br><br>Wie hoch ist die Deckungsbeitragsmarge (DB-Marge)?</div>
+        DB-Marge = <input class="ex-num" type="number" id="n2_1" placeholder="0" step="0.01"> %
+        <button class="chk-btn" onclick="chkN('n2_1',46.67,0.1,'%','DB=300000-160000=140000. Marge=140000×100/300000=46.67%.')">Prüfen</button>
+        <div class="fb" id="n2_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_2">
+      <div class="ex-head">Aufgabe 2 – Pizzeria Torre: Nutzschwelle wertmässig</div>
+      <div class="ex-body">
+        <div class="ex-q">Fixkosten (Montagabend) = CHF <strong>470</strong> · DB-Marge = <strong>46.67%</strong><br><br>Wie hoch muss der Umsatz mindestens sein?</div>
+        NSw = CHF <input class="ex-num" type="number" id="n2_2" placeholder="0" step="0.01">
+        <button class="chk-btn" onclick="chkN('n2_2',1007.10,2,'CHF','NSw=470/46.67%=1007.10.')">Prüfen</button>
+        <div class="fb" id="n2_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_3">
+      <div class="ex-head">Aufgabe 3 – Mehrprodukte-Betrieb: Nutzschwelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Nettoerlös = CHF <strong>500'000</strong> · DB total = CHF <strong>200'000</strong> · Fixkosten = CHF <strong>90'000</strong><br><br>
+        <strong>a)</strong> DB-Marge: <input class="ex-num" type="number" id="n2_3a" placeholder="0" style="width:80px"> %<br><br>
+        <strong>b)</strong> Nutzschwelle wertmässig: CHF <input class="ex-num" type="number" id="n2_3b" placeholder="0"></div>
+        <button class="chk-btn" onclick="chkZwei('n2_3a','n2_3b',40,225000,'Marge=200000×100/500000=40%. NSw=90000/40%=225000.')">Prüfen</button>
+        <div class="fb" id="e2_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_4">
+      <div class="ex-head">Aufgabe 4 – Mehrprodukte-Betrieb: Zielumsatz</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie in Aufgabe 3 (Fixkosten CHF 90'000, DB-Marge 40%). Gesucht: Umsatz für einen Gewinn von CHF <strong>60'000</strong>.</div>
+        Zielumsatz = CHF <input class="ex-num" type="number" id="n2_4" placeholder="0">
+        <button class="chk-btn" onclick="chkN('n2_4',375000,1,'CHF','(90000+60000)/40%=375000.')">Prüfen</button>
+        <div class="fb" id="n2_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_5">
+      <div class="ex-head">Aufgabe 5 – Kebab-Stand: höherer Verkaufspreis</div>
+      <div class="ex-body">
+        <div class="ex-q">Ali erhöht den Kebab-Preis auf CHF <strong>9.50</strong> (Zutaten weiterhin CHF 4.35). Fixkosten/Tag = CHF <strong>198</strong>.<br><br>Wie viele Kebabs muss er jetzt pro Tag verkaufen?</div>
+        NSm = <input class="ex-num" type="number" id="n2_5" placeholder="0"> Kebabs
+        <button class="chk-btn" onclick="chkN('n2_5',39,0,'Kebabs','DB=9.50-4.35=5.15. 198/5.15=38.45 → aufgerundet 39.')">Prüfen</button>
+        <div class="fb" id="n2_5-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e2_6">
+      <div class="ex-head">Aufgabe 6 – Kebab-Stand: Menge aus Jahresgewinn</div>
+      <div class="ex-body">
+        <div class="ex-q">Ali erwirtschaftet CHF <strong>21'350</strong> Gewinn im Jahr. Fixkosten/Jahr = CHF <strong>49'896</strong>. DB/Kebab (bei VP 9.10) = CHF <strong>4.75</strong>.<br><br>Wie viele Kebabs hat er im Jahr verkauft?</div>
+        Menge = <input class="ex-num" type="number" id="n2_6" placeholder="0"> Kebabs
+        <button class="chk-btn" onclick="chkN('n2_6',15000,5,'Kebabs','(49896+21350)/4.75=71246/4.75=15000.')">Prüfen</button>
+        <div class="fb" id="n2_6-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LEVEL 3 ══════════ -->
+  <div class="level-section" id="lv3" style="display:none">
+    <div class="level-desc">🔴 <strong>Schwer</strong> – Mehrstufige Textaufgaben mit mehreren Fixkosten-Positionen.</div>
+
+    <div class="ex" id="e3_1">
+      <div class="ex-head">Aufgabe 1 – Güggeli-Express: Selbstkosten und Gewinn bei 100 Stück</div>
+      <div class="ex-body">
+        <div class="ex-q">VP = CHF 15 · vK = CHF 8 · Fixkosten/Tag = CHF 700. Bei <strong>100</strong> verkauften Poulets:<br><br>
+        <strong>a)</strong> Selbstkosten (Fixkosten + variable Kosten total): CHF <input class="ex-num" type="number" id="n3_1a" placeholder="0" style="width:90px"><br><br>
+        <strong>b)</strong> Gewinn (Nettoerlös − Selbstkosten): CHF <input class="ex-num" type="number" id="n3_1b" placeholder="0" style="width:90px"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_1a','n3_1b',1500,0,'Selbstkosten=700+100×8=1500. Nettoerlös=100×15=1500. Gewinn=1500-1500=0 (genau die Nutzschwelle!).')">Prüfen</button>
+        <div class="fb" id="e3_1-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_2">
+      <div class="ex-head">Aufgabe 2 – Bandfestival: Nutzschwelle &amp; Zielmenge</div>
+      <div class="ex-body">
+        <div class="ex-q">Kosten: Band CHF 20'000, Halle CHF 5'000, Sonstiges CHF 10'000, Personal CHF 5'000 (= Fixkosten total). Ticketpreis CHF 50, Gebühren/Steuern CHF 5 pro Ticket.<br><br>
+        <strong>a)</strong> Wie viele Tickets für Kostendeckung? <input class="ex-num" type="number" id="n3_2a" placeholder="0" style="width:90px"><br><br>
+        <strong>b)</strong> Wie viele Tickets für CHF 5'000 Gewinn? <input class="ex-num" type="number" id="n3_2b" placeholder="0" style="width:90px"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_2a','n3_2b',889,1000,'FK=40000. DB=50-5=45. a) 40000/45=888.9→889. b) 45000/45=1000.')">Prüfen</button>
+        <div class="fb" id="e3_2-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_3">
+      <div class="ex-head">Aufgabe 3 – Budget-Analyse: DB-Marge &amp; Nutzschwelle</div>
+      <div class="ex-body">
+        <div class="ex-q">Verkaufserlös CHF 2'600'000. Variable Kosten total (Einzelmaterial 600'000 + Gemeinkosten variabel 400'000) = CHF 1'000'000. Fixkosten CHF 1'500'000.<br><br>
+        <strong>a)</strong> DB-Marge: <input class="ex-num" type="number" id="n3_3a" placeholder="0" style="width:80px"> %<br><br>
+        <strong>b)</strong> Nutzschwelle wertmässig: CHF <input class="ex-num" type="number" id="n3_3b" placeholder="0" style="width:120px"></div>
+        <button class="chk-btn" onclick="chkZwei('n3_3a','n3_3b',61.5,2439024,'DB=2600000-1000000=1600000. Marge=1600000×100/2600000=61.5%. NSw=1500000/0.615=2439024.39.')">Prüfen</button>
+        <div class="fb" id="e3_3-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_4">
+      <div class="ex-head">Aufgabe 4 – Budget-Analyse: Zielumsatz</div>
+      <div class="ex-body">
+        <div class="ex-q">Wie in Aufgabe 3 (Fixkosten CHF 1'500'000, DB-Marge 61.5%). Bei welchem Umsatz würde ein Gewinn von CHF <strong>250'000</strong> erzielt?</div>
+        Zielumsatz = CHF <input class="ex-num" type="number" id="n3_4" placeholder="0">
+        <button class="chk-btn" onclick="chkN('n3_4',2845528,50,'CHF','(1500000+250000)/0.615=2845528.46.')">Prüfen</button>
+        <div class="fb" id="n3_4-fb"></div>
+      </div>
+    </div>
+
+    <div class="ex" id="e3_5">
+      <div class="ex-head">Aufgabe 5 – Kebab-Stand: alles kombiniert</div>
+      <div class="ex-body">
+        <div class="ex-q">Miete CHF 630/Monat (21 Tage geöffnet, 8h/Tag) · Stundenlohn Standbetreuung CHF 21 · Zutaten total CHF 4.35 · Verkaufspreis CHF 9.10.<br><br>
+        <strong>a)</strong> Fixkosten pro Tag (Miete/21 + Lohn 8h×21.-): CHF <input class="ex-num" type="number" id="n3_5a" placeholder="0" style="width:90px"><br><br>
+        <strong>b)</strong> Tägliche Nutzschwelle (aufgerundet): <input class="ex-num" type="number" id="n3_5b" placeholder="0" style="width:90px"> Kebabs</div>
+        <button class="chk-btn" onclick="chkZwei('n3_5a','n3_5b',198,42,'Miete/Tag=630/21=30. Lohn/Tag=8×21=168. FK=30+168=198. NSm=198/4.75=41.68→42.')">Prüfen</button>
+        <div class="fb" id="e3_5-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="../learn/nutzschwelle.html">← Theorie Nutzschwelle</a>
+    <a href="abschreibungen.html">Übungen Abschreibungen →</a>
+  </div>
+
+</div>
+
+<script>
+function showLv(n){
+  document.querySelectorAll('.level-section').forEach((s,i)=>s.style.display=i===n?'block':'none');
+  document.querySelectorAll('.diff-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+}
+function chkR(id,ans,tip){
+  const el=document.getElementById(id),sel=el.querySelector('input:checked'),fb=document.getElementById(id+'-fb');
+  if(!sel){fb.textContent='⚠️ Bitte wähle eine Antwort.';fb.className='fb tip';return;}
+  if(sel.value===ans){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> '+tip;fb.className='fb no';}
+}
+function chkN(id,ans,tol,unit,tip){
+  const el=document.getElementById(id),fb=document.getElementById(id+'-fb');
+  const val=parseFloat(el.value);
+  if(isNaN(val)){fb.textContent='⚠️ Bitte gib eine Zahl ein.';fb.className='fb tip';return;}
+  if(Math.abs(val-ans)<=tol){fb.innerHTML='✅ <strong>Richtig!</strong> '+tip;fb.className='fb ok';}
+  else{fb.innerHTML='❌ <strong>Falsch.</strong> Richtig: <strong>'+ans.toLocaleString('de-CH')+(unit?' '+unit:'')+'</strong>. '+tip;fb.className='fb no';}
+}
+function chkZwei(id1,id2,a1,a2,tip){
+  const v1=parseFloat(document.getElementById(id1).value),v2=parseFloat(document.getElementById(id2).value);
+  const fbEl=document.getElementById(id1).closest('.ex').querySelector('.fb');
+  const ok1=!isNaN(v1)&&Math.abs(v1-a1)<=Math.max(1,a1*0.01),ok2=!isNaN(v2)&&Math.abs(v2-a2)<=Math.max(1,a2*0.01);
+  if(ok1&&ok2){fbEl.innerHTML='✅ <strong>Richtig!</strong> '+tip;fbEl.className='fb ok';}
+  else{fbEl.innerHTML='❌ a)='+a1.toLocaleString('de-CH')+', b)='+a2.toLocaleString('de-CH')+'. '+tip;fbEl.className='fb no';}
+}
+</script>
+</body>
+</html>

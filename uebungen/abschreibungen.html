@@ -47,6 +47,7 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
     <a href="../learn/fremdewaehrungen.html">Fremde Währungen</a>
     <a href="../learn/mwst.html">MWST</a>
     <a href="../learn/kalkulation.html">Kalkulation</a>
+    <a href="../learn/nutzschwelle.html">Nutzschwelle</a>
     <a href="../learn/abschreibungen.html" class="active">Abschreibungen</a>
   </nav>
   <a href="../exam.html" class="exam-btn">📝 Prüfungsübung</a>
@@ -237,6 +238,19 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="n1_6-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e1_7">
+      <div class="ex-head">Aufgabe 7 – Direkte Verbuchung</div>
+      <div class="ex-body">
+        <div class="ex-q">Bei der «direkten» Verbuchungsmethode buchen wir den Wertverlust...</div>
+        <div class="rg">
+          <label><input type="radio" name="e1_7" value="A"> direkt auf das Anlagekonto (Abschreibungen / Fahrzeuge)</label>
+          <label><input type="radio" name="e1_7" value="B"> auf ein separates Wertberichtigungskonto</label>
+        </div>
+        <button class="chk-btn" onclick="chkR('e1_7','A','Direkte Verbuchung: Abschreibungen/Anlagekonto – das Anlagekonto zeigt sofort den neuen Buchwert. Die indirekte Methode mit Wertberichtigungskonto ist nicht Teil dieses Kurses.')">Prüfen</button>
+        <div class="fb" id="e1_7-fb"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════ LEVEL 2 ══════════ -->
@@ -402,6 +416,21 @@ input.ex-num{width:100px;padding:6px 10px;border:1.5px solid var(--border);borde
         <div class="fb" id="e3_5-fb"></div>
       </div>
     </div>
+
+    <div class="ex" id="e3_6">
+      <div class="ex-head">Aufgabe 6 – Verkauf einer Maschine vor Ablauf der Nutzungsdauer</div>
+      <div class="ex-body">
+        <div class="ex-q">Eine Maschine mit Buchwert CHF <strong>8'000</strong> wird bar für CHF <strong>9'500</strong> verkauft.<br><br>
+        Ausserordentlicher Erfolg (Betrag): CHF <input class="ex-num" type="number" id="n3_6" placeholder="0" step="0.01"><br>
+        Handelt es sich um einen a.o. Ertrag oder a.o. Aufwand?
+        <div class="rg">
+          <label><input type="radio" name="e3_6r" value="Ertrag"> a.o. Ertrag</label>
+          <label><input type="radio" name="e3_6r" value="Aufwand"> a.o. Aufwand</label>
+        </div></div>
+        <button class="chk-btn" onclick="chkVerkauf()">Prüfen</button>
+        <div class="fb" id="e3_6-fb"></div>
+      </div>
+    </div>
   </div>
 
   <div class="bottom-nav">
@@ -528,6 +557,15 @@ function chkVergleich2(){
   document.getElementById('n3_5b').style.borderColor=okD?'#2a7a3c':'#b01c1c';
   if(okL&&okD&&okW){fb.innerHTML='✅ <strong>Richtig!</strong> Lin=80000−3×16000=32000. Deg=80000×0.75³=33750. Linear hat tieferen BW.';fb.className='fb ok';}
   else{fb.innerHTML='❌ Lin=80000-3×16000=32000. Deg=80000×0.75³=33750. → Linear hat tieferen BW.';fb.className='fb no';}
+}
+function chkVerkauf(){
+  const val=parseFloat(document.getElementById('n3_6').value);
+  const sel=document.querySelector('input[name="e3_6r"]:checked');
+  const fb=document.getElementById('e3_6-fb');
+  const okV=!isNaN(val)&&Math.abs(val-1500)<=0.5;
+  const okS=sel&&sel.value==='Ertrag';
+  if(okV&&okS){fb.innerHTML='✅ <strong>Richtig!</strong> Verkaufspreis (9500) − Buchwert (8000) = 1500 → höher als Buchwert → a.o. Ertrag. Buchung: Kasse/Maschine 8000 + Kasse/a.o. Ertrag 1500.';fb.className='fb ok';}
+  else{fb.innerHTML='❌ Erfolg = 9500−8000 = CHF 1500. Verkaufspreis > Buchwert → a.o. Ertrag.';fb.className='fb no';}
 }
 </script>
 </body>

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nullserie 2 – Finance Skills</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --blue: #1a3a6b;
+  --blue-light: #2a5298;
+  --green: #1a7a3c;
+  --red: #b01c1c;
+  --orange: #d46b00;
+  --bg: #f4f6fa;
+  --card: #ffffff;
+  --border: #d0d8e8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: #222; font-size: 14px; }
+
+header {
+  background: var(--blue);
+  color: white;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+header h1 { font-size: 20px; font-weight: bold; }
+header p { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+
+.container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+
+.scenario-box {
+  background: #fffbf0;
+  border: 1px solid #e8d8a0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.scenario-box h3 { color: var(--orange); margin-bottom: 6px; font-size: 14px; font-weight: bold; }
+
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.task-header {
+  background: var(--blue);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.task-header .badge {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.task-header h2 { font-size: 16px; }
+.task-body { padding: 16px 20px; }
+
+.class-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.class-table th, .class-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.class-table th { background: #edf1fa; font-weight: bold; }
+.class-table td:first-child { text-align: left; font-weight: 500; }
+.class-table input[type=radio] { width: 16px; height: 16px; cursor: pointer; }
+
+.booking-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.booking-table th, .booking-table td { border: 1px solid var(--border); padding: 6px 8px; }
+.booking-table th { background: #edf1fa; font-weight: bold; }
+.booking-table select, .booking-table input[type=number] {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #c0c8d8;
+  border-radius: 4px;
+  background: white;
+  font-size: 13px;
+}
+.lueck-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.lueck-table td { padding: 7px 4px; vertical-align: middle; }
+.lueck-table input[type=text] {
+  width: 220px; padding: 5px 8px; border: 1px solid #c0c8d8; border-radius: 4px; font-size: 13px;
+}
+
+.calc-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.calc-row label { min-width: 260px; font-weight: 500; }
+.calc-input {
+  width: 140px;
+  padding: 5px 8px;
+  border: 1px solid #c0c8d8;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: right;
+}
+.unit { color: #555; }
+
+.expl { display: none; font-size: 12px; color: var(--red); padding: 4px 0 2px 8px; line-height: 1.4; }
+.expl.show { display: block; }
+
+table tr.row-correct td { background: #d4edda; }
+table tr.row-wrong td { background: #f8d7da; }
+
+.btn-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.btn-check {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-check:hover { background: var(--blue-light); }
+.btn-reset {
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-reset:hover { background: #edf1fa; }
+
+#score-panel {
+  display: none;
+  background: var(--card);
+  border: 2px solid var(--blue);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+#score-panel.show { display: block; }
+#score-value { font-size: 36px; font-weight: bold; color: var(--blue); }
+#score-label { font-size: 14px; color: #555; margin-top: 4px; }
+
+.kontenplan {
+  background: #fffbf0;
+  border: 1px solid #e8d8a0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+.kontenplan summary { font-weight: bold; cursor: pointer; color: var(--orange); }
+.kontenplan ul { margin: 8px 0 0 16px; columns: 2; gap: 20px; }
+.kontenplan li { margin: 2px 0; }
+
+.subtask { font-weight: bold; color: var(--blue); margin: 16px 0 6px; font-size: 14px; }
+.task-desc { color: #444; margin-bottom: 10px; font-size: 13px; line-height: 1.5; }
+
+.task-score { display: none; margin-left: auto; font-size: 13px; font-weight: bold; background: white; color: var(--blue); padding: 2px 10px; border-radius: 10px; }
+.task-score.show { display: inline-block; }
+
+.total-bar { text-align: center; margin: 24px 0; }
+.total-btn {
+  background: #1a7a3c;
+  color: white;
+  border: none;
+  padding: 14px 48px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.total-btn:hover { background: #145f2f; }
+.reset-all-btn {
+  background: transparent;
+  color: #555;
+  border: 2px solid #999;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+.reset-all-btn:hover { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="index.html">Finance Skills <span>Lernhub</span></a>
+  <nav>
+    <a href="index.html">Übersicht</a>
+    <a href="learn/nutzschwelle.html">Nutzschwelle</a>
+    <a href="exam.html">Nullserie</a>
+    <a href="zwischenpruefung.html">1. ZP</a>
+    <a href="zwischenpruefung2.html">2. ZP</a>
+  </nav>
+  <a href="index.html" class="exam-btn" style="background:#555">← Zurück zum Hub</a>
+</div>
+
+<header>
+  <div>
+    <h1>Nullserie 2 – Finance Skills (Finanz- und Rechnungswesen)</h1>
+    <p>BVS St. Gallen · Handelsdiplom VSH · Modulprüfung-Stil · Alle Kurseinheiten · 100 Punkte · 90 Minuten</p>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="scenario-box">
+  <h3>Ausgangssituation</h3>
+  <p><strong>Bergsport AG</strong> mit Sitz in Chur (GR) importiert Outdoor- und Bergsportausrüstung aus Österreich (EUR) und den USA (USD) und verkauft diese über eigene Filialen in der Schweiz. Das Unternehmen besitzt einen Lieferwagen sowie Lagerausrüstung und testet im Sommer einen Pop-up-Verkaufsstand am Ausflugsziel Arosa. Alle Beträge sind in CHF, ausser wo eine Fremdwährung explizit angegeben ist.</p>
+</div>
+
+<div id="score-panel">
+  <div id="score-value"></div>
+  <div id="score-label"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 1 – Theorie Lückentext -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task1">
+  <div class="task-header">
+    <h2>Aufgabe 1 – Theorie: Lückentext</h2>
+    <span class="badge">8 Punkte</span>
+    <span class="task-score" id="score1"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Ergänzen Sie den Satz so, dass er Sinn macht (je 1 Punkt).</p>
+    <table class="lueck-table" id="a1table"></table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask1()">Aufgabe 1 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask1()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 2 – Kontenklassifikation -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task2">
+  <div class="task-header">
+    <h2>Aufgabe 2 – Kontenklassifikation</h2>
+    <span class="badge">12 Punkte</span>
+    <span class="task-score" id="score2"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Ordnen Sie jeden Begriff der richtigen Kategorie zu.</p>
+    <table class="class-table" id="a2table">
+      <thead><tr><th style="text-align:left">Begriff</th><th>UV</th><th>AV</th><th>FK</th><th>EK</th><th>Aufwand</th><th>Ertrag</th><th style="width:0;border:none"></th></tr></thead>
+      <tbody id="a2body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask2()">Aufgabe 2 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask2()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 3 – Buchungssätze -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task3">
+  <div class="task-header">
+    <h2>Aufgabe 3 – Buchungssätze</h2>
+    <span class="badge">15 Punkte</span>
+    <span class="task-score" id="score3"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Bestimmen Sie Soll und Haben für jeden Geschäftsfall. Es sind <b>keine Beträge</b> einzutragen (je 1.5 Punkte).</p>
+    <details class="kontenplan">
+      <summary>📋 Kontenplan anzeigen</summary>
+      <ul id="a3kontenplan"></ul>
+    </details>
+    <table class="booking-table" id="a3table">
+      <thead><tr><th style="width:30px">#</th><th style="width:340px">Geschäftsfall</th><th>Soll</th><th>Haben</th></tr></thead>
+      <tbody id="a3body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask3()">Aufgabe 3 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask3()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 4 – Bilanzveränderungstypen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task4">
+  <div class="task-header">
+    <h2>Aufgabe 4 – Bilanzveränderungstypen</h2>
+    <span class="badge">10 Punkte</span>
+    <span class="task-score" id="score4"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Klassifizieren Sie jeden Geschäftsfall aus Aufgabe 3 (je 1 Punkt).</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:#555">
+      <span><b>AT</b> = Aktivtausch</span><span><b>PT</b> = Passivtausch</span><span><b>KB</b> = Kapitalbeschaffung</span>
+      <span><b>KR</b> = Kapitalrückzahlung</span><span><b>EW</b> = Erfolgswirksam</span>
+    </div>
+    <table class="class-table" id="a4table">
+      <thead><tr><th style="width:30px">#</th><th style="text-align:left;width:260px">Geschäftsfall</th><th>AT</th><th>PT</th><th>KB</th><th>KR</th><th>EW</th><th style="width:0;border:none"></th></tr></thead>
+      <tbody id="a4body"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask4()">Aufgabe 4 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask4()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 5 – Zinsrechnen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task5">
+  <div class="task-header">
+    <h2>Aufgabe 5 – Zinsrechnen</h2>
+    <span class="badge">10 Punkte</span>
+    <span class="task-score" id="score5"></span>
+  </div>
+  <div class="task-body">
+    <div class="subtask">5a) Zinstage berechnen (je 2 Punkte)</div>
+    <table class="class-table" id="a5atable" style="margin-bottom:12px">
+      <thead><tr><th>Von</th><th>Bis</th><th>Zinstage</th></tr></thead>
+      <tbody>
+        <tr><td>05.01.2025</td><td>20.05.2025</td><td><input type="number" id="d5a1" style="width:90px;text-align:right" placeholder="Tage"></td></tr>
+        <tr><td>18.06.2024</td><td>30.11.2024</td><td><input type="number" id="d5a2" style="width:90px;text-align:right" placeholder="Tage"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="subtask">5b) Zinsbetrag Z gesucht (2 Punkte)</div>
+    <p class="task-desc">K = CHF 18'000 · p = 3.5% · t = 150 Tage</p>
+    <div class="calc-row"><label for="d5b">Z =</label><input type="number" class="calc-input" id="d5b" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb5b" class="expl"></div>
+
+    <div class="subtask">5c) Kapital K gesucht (2 Punkte)</div>
+    <p class="task-desc">Z = CHF 320 · p = 4% · t = 200 Tage</p>
+    <div class="calc-row"><label for="d5c">K =</label><input type="number" class="calc-input" id="d5c" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb5c" class="expl"></div>
+
+    <div class="subtask">5d) Verrechnungssteuer (2 Punkte)</div>
+    <p class="task-desc">Bruttozins CHF 540.–, Verrechnungssteuer 35%. Nettozins?</p>
+    <div class="calc-row"><label for="d5d">Nettozins =</label><input type="number" class="calc-input" id="d5d" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb5d" class="expl"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask5()">Aufgabe 5 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask5()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 6 – Fremde Währungen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task6">
+  <div class="task-header">
+    <h2>Aufgabe 6 – Fremde Währungen</h2>
+    <span class="badge">8 Punkte</span>
+    <span class="task-score" id="score6"></span>
+  </div>
+  <div class="task-body">
+    <div class="subtask">6a) CHF gesucht (4 Punkte)</div>
+    <p class="task-desc">Bergsport AG bezahlt ihrem österreichischen Lieferanten per Bank <b>EUR 4'500</b>. Devisen Verkauf-Kurs = 0.94. Wie hoch ist die Bankbelastung in CHF?</p>
+    <div class="calc-row"><label for="d6a">Bankbelastung =</label><input type="number" class="calc-input" id="d6a" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb6a" class="expl"></div>
+
+    <div class="subtask">6b) Kurs gesucht (4 Punkte)</div>
+    <p class="task-desc">Für eine Überweisung von <b>USD 2'800</b> belastet die Bank CHF 2'296.00. Welcher Kurs wurde angewendet?</p>
+    <div class="calc-row"><label for="d6b">Kurs =</label><input type="number" class="calc-input" id="d6b" placeholder="0.00" step="0.01"></div>
+    <div id="fb6b" class="expl"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask6()">Aufgabe 6 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask6()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 7 – MWST -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task7">
+  <div class="task-header">
+    <h2>Aufgabe 7 – Mehrwertsteuer</h2>
+    <span class="badge">10 Punkte</span>
+    <span class="task-score" id="score7"></span>
+  </div>
+  <div class="task-body">
+    <div class="subtask">7a) MWST-Sätze zuordnen (5 Punkte, je 1 Punkt)</div>
+    <table class="class-table" id="a7table">
+      <thead><tr><th style="text-align:left">Leistung / Produkt</th><th>0%</th><th>2.6%</th><th>8.1%</th><th style="width:0;border:none"></th></tr></thead>
+      <tbody id="a7body"></tbody>
+    </table>
+
+    <div class="subtask">7b) Buchungssätze mit MWST (5 Punkte, je 2.5 Punkte)</div>
+    <p class="task-desc">Wählen Sie alle betroffenen Konten (keine Beträge). Wo zwei Konten nötig sind, nutzen Sie beide Felder.</p>
+    <table class="booking-table" id="a7btable">
+      <thead><tr><th style="width:30px">#</th><th style="width:260px">Geschäftsfall</th><th>Soll 1</th><th>Soll 2</th><th>Haben 1</th><th>Haben 2</th></tr></thead>
+      <tbody id="a7bbody"></tbody>
+    </table>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask7()">Aufgabe 7 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask7()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 8 – Kalkulation -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task8">
+  <div class="task-header">
+    <h2>Aufgabe 8 – Kalkulation im Handel</h2>
+    <span class="badge">12 Punkte</span>
+    <span class="task-score" id="score8"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Bergsport AG kauft Trekkingrucksäcke. Brutto-Katalogpreis (BKAP) CHF 8'000.–. Rabatt 12%, Skonto 2%, Bezugskosten CHF 180.–, Gemeinkostenzuschlag 60%, Reingewinnzuschlag 15%. Ergänzen Sie das Schema bis zum Reingewinn (Rappen genau).</p>
+    <table class="class-table" id="a8table" style="text-align:left">
+      <thead><tr><th style="text-align:left">Position</th><th>Betrag CHF</th></tr></thead>
+      <tbody>
+        <tr><td>Brutto-Katalogpreis (BKAP)</td><td style="text-align:right">8'000.00</td></tr>
+        <tr><td>– Rabatt 12%</td><td><input type="number" id="k8_rab" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td><b>= Netto-Katalogpreis (NKAP)</b></td><td><input type="number" id="k8_nkap" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td>– Skonto 2%</td><td><input type="number" id="k8_sk" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td><b>= Netto-Barpreis (NBAP)</b></td><td><input type="number" id="k8_nbap" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td>+ Bezugskosten</td><td style="text-align:right">180.00</td></tr>
+        <tr><td><b>= Einstandspreis (EP)</b></td><td><input type="number" id="k8_ep" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td>+ Gemeinkostenzuschlag 60%</td><td><input type="number" id="k8_gk" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td><b>= Selbstkosten (SK)</b></td><td><input type="number" id="k8_sk2" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+        <tr><td>+ Reingewinnzuschlag 15%</td><td><input type="number" id="k8_rg" placeholder="0" step="0.01" style="width:110px;text-align:right"></td></tr>
+      </tbody>
+    </table>
+    <div id="fb8" class="expl"></div>
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask8()">Aufgabe 8 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask8()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 9 – Nutzschwelle -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task9">
+  <div class="task-header">
+    <h2>Aufgabe 9 – Nutzschwelle / Break-Even</h2>
+    <span class="badge">8 Punkte</span>
+    <span class="task-score" id="score9"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Der Pop-up-Stand in Arosa verkauft Trekkingstock-Sets für CHF 45.– (Einstandspreis CHF 19.–). Miete für den Stand: CHF 150.–/Tag. Ein Mitarbeiter kostet CHF 160.–/Tag.</p>
+
+    <div class="subtask">9a) Deckungsbeitrag pro Set (2 Punkte)</div>
+    <div class="calc-row"><label for="d9a">DB =</label><input type="number" class="calc-input" id="d9a" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb9a" class="expl"></div>
+
+    <div class="subtask">9b) Tägliche Nutzschwelle (3 Punkte)</div>
+    <p class="task-desc" style="font-size:12px">Aufgerundet auf ganze Sets.</p>
+    <div class="calc-row"><label for="d9b">NSm =</label><input type="number" class="calc-input" id="d9b" placeholder="0"><span class="unit">Sets</span></div>
+    <div id="fb9b" class="expl"></div>
+
+    <div class="subtask">9c) Zielmenge für Tagesgewinn CHF 130.– (3 Punkte)</div>
+    <div class="calc-row"><label for="d9c">Zielmenge =</label><input type="number" class="calc-input" id="d9c" placeholder="0"><span class="unit">Sets</span></div>
+    <div id="fb9c" class="expl"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask9()">Aufgabe 9 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask9()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUFGABE 10 – Abschreibungen -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="task-card" id="task10">
+  <div class="task-header">
+    <h2>Aufgabe 10 – Abschreibungen</h2>
+    <span class="badge">7 Punkte</span>
+    <span class="task-score" id="score10"></span>
+  </div>
+  <div class="task-body">
+    <p class="task-desc">Bergsport AG kauft einen neuen Lieferwagen für CHF 45'000.–.</p>
+
+    <div class="subtask">10a) Lineare Abschreibung 25% p.a. (2 Punkte)</div>
+    <div class="calc-row"><label for="d10a">Abschreibung Jahr 1 =</label><input type="number" class="calc-input" id="d10a" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb10a" class="expl"></div>
+
+    <div class="subtask">10b) Degressive Abschreibung 25% p.a. – Betrag im 2. Jahr (2 Punkte)</div>
+    <div class="calc-row"><label for="d10b">Abschreibung Jahr 2 =</label><input type="number" class="calc-input" id="d10b" placeholder="0.00" step="0.01"><span class="unit">CHF</span></div>
+    <div id="fb10b" class="expl"></div>
+
+    <div class="subtask">10c) Buchungssatz für die direkte Verbuchung (2 Punkte)</div>
+    <table class="booking-table" id="a10ctable">
+      <thead><tr><th>Soll</th><th>Haben</th></tr></thead>
+      <tbody><tr><td id="td10cs"></td><td id="td10ch"></td></tr></tbody>
+    </table>
+    <div id="fb10c" class="expl"></div>
+
+    <div class="subtask">10d) Begriff (1 Punkt)</div>
+    <p class="task-desc">Eine Abschreibung, bei der der Prozentsatz jedes Jahr vom aktuellen Buchwert (statt vom Anschaffungswert) berechnet wird, heisst …</p>
+    <div style="display:flex;gap:16px;margin-bottom:10px">
+      <label><input type="radio" name="d10d" value="linear"> linear</label>
+      <label><input type="radio" name="d10d" value="degressiv"> degressiv</label>
+    </div>
+    <div id="fb10d" class="expl"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" onclick="checkTask10()">Aufgabe 10 korrigieren</button>
+      <button class="btn-reset" onclick="resetTask10()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<div class="total-bar">
+  <button class="total-btn" onclick="checkAll()">✓ Alle Aufgaben korrigieren</button>
+  <button class="reset-all-btn" onclick="resetAll()">↺ Alles zurücksetzen</button>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// KONTENPLAN
+// ============================================================
+const ACCOUNTS = [
+  { val: '',                  label: '– Konto wählen –' },
+  { val: 'kasse',             label: '1000 Kasse' },
+  { val: 'bank',              label: '1020 Bankguthaben' },
+  { val: 'fll',               label: '1100 Forderungen aus L+L (FLL)' },
+  { val: 'vorsteuer',         label: '1170 Vorsteuer' },
+  { val: 'waren',             label: '1200 Warenvorrat' },
+  { val: 'lagerausr',         label: '1510 Lagerausrüstung' },
+  { val: 'lieferwagen',       label: '1530 Lieferwagen' },
+  { val: 'vll',               label: '2000 Verbindlichkeiten aus L+L (VLL)' },
+  { val: 'bankdarlehen',      label: '2100 Bankdarlehen' },
+  { val: 'hypothek',          label: '2150 Hypothek' },
+  { val: 'umsatzsteuer',      label: '2200 Umsatzsteuer (geschuldete MWST)' },
+  { val: 'ek',                label: '2800 Eigenkapital' },
+  { val: 'warenertrag',       label: '3200 Warenertrag' },
+  { val: 'lohnaufwand',       label: '5000 Lohnaufwand' },
+  { val: 'mietaufwand',       label: '6000 Mietaufwand' },
+  { val: 'abschreibung',      label: '6800 Abschreibungen' },
+];
+const ACCOUNTS2 = [{ val: '', label: '– keiner –' }, ...ACCOUNTS.slice(1)];
+
+function labelOf(val) { const a = ACCOUNTS.find(x => x.val === val); return a ? a.label : val; }
+function fillKontenplan(id) { document.getElementById(id).innerHTML = ACCOUNTS.slice(1).map(a => `<li>${a.label}</li>`).join(''); }
+function makeSelect(name, opts) {
+  const sel = document.createElement('select'); sel.id = name;
+  (opts || ACCOUNTS).forEach(a => { const opt = document.createElement('option'); opt.value = a.val; opt.textContent = a.label; sel.appendChild(opt); });
+  return sel;
+}
+function setsEqual(a, b) {
+  const A = a.filter(x => x).sort(), B = b.filter(x => x).sort();
+  return A.length === B.length && A.every((v,i) => v === B[i]);
+}
+function readScore(id) { const txt = document.getElementById(id).textContent; if (!txt) return 0; return parseFloat(txt.split('/')[0]) || 0; }
+
+// ============================================================
+// AUFGABE 1 – Lückentext
+// ============================================================
+const a1data = [
+  { label: 'Der Zins ist der Preis für eine vorübergehende ___.', ans: ['kapitalüberlassung','kapitalueberlassung'], show: 'Kapitalüberlassung' },
+  { label: 'Die deutsche Zinsmethode rechnet mit ___ Tagen pro Jahr.', ans: ['360'], show: '360' },
+  { label: 'Der Verrechnungssteuersatz beträgt ___ %.', ans: ['35'], show: '35' },
+  { label: 'Bei der ___ Abschreibung bleibt der Abschreibungsbetrag jedes Jahr gleich hoch.', ans: ['linearen','linear'], show: 'linearen' },
+  { label: 'Bei der ___ Abschreibung wird jeweils vom aktuellen Buchwert abgeschrieben.', ans: ['degressiven','degressiv'], show: 'degressiven' },
+  { label: 'Der MWST-Normalsatz beträgt ___ %.', ans: ['8.1','8,1'], show: '8.1' },
+  { label: 'Die Differenz zwischen Umsatzsteuer und Vorsteuer heisst ___.', ans: ['zahllast','abzuliefernde mwst'], show: 'Zahllast (abzuliefernde MWST)' },
+  { label: 'Ein Geschäftsfall, bei dem sich nur Aktivkonten verändern, heisst ___.', ans: ['aktivtausch'], show: 'Aktivtausch' },
+];
+function norm(s) { return (s||'').toLowerCase().trim().replace(/[.,!?]/g,''); }
+function buildTask1() {
+  const tbl = document.getElementById('a1table'); tbl.innerHTML = '';
+  a1data.forEach((item, i) => {
+    const tr = document.createElement('tr'); tr.id = 'a1r'+i;
+    tr.innerHTML = `<td>${String.fromCharCode(97+i)}) ${item.label.replace('___','<input type="text" id="a1i'+i+'">')}</td>`;
+    tbl.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td><div class="expl" id="a1fb${i}"></div></td>`;
+    tbl.appendChild(er);
+  });
+}
+function checkTask1() {
+  let correct = 0;
+  a1data.forEach((item, i) => {
+    const tr = document.getElementById('a1r'+i), fb = document.getElementById('a1fb'+i);
+    const val = norm(document.getElementById('a1i'+i).value);
+    const ok = item.ans.some(a => norm(a) === val);
+    if (ok) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; correct++; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = `✗ Richtig: <b>${item.show}</b>`; }
+  });
+  const sc = document.getElementById('score1'); sc.textContent = correct + '/8'; sc.className = 'task-score show';
+}
+function resetTask1() {
+  a1data.forEach((item, i) => {
+    document.getElementById('a1r'+i).className=''; document.getElementById('a1i'+i).value='';
+    const fb = document.getElementById('a1fb'+i); fb.className='expl'; fb.textContent='';
+  });
+  document.getElementById('score1').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 2 – Kontenklassifikation
+// ============================================================
+const a2data = [
+  { label:'Kasse', ans:'UV', why:'Bargeld → sofort verfügbar → Umlaufvermögen.' },
+  { label:'Lieferwagen', ans:'AV', why:'Langfristig genutztes Fahrzeug → Anlagevermögen.' },
+  { label:'Warenvorrat (Outdoor-Ausrüstung)', ans:'UV', why:'Wird innerhalb eines Jahres verkauft → Umlaufvermögen.' },
+  { label:'Verbindlichkeiten aus L+L', ans:'FK', why:'Schulden gegenüber Lieferanten → Fremdkapital.' },
+  { label:'Eigenkapital', ans:'EK', why:'Kapital des Unternehmens = Eigenkapital.' },
+  { label:'Mietaufwand (Lagerhalle)', ans:'Aufwand', why:'Miete = Wertverzehr → Aufwand.' },
+  { label:'Warenertrag', ans:'Ertrag', why:'Verkaufserlös = Wertzuwachs → Ertrag.' },
+  { label:'Bankguthaben', ans:'UV', why:'Kurzfristig verfügbares Bankguthaben → Umlaufvermögen.' },
+  { label:'Hypothekarschuld (Lagerhalle)', ans:'FK', why:'Grundpfandgesicherte Schuld → Fremdkapital.' },
+  { label:'Lagerausrüstung (Regale, Gestelle)', ans:'AV', why:'Langfristig genutztes Anlagegut → Anlagevermögen.' },
+  { label:'Forderungen aus L+L', ans:'UV', why:'Ausstehende Kundenzahlungen, kurzfristig → Umlaufvermögen.' },
+  { label:'Lohnaufwand', ans:'Aufwand', why:'Löhne = Aufwand, reduziert den Gewinn.' },
+];
+const a2cats = ['UV','AV','FK','EK','Aufwand','Ertrag'];
+function buildTask2() {
+  const tbody = document.getElementById('a2body'); tbody.innerHTML = '';
+  a2data.forEach((item, i) => {
+    const tr = document.createElement('tr'); tr.id = 'a2r'+i;
+    let cells = `<td>${item.label}</td>`;
+    a2cats.forEach(cat => cells += `<td><input type="radio" name="a2_${i}" value="${cat}"></td>`);
+    cells += `<td style="border:none;width:0"></td>`;
+    tr.innerHTML = cells; tbody.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td colspan="8" style="padding:0;border-top:none"><div class="expl" id="a2fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+function checkTask2() {
+  let correct = 0;
+  a2data.forEach((item, i) => {
+    const tr = document.getElementById('a2r'+i), fb = document.getElementById('a2fb'+i);
+    const sel = document.querySelector(`input[name="a2_${i}"]:checked`); const val = sel ? sel.value : null;
+    if (val === item.ans) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; correct++; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = `✗ Richtig: <b>${item.ans}</b> – ${item.why}`; }
+  });
+  const sc = document.getElementById('score2'); sc.textContent = correct + '/12'; sc.className = 'task-score show';
+}
+function resetTask2() {
+  a2data.forEach((item, i) => {
+    document.getElementById('a2r'+i).className='';
+    const fb = document.getElementById('a2fb'+i); fb.className='expl'; fb.textContent='';
+    document.querySelectorAll(`input[name="a2_${i}"]`).forEach(r => r.checked=false);
+  });
+  document.getElementById('score2').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 3 & 4 – Buchungssätze + Bilanzveränderungstypen
+// ============================================================
+const a34data = [
+  { id:'a', desc:'Kauf von Outdoor-Ausrüstung auf Rechnung.', soll:'waren', haben:'vll', typ:'KB',
+    why_soll:'Warenvorrat ↑ → Aktivkonto ↑ → Soll.', why_haben:'VLL ↑ → Passivkonto ↑ → Haben.' },
+  { id:'b', desc:'Barverkauf von Waren.', soll:'kasse', haben:'warenertrag', typ:'EW',
+    why_soll:'Kasse ↑ → Aktivkonto ↑ → Soll.', why_haben:'Warenertrag = Ertrag → Haben.' },
+  { id:'c', desc:'Zahlung der Lagermiete per Bank.', soll:'mietaufwand', haben:'bank', typ:'EW',
+    why_soll:'Mietaufwand = Aufwand → Soll.', why_haben:'Bankguthaben ↓ → Aktivkonto ↓ → Haben.' },
+  { id:'d', desc:'Rückzahlung einer Lieferantenrechnung über die Bank.', soll:'vll', haben:'bank', typ:'KR',
+    why_soll:'VLL ↓ → Passivkonto ↓ → Soll.', why_haben:'Bankguthaben ↓ → Aktivkonto ↓ → Haben.' },
+  { id:'e', desc:'Ein Kunde begleicht seine offene Rechnung per Bank.', soll:'bank', haben:'fll', typ:'AT',
+    why_soll:'Bankguthaben ↑ → Aktivkonto ↑ → Soll.', why_haben:'FLL ↓ → Aktivkonto ↓ → Haben.' },
+  { id:'f', desc:'Kauf eines neuen Lieferwagens auf Rechnung.', soll:'lieferwagen', haben:'vll', typ:'KB',
+    why_soll:'Lieferwagen ↑ → Aktivkonto ↑ → Soll.', why_haben:'VLL ↑ → Passivkonto ↑ → Haben.' },
+  { id:'g', desc:'Umwandlung einer Lieferantenschuld in ein Bankdarlehen.', soll:'vll', haben:'bankdarlehen', typ:'PT',
+    why_soll:'VLL ↓ → Passivkonto ↓ → Soll.', why_haben:'Bankdarlehen ↑ → Passivkonto ↑ → Haben.' },
+  { id:'h', desc:'Der Inhaber erhöht das Eigenkapital durch Bareinzahlung.', soll:'kasse', haben:'ek', typ:'KB',
+    why_soll:'Kasse ↑ → Aktivkonto ↑ → Soll.', why_haben:'Eigenkapital ↑ → Passivkonto ↑ → Haben.' },
+  { id:'i', desc:'Rückzahlung der Hypothek über die Bank.', soll:'hypothek', haben:'bank', typ:'KR',
+    why_soll:'Hypothek ↓ → Passivkonto ↓ → Soll.', why_haben:'Bankguthaben ↓ → Aktivkonto ↓ → Haben.' },
+  { id:'j', desc:'Lohnzahlung der Angestellten per Bank.', soll:'lohnaufwand', haben:'bank', typ:'EW',
+    why_soll:'Lohnaufwand = Aufwand → Soll.', why_haben:'Bankguthaben ↓ → Aktivkonto ↓ → Haben.' },
+];
+
+function buildTask3() {
+  fillKontenplan('a3kontenplan');
+  const tbody = document.getElementById('a3body'); tbody.innerHTML = '';
+  a34data.forEach(item => {
+    const tr = document.createElement('tr'); tr.id = 'a3r'+item.id;
+    const tdNum = document.createElement('td'); tdNum.style.fontWeight='bold'; tdNum.textContent = item.id+')';
+    const tdDesc = document.createElement('td'); tdDesc.style.fontSize='12px'; tdDesc.textContent = item.desc;
+    const tdSoll = document.createElement('td'); tdSoll.appendChild(makeSelect('a3s_'+item.id));
+    const tdHaben = document.createElement('td'); tdHaben.appendChild(makeSelect('a3h_'+item.id));
+    tr.appendChild(tdNum); tr.appendChild(tdDesc); tr.appendChild(tdSoll); tr.appendChild(tdHaben);
+    tbody.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td colspan="4" style="padding:0;border-top:none"><div class="expl" id="a3fb${item.id}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+function checkTask3() {
+  let correct = 0;
+  a34data.forEach(item => {
+    const tr = document.getElementById('a3r'+item.id), fb = document.getElementById('a3fb'+item.id);
+    const soll = document.getElementById('a3s_'+item.id).value, haben = document.getElementById('a3h_'+item.id).value;
+    const msgs = [];
+    if (soll === item.soll) correct += 0.75; else msgs.push(`✗ Soll: „${labelOf(item.soll)}" – ${item.why_soll}`);
+    if (haben === item.haben) correct += 0.75; else msgs.push(`✗ Haben: „${labelOf(item.haben)}" – ${item.why_haben}`);
+    if (msgs.length===0) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = msgs.join('<br>'); }
+  });
+  const sc = document.getElementById('score3'); sc.textContent = correct.toFixed(1).replace(/\.0$/,'') + '/15'; sc.className='task-score show';
+}
+function resetTask3() {
+  a34data.forEach(item => {
+    document.getElementById('a3r'+item.id).className='';
+    document.getElementById('a3s_'+item.id).value=''; document.getElementById('a3h_'+item.id).value='';
+    const fb = document.getElementById('a3fb'+item.id); fb.className='expl'; fb.textContent='';
+  });
+  document.getElementById('score3').className='task-score';
+}
+
+function buildTask4() {
+  const tbody = document.getElementById('a4body'); tbody.innerHTML = '';
+  const types = ['AT','PT','KB','KR','EW'];
+  a34data.forEach(item => {
+    const tr = document.createElement('tr'); tr.id = 'a4r'+item.id;
+    let cells = `<td>${item.id})</td><td>${item.desc}</td>`;
+    types.forEach(t => cells += `<td><input type="radio" name="a4_${item.id}" value="${t}"></td>`);
+    cells += `<td style="border:none"></td>`;
+    tr.innerHTML = cells; tbody.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td colspan="8" style="padding:0;border-top:none"><div class="expl" id="a4fb${item.id}"></div></td>`;
+    tbody.appendChild(er);
+  });
+}
+function checkTask4() {
+  let correct = 0;
+  a34data.forEach(item => {
+    const tr = document.getElementById('a4r'+item.id), fb = document.getElementById('a4fb'+item.id);
+    const sel = document.querySelector(`input[name="a4_${item.id}"]:checked`); const val = sel ? sel.value : null;
+    if (val === item.typ) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; correct++; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = `✗ Richtig: <b>${item.typ}</b>`; }
+  });
+  const sc = document.getElementById('score4'); sc.textContent = correct + '/10'; sc.className='task-score show';
+}
+function resetTask4() {
+  a34data.forEach(item => {
+    document.getElementById('a4r'+item.id).className='';
+    const fb = document.getElementById('a4fb'+item.id); fb.className='expl'; fb.textContent='';
+    document.querySelectorAll(`input[name="a4_${item.id}"]`).forEach(r => r.checked=false);
+  });
+  document.getElementById('score4').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 5 – Zinsrechnen
+// ============================================================
+function checkField(id, ans, tol) {
+  const el = document.getElementById(id); const val = parseFloat(el.value);
+  const ok = !isNaN(val) && Math.abs(val-ans) <= tol;
+  el.style.background = ok ? '#d4edda' : (el.value ? '#f8d7da' : '');
+  return ok;
+}
+function checkTask5() {
+  let correct = 0;
+  if (checkField('d5a1',135,1)) correct += 2;
+  if (checkField('d5a2',162,1)) correct += 2;
+
+  const ok5b = checkField('d5b',262.50,0.5);
+  document.getElementById('fb5b').className = ok5b ? 'expl' : 'expl show';
+  if (!ok5b) document.getElementById('fb5b').innerHTML = '✗ Richtig: CHF 262.50 | Z=18000×3.5×150/(100×360)=262.50.';
+  if (ok5b) correct += 2;
+
+  const ok5c = checkField('d5c',14400,2);
+  document.getElementById('fb5c').className = ok5c ? 'expl' : 'expl show';
+  if (!ok5c) document.getElementById('fb5c').innerHTML = '✗ Richtig: CHF 14\'400 | K=320×100×360/(4×200)=14400.';
+  if (ok5c) correct += 2;
+
+  const ok5d = checkField('d5d',351,0.5);
+  document.getElementById('fb5d').className = ok5d ? 'expl' : 'expl show';
+  if (!ok5d) document.getElementById('fb5d').innerHTML = '✗ Richtig: CHF 351.00 | Netto=540×0.65=351.';
+  if (ok5d) correct += 2;
+
+  const sc = document.getElementById('score5'); sc.textContent = correct + '/10'; sc.className='task-score show';
+}
+function resetTask5() {
+  ['d5a1','d5a2','d5b','d5c','d5d'].forEach(id => { const el=document.getElementById(id); el.value=''; el.style.background=''; });
+  ['fb5b','fb5c','fb5d'].forEach(id => { const fb=document.getElementById(id); fb.className='expl'; fb.textContent=''; });
+  document.getElementById('score5').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 6 – Fremde Währungen
+// ============================================================
+function checkTask6() {
+  let correct = 0;
+  const ok6a = checkField('d6a',4230,1);
+  document.getElementById('fb6a').className = ok6a ? 'expl' : 'expl show';
+  if (!ok6a) document.getElementById('fb6a').innerHTML = '✗ Richtig: CHF 4\'230.00 | 4500×0.94=4230.';
+  if (ok6a) correct += 4;
+
+  const ok6b = checkField('d6b',0.82,0.01);
+  document.getElementById('fb6b').className = ok6b ? 'expl' : 'expl show';
+  if (!ok6b) document.getElementById('fb6b').innerHTML = '✗ Richtig: 0.82 | 2296/2800=0.82.';
+  if (ok6b) correct += 4;
+
+  const sc = document.getElementById('score6'); sc.textContent = correct + '/8'; sc.className='task-score show';
+}
+function resetTask6() {
+  ['d6a','d6b'].forEach(id => { const el=document.getElementById(id); el.value=''; el.style.background=''; });
+  ['fb6a','fb6b'].forEach(id => { const fb=document.getElementById(id); fb.className='expl'; fb.textContent=''; });
+  document.getElementById('score6').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 7 – MWST
+// ============================================================
+const a7data = [
+  { label:'Trekkingschuhe (Sportartikel)', ans:'8.1', why:'Allgemeine Ware → Normalsatz 8.1%.' },
+  { label:'Energieriegel (Lebensmittel)', ans:'2.6', why:'Lebensmittel → Sondersatz 2.6%.' },
+  { label:'Bergführer-Kurs', ans:'0', why:'Bildungsleistung → von der MWST ausgenommen.' },
+  { label:'Outdoor-Zeitschrift', ans:'2.6', why:'Zeitschriften/Druckerzeugnisse → Sondersatz 2.6%.' },
+  { label:'Reparaturservice Kletterausrüstung', ans:'8.1', why:'Dienstleistung → Normalsatz 8.1%.' },
+];
+const a7bdata = [
+  { id:'1', desc:'Wareneinkauf auf Rechnung, netto CHF 5\'000, MWST 8.1% separat ausgewiesen.', soll:['waren','vorsteuer'], haben:['vll'], why:'Soll: Warenvorrat + Vorsteuer. Haben: VLL.' },
+  { id:'2', desc:'Warenverkauf gegen Rechnung, netto CHF 3\'000, MWST 8.1%.', soll:['fll'], haben:['warenertrag','umsatzsteuer'], why:'Soll: FLL. Haben: Warenertrag + Umsatzsteuer.' },
+];
+function buildTask7() {
+  const tbody = document.getElementById('a7body'); tbody.innerHTML = '';
+  a7data.forEach((item, i) => {
+    const tr = document.createElement('tr'); tr.id = 'a7r'+i;
+    let cells = `<td>${item.label}</td>`;
+    ['0','2.6','8.1'].forEach(rate => cells += `<td><input type="radio" name="a7_${i}" value="${rate}"></td>`);
+    cells += `<td style="border:none"></td>`;
+    tr.innerHTML = cells; tbody.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td colspan="5" style="padding:0;border-top:none"><div class="expl" id="a7fb${i}"></div></td>`;
+    tbody.appendChild(er);
+  });
+
+  const btbody = document.getElementById('a7bbody'); btbody.innerHTML = '';
+  a7bdata.forEach(item => {
+    const tr = document.createElement('tr'); tr.id = 'a7br'+item.id;
+    const tdNum = document.createElement('td'); tdNum.style.fontWeight='bold'; tdNum.textContent = item.id+')';
+    const tdDesc = document.createElement('td'); tdDesc.style.fontSize='12px'; tdDesc.textContent = item.desc;
+    const tdS1 = document.createElement('td'); tdS1.appendChild(makeSelect('a7s1_'+item.id, ACCOUNTS));
+    const tdS2 = document.createElement('td'); tdS2.appendChild(makeSelect('a7s2_'+item.id, ACCOUNTS2));
+    const tdH1 = document.createElement('td'); tdH1.appendChild(makeSelect('a7h1_'+item.id, ACCOUNTS));
+    const tdH2 = document.createElement('td'); tdH2.appendChild(makeSelect('a7h2_'+item.id, ACCOUNTS2));
+    tr.appendChild(tdNum); tr.appendChild(tdDesc); tr.appendChild(tdS1); tr.appendChild(tdS2); tr.appendChild(tdH1); tr.appendChild(tdH2);
+    btbody.appendChild(tr);
+    const er = document.createElement('tr'); er.innerHTML = `<td colspan="6" style="padding:0;border-top:none"><div class="expl" id="a7bfb${item.id}"></div></td>`;
+    btbody.appendChild(er);
+  });
+}
+function checkTask7() {
+  let correct = 0;
+  a7data.forEach((item, i) => {
+    const tr = document.getElementById('a7r'+i), fb = document.getElementById('a7fb'+i);
+    const sel = document.querySelector(`input[name="a7_${i}"]:checked`); const val = sel ? sel.value : null;
+    if (val === item.ans) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; correct++; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = `✗ Richtig: <b>${item.ans}%</b> – ${item.why}`; }
+  });
+  a7bdata.forEach(item => {
+    const tr = document.getElementById('a7br'+item.id), fb = document.getElementById('a7bfb'+item.id);
+    const soll = [document.getElementById('a7s1_'+item.id).value, document.getElementById('a7s2_'+item.id).value];
+    const haben = [document.getElementById('a7h1_'+item.id).value, document.getElementById('a7h2_'+item.id).value];
+    const ok = setsEqual(soll, item.soll) && setsEqual(haben, item.haben);
+    if (ok) { tr.className='row-correct'; fb.className='expl'; fb.textContent=''; correct += 2.5; }
+    else { tr.className='row-wrong'; fb.className='expl show'; fb.innerHTML = `✗ Richtig – Soll: ${item.soll.map(labelOf).join(' + ')} / Haben: ${item.haben.map(labelOf).join(' + ')}. ${item.why}`; }
+  });
+  const sc = document.getElementById('score7'); sc.textContent = correct.toFixed(1).replace(/\.0$/,'') + '/10'; sc.className='task-score show';
+}
+function resetTask7() {
+  a7data.forEach((item, i) => {
+    document.getElementById('a7r'+i).className='';
+    const fb = document.getElementById('a7fb'+i); fb.className='expl'; fb.textContent='';
+    document.querySelectorAll(`input[name="a7_${i}"]`).forEach(r => r.checked=false);
+  });
+  a7bdata.forEach(item => {
+    document.getElementById('a7br'+item.id).className='';
+    ['a7s1_','a7s2_','a7h1_','a7h2_'].forEach(p => document.getElementById(p+item.id).value='');
+    const fb = document.getElementById('a7bfb'+item.id); fb.className='expl'; fb.textContent='';
+  });
+  document.getElementById('score7').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 8 – Kalkulation
+// ============================================================
+function checkTask8() {
+  let correct = 0; const msgs = [];
+  const checks = [
+    ['k8_rab', 960.00, 'Rabatt = 8000×12% = CHF 960.00'],
+    ['k8_nkap', 7040.00, 'NKAP = 8000−960 = CHF 7\'040.00'],
+    ['k8_sk', 140.80, 'Skonto = 7040×2% = CHF 140.80'],
+    ['k8_nbap', 6899.20, 'NBAP = 7040−140.80 = CHF 6\'899.20'],
+    ['k8_ep', 7079.20, 'EP = 6899.20+180 = CHF 7\'079.20'],
+    ['k8_gk', 4247.52, 'GK = 7079.20×60% = CHF 4\'247.52'],
+    ['k8_sk2', 11326.72, 'SK = 7079.20+4247.52 = CHF 11\'326.72'],
+    ['k8_rg', 1699.01, 'RG = 11326.72×15% = CHF 1\'699.01'],
+  ];
+  checks.forEach(([id, ans, msg]) => {
+    if (checkField(id, ans, 0.5)) correct += 1.5; else msgs.push(msg);
+  });
+  const fb = document.getElementById('fb8');
+  if (msgs.length) { fb.className='expl show'; fb.innerHTML = '✗ Korrekturen: ' + msgs.join(' | '); }
+  else { fb.className='expl'; }
+  const sc = document.getElementById('score8'); sc.textContent = correct.toFixed(1).replace(/\.0$/,'') + '/12'; sc.className='task-score show';
+}
+function resetTask8() {
+  ['k8_rab','k8_nkap','k8_sk','k8_nbap','k8_ep','k8_gk','k8_sk2','k8_rg'].forEach(id => {
+    const el = document.getElementById(id); el.value=''; el.style.background='';
+  });
+  const fb = document.getElementById('fb8'); fb.className='expl'; fb.textContent='';
+  document.getElementById('score8').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 9 – Nutzschwelle
+// ============================================================
+function checkTask9() {
+  let correct = 0;
+  const ok9a = checkField('d9a',26,0.5);
+  document.getElementById('fb9a').className = ok9a ? 'expl' : 'expl show';
+  if (!ok9a) document.getElementById('fb9a').innerHTML = '✗ Richtig: CHF 26.00 | DB=45−19=26.';
+  if (ok9a) correct += 2;
+
+  const ok9b = checkField('d9b',12,0);
+  document.getElementById('fb9b').className = ok9b ? 'expl' : 'expl show';
+  if (!ok9b) document.getElementById('fb9b').innerHTML = '✗ Richtig: 12 Sets | FK/Tag=150+160=310. NSm=310/26=11.92→12.';
+  if (ok9b) correct += 3;
+
+  const ok9c = checkField('d9c',17,0);
+  document.getElementById('fb9c').className = ok9c ? 'expl' : 'expl show';
+  if (!ok9c) document.getElementById('fb9c').innerHTML = '✗ Richtig: 17 Sets | (310+130)/26=440/26=16.92→17.';
+  if (ok9c) correct += 3;
+
+  const sc = document.getElementById('score9'); sc.textContent = correct + '/8'; sc.className='task-score show';
+}
+function resetTask9() {
+  ['d9a','d9b','d9c'].forEach(id => { const el=document.getElementById(id); el.value=''; el.style.background=''; });
+  ['fb9a','fb9b','fb9c'].forEach(id => { const fb=document.getElementById(id); fb.className='expl'; fb.textContent=''; });
+  document.getElementById('score9').className='task-score';
+}
+
+// ============================================================
+// AUFGABE 10 – Abschreibungen
+// ============================================================
+function buildTask10() {
+  document.getElementById('td10cs').appendChild(makeSelect('a10cs'));
+  document.getElementById('td10ch').appendChild(makeSelect('a10ch'));
+}
+function checkTask10() {
+  let correct = 0;
+  const ok10a = checkField('d10a',11250,1);
+  document.getElementById('fb10a').className = ok10a ? 'expl' : 'expl show';
+  if (!ok10a) document.getElementById('fb10a').innerHTML = '✗ Richtig: CHF 11\'250.00 | 45000×25%=11250.';
+  if (ok10a) correct += 2;
+
+  const ok10b = checkField('d10b',8437.50,1);
+  document.getElementById('fb10b').className = ok10b ? 'expl' : 'expl show';
+  if (!ok10b) document.getElementById('fb10b').innerHTML = '✗ Richtig: CHF 8\'437.50 | Jahr1: 45000×25%=11250→BW=33750. Jahr2: 33750×25%=8437.50.';
+  if (ok10b) correct += 2;
+
+  const soll = document.getElementById('a10cs').value, haben = document.getElementById('a10ch').value;
+  const fb10c = document.getElementById('fb10c');
+  if (soll === 'abschreibung' && haben === 'lieferwagen') { fb10c.className='expl'; correct += 2; }
+  else { fb10c.className='expl show'; fb10c.innerHTML = '✗ Richtig: Soll Abschreibungen / Haben Lieferwagen.'; }
+
+  const sel10d = document.querySelector('input[name="d10d"]:checked');
+  const fb10d = document.getElementById('fb10d');
+  if (sel10d && sel10d.value === 'degressiv') { fb10d.className='expl'; correct += 1; }
+  else { fb10d.className='expl show'; fb10d.innerHTML = '✗ Richtig: degressiv.'; }
+
+  const sc = document.getElementById('score10'); sc.textContent = correct + '/7'; sc.className='task-score show';
+}
+function resetTask10() {
+  ['d10a','d10b'].forEach(id => { const el=document.getElementById(id); el.value=''; el.style.background=''; });
+  document.getElementById('a10cs').value=''; document.getElementById('a10ch').value='';
+  document.querySelectorAll('input[name="d10d"]').forEach(r => r.checked=false);
+  ['fb10a','fb10b','fb10c','fb10d'].forEach(id => { const fb=document.getElementById(id); fb.className='expl'; fb.textContent=''; });
+  document.getElementById('score10').className='task-score';
+}
+
+// ============================================================
+// CHECK ALL / RESET ALL
+// ============================================================
+function checkAll() {
+  checkTask1(); checkTask2(); checkTask3(); checkTask4(); checkTask5();
+  checkTask6(); checkTask7(); checkTask8(); checkTask9(); checkTask10();
+  const total = readScore('score1') + readScore('score2') + readScore('score3') + readScore('score4') + readScore('score5')
+              + readScore('score6') + readScore('score7') + readScore('score8') + readScore('score9') + readScore('score10');
+  const panel = document.getElementById('score-panel');
+  const sv = document.getElementById('score-value'), sl = document.getElementById('score-label');
+  const totalR = Math.round(total * 10) / 10;
+  sv.textContent = totalR + ' / 100 Punkte';
+  sl.textContent = totalR >= 60 ? '✓ Bestanden (≥ 60 Punkte)' : '✗ Noch nicht bestanden – weiter üben!';
+  panel.className = 'show';
+  panel.style.borderColor = totalR >= 60 ? '#1a7a3c' : '#b01c1c';
+  sv.style.color          = totalR >= 60 ? '#1a7a3c' : '#b01c1c';
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+function resetAll() {
+  resetTask1(); resetTask2(); resetTask3(); resetTask4(); resetTask5();
+  resetTask6(); resetTask7(); resetTask8(); resetTask9(); resetTask10();
+  document.getElementById('score-panel').className = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  buildTask1(); buildTask2(); buildTask3(); buildTask4(); buildTask7(); buildTask10();
+});
+</script>
+</body>
+</html>
